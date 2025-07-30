@@ -4,6 +4,7 @@
 RWTexture2D<float4> Tex;
 uint2 Res;
 float2 drawUV;
+float4 drawCol;
 
 [numthreads(8,8,1)]
 void Init(uint3 id : SV_DispatchThreadID)
@@ -24,7 +25,7 @@ void Draw(uint3 id : SV_DispatchThreadID)
     int2 offset = id.xy - drawPx;
     if (length(offset) < 10)
     {
-        Tex[id.xy] = float4(1, 0, 0, 1);
+        Tex[id.xy] = float4(drawCol.rgb, 1);
     }
     //Tex[id.xy] = float4(id.x & id.y, (id.x & 15)/15.0, (id.y & 15)/15.0, 0.0);
 }

@@ -1,16 +1,20 @@
 using Seb.Helpers;
 using UnityEngine;
 
-public class Scribble : MonoBehaviour
+public class Scribble : Task
 {
-	public bool taskActive;
+	[Header("Scribble")]
 	public int texRes = 512;
 
 	public MeshRenderer paper;
 	public BoxCollider paperBoxCollider;
 	public ComputeShader scribbleCompute;
 	public Camera cam;
+	public BoxCollider[] crayons;
 	RenderTexture tex;
+	FirstPersonController controller;
+
+	GameObject activeCrayon;
 
 	void Start()
 	{
@@ -22,18 +26,51 @@ public class Scribble : MonoBehaviour
 		scribbleCompute.SetTexture(1, "Tex", tex);
 		scribbleCompute.SetInts("Res", tex.width, tex.height);
 		ComputeHelper.Dispatch(scribbleCompute, tex.width, tex.height, kernelIndex: 0);
+		
+		if (!taskActive) cam.gameObject.SetActive(false);
+		if (taskActive)
+		{
+			Baby baby = FindFirstObjectByType<Baby>(FindObjectsInactive.Include);
+			EnterTask(baby.gameObject.GetComponent<FirstPersonController>());
+		}
 	}
 
 	void Update()
 	{
 		if (!taskActive) return;
 
-		
-		Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
+		Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 		RaycastHit hitInfo;
+
+		// --------- Crayon selection
+		int nearestCrayonIndex = -1;
+		float nearestCrayonDistance = float.MaxValue;
+
+		for (int i = 0; i < crayons.Length; i++)
+		{
+			crayons[i].Raycast(ray, out hitInfo, 100);
+			if (hitInfo.collider != null)
+			{
+				if (hitInfo.distance < nearestCrayonDistance)
+				{
+					nearestCrayonIndex = i;
+					nearestCrayonDistance = hitInfo.distance;
+				}
+			}
+		}
+
+		if (Input.GetMouseButtonDown(0) && nearestCrayonIndex != -1)
+		{
+			if (activeCrayon) activeCrayon.gameObject.SetActive(true);
+			activeCrayon = crayons[nearestCrayonIndex].gameObject;
+			activeCrayon.SetActive(false);
+			scribbleCompute.SetVector("drawCol", activeCrayon.GetComponent<MeshRenderer>().sharedMaterial.color);
+		}
+
+		// ------------- Draw
 		paperBoxCollider.Raycast(ray, out hitInfo, 100);
-		if (hitInfo.collider != null)
+		if (hitInfo.collider != null && activeCrayon != null)
 		{
 			Vector3 pLocal = paper.transform.InverseTransformPoint(hitInfo.point);
 			Vector2 pLocal2D = new Vector2(pLocal.z, pLocal.x);
@@ -45,5 +82,29 @@ public class Scribble : MonoBehaviour
 				ComputeHelper.Dispatch(scribbleCompute, tex.width, tex.height, kernelIndex: 1);
 			}
 		}
+		
+		// -------- Exit
+		if (Input.GetKeyDown(KeyCode.Escape))
+		{
+			ExitTask();
+		}
+	}
+
+	public override void EnterTask(FirstPersonController controller)
+	{
+		this.controller = controller;
+		controller.gameObject.SetActive(false);
+		taskActive = true;
+		cam.gameObject.SetActive(true);
+		
+		Cursor.lockState = CursorLockMode.None;
+		Cursor.visible = true;
+	}
+
+	void ExitTask()
+	{
+		cam.gameObject.SetActive(false);
+		taskActive = false;
+		controller.gameObject.SetActive(true);
 	}
 }

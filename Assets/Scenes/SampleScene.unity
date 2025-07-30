@@ -137,7 +137,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &147061108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,7 +204,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28b73c722d3d8044c91250c22c93de54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lockCursor: 1
   smoothVelTAir: 0.5
   smoothVelTGround: 0.1
   gravity: 12
@@ -820,7 +819,7 @@ GameObject:
   - component: {fileID: 1174673572}
   - component: {fileID: 1174673571}
   m_Layer: 0
-  m_Name: Crayon (1)
+  m_Name: Crayon Yel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -856,7 +855,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1368,7 +1367,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1397,7 +1396,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d12783e9560354d4680f3f446ff0da0d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1440,7 +1439,7 @@ GameObject:
   - component: {fileID: 1627108093}
   - component: {fileID: 1627108092}
   m_Layer: 0
-  m_Name: Crayon (2)
+  m_Name: Crayon Blu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1476,7 +1475,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1653,7 +1652,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1796826505}
   - component: {fileID: 1796826506}
-  - component: {fileID: 1796826507}
   - component: {fileID: 1796826508}
   m_Layer: 0
   m_Name: Task - Scribble
@@ -1703,19 +1701,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1.43
   m_Center: {x: -0.09, y: 0, z: 0}
---- !u!114 &1796826507
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1796826504}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80e492f45e1685242b7106ce98c485f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  infoString: press space to start scribbling
 --- !u!114 &1796826508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1728,12 +1713,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea0745edbb97914418d1132ec8408eef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  taskActive: 1
+  infoString: press space to scribble!
+  taskActive: 0
   texRes: 512
   paper: {fileID: 1576867319}
   paperBoxCollider: {fileID: 1576867318}
   scribbleCompute: {fileID: 7200000, guid: c4ed079c94404f646a0902b46be13a41, type: 3}
   cam: {fileID: 1064847621}
+  crayons:
+  - {fileID: 2112359142}
+  - {fileID: 1174673571}
+  - {fileID: 1627108092}
 --- !u!1 &1845022526
 GameObject:
   m_ObjectHideFlags: 0
@@ -1855,7 +1845,7 @@ GameObject:
   - component: {fileID: 2112359143}
   - component: {fileID: 2112359142}
   m_Layer: 0
-  m_Name: Crayon
+  m_Name: Crayon Red
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1891,7 +1881,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3

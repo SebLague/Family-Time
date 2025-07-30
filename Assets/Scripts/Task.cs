@@ -1,7 +1,11 @@
 using UnityEngine;
 
-public class Task : MonoBehaviour
+public abstract class Task : MonoBehaviour
 {
-    public string infoString;
-   
+	[Header("Task")]
+	public string infoString;
+
+	public bool taskActive;
+
+	public abstract void EnterTask(FirstPersonController controller);
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class FirstPersonController : MonoBehaviour
 {
-	public bool lockCursor;
+	bool lockCursor = true;
 	public float smoothVelTAir;
 	public float smoothVelTGround;
 	public float gravity = 12f;
@@ -27,12 +27,6 @@ public class FirstPersonController : MonoBehaviour
 	{
 		controller = GetComponent<CharacterController>();
 
-		if (lockCursor)
-		{
-			Cursor.lockState = CursorLockMode.Locked;
-			Cursor.visible = false;
-		}
-
 		infoUI.text = "";
 	}
 
@@ -40,6 +34,12 @@ public class FirstPersonController : MonoBehaviour
 	void Update()
 	{
 		UpdateController();
+
+		if (Input.GetKeyDown(KeyCode.Space) && potentialTask != null)
+		{
+			potentialTask.EnterTask(this);
+			infoUI.text = "";
+		}
 	}
 
 	void OnTriggerEnter(Collider other)
@@ -54,8 +54,11 @@ public class FirstPersonController : MonoBehaviour
 
 	void OnTriggerExit(Collider other)
 	{
-		infoUI.text = "";
-		potentialTask = null;
+		if (other.gameObject.GetComponent<Task>())
+		{
+			infoUI.text = "";
+			potentialTask = null;
+		}
 	}
 
 	void UpdateController()
@@ -85,6 +88,12 @@ public class FirstPersonController : MonoBehaviour
 		velocity.y = velocityY;
 
 		controller.Move(velocity * Time.deltaTime);
+
+		if (lockCursor)
+		{
+			Cursor.lockState = CursorLockMode.Locked;
+			Cursor.visible = false;
+		}
 	}
 
 	static float ClampAngle(float angle, float min, float max)

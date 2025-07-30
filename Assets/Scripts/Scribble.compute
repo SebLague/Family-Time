@@ -1,0 +1,30 @@
+#pragma kernel Init
+#pragma kernel Draw
+
+RWTexture2D<float4> Tex;
+uint2 Res;
+float2 drawUV;
+
+[numthreads(8,8,1)]
+void Init(uint3 id : SV_DispatchThreadID)
+{
+    if (id.x >= Res.x || id.y >= Res.y) return;;
+
+    Tex[id.xy] = 1;
+}
+
+
+[numthreads(8,8,1)]
+void Draw(uint3 id : SV_DispatchThreadID)
+{
+    if (id.x >= Res.x || id.y >= Res.y) return;
+
+    int2 drawPx = (1 - drawUV.yx) * Res;
+
+    int2 offset = id.xy - drawPx;
+    if (length(offset) < 10)
+    {
+        Tex[id.xy] = float4(1, 0, 0, 1);
+    }
+    //Tex[id.xy] = float4(id.x & id.y, (id.x & 15)/15.0, (id.y & 15)/15.0, 0.0);
+}

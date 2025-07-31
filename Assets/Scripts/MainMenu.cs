@@ -17,6 +17,7 @@ public class MainMenu : MonoBehaviour
     void PlayClick()
     {
         Debug.Log("Play");
+        FindFirstObjectByType<GameManager>().StartGame();
     }
     
     void SettingsClick()

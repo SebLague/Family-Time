@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -6,27 +7,34 @@ public class GameManager : MonoBehaviour
 	{
 		Game,
 		DevTask,
-		Baby,
+	}
+
+	public enum Players
+	{
 		Cat,
-		Teen,
+		Baby,
+		Teen
 	}
 
 	public StartupMode startupMode;
 	public Task startTask;
-	public FirstPersonController baby;
-	public FirstPersonController cat;
-	public FirstPersonController teen;
+	public FirstPersonController[] players;
 	public Camera menuCam;
 	public GameObject mainMenu;
 	public GameObject gameHud;
+	public IntroUI introUI;
 
 	bool playbackTest;
 	float playbackTime;
 
+	int playerIndex;
+
+	bool waitingForPlayerConfirm;
+	FirstPersonController currentPlayer;
+
 	void Start()
 	{
-		FirstPersonController[] all = new[] { cat, baby, teen };
-		foreach (FirstPersonController c in all)
+		foreach (FirstPersonController c in players)
 		{
 			c.isControllable = false;
 		}
@@ -45,20 +53,48 @@ public class GameManager : MonoBehaviour
 			menuCam.gameObject.SetActive(false);
 
 			if (startupMode == StartupMode.DevTask) startTask.EnterTask();
-			else if (startupMode == StartupMode.Baby) baby.isControllable = true;
-			else if (startupMode == StartupMode.Cat) cat.isControllable = true;
-			else if (startupMode == StartupMode.Teen) teen.isControllable = true;
 		}
 	}
 
 	public void StartGame()
 	{
+		mainMenu.SetActive(false);
+
+
+		currentPlayer = players[playerIndex];
+
+		StartNextPlayer();
+	}
+
+	void StartNextPlayer()
+	{
+		mainMenu.gameObject.SetActive(false);
+		introUI.gameObject.SetActive(true);
+		introUI.Set(currentPlayer.playerType);
+		waitingForPlayerConfirm = true;
 	}
 
 	void Update()
 	{
+		if (waitingForPlayerConfirm)
+		{
+			if (Input.GetKeyDown(KeyCode.Tab))
+			{
+				menuCam.gameObject.SetActive(false);
+				currentPlayer.isControllable = true;
+				introUI.gameObject.SetActive(false);
+				gameHud.SetActive(true);
+			}
+		}
+
+		DevMode();
+	}
+
+	void DevMode()
+	{
 		if (Application.isEditor)
 		{
+			/*
 			if (Input.GetKeyDown(KeyCode.P))
 			{
 				Debug.Log("TEST");
@@ -72,6 +108,7 @@ public class GameManager : MonoBehaviour
 				playbackTime += Time.deltaTime;
 				baby.PlaybackUpdate(playbackTime);
 			}
+			*/
 		}
 	}
 }

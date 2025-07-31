@@ -7,6 +7,7 @@ using UnityEngine.Rendering;
 [RequireComponent(typeof(CharacterController))]
 public class FirstPersonController : MonoBehaviour
 {
+	public GameManager.Players playerType;
 	bool lockCursor = true;
 	public float smoothVelTAir;
 	public float smoothVelTGround;

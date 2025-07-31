@@ -104,6 +104,7 @@ public class XyloTask : Task
 		{
 			if (frame.time > playbackTimePrev && frame.time < playTime)
 			{
+				Debug.Log("playback note: " + frame.noteIndex + "  "  + playTime + "   " + frame.time);
 				PlayNoteSound(frame.noteIndex);
 			}
 		}

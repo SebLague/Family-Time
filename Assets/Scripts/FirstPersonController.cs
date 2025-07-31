@@ -233,6 +233,8 @@ public class FirstPersonController : MonoBehaviour
 
 	public void PlaybackUpdate(float playTime)
 	{
+		if (playbackKeyframes.Count <= 1) return;
+		
 		int prevIndex = 0;
 		int nextIndex = playbackKeyframes.Count - 1;
 		int i = (nextIndex) / 2;

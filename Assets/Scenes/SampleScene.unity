@@ -2155,7 +2155,7 @@ Transform:
   m_GameObject: {fileID: 424160637}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.688, y: 0, z: -2.738}
+  m_LocalPosition: {x: -3.78, y: 0, z: 0.83}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2193,7 +2193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bcc4ebc907f0354b87c5f6175a713ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numSecs: 30
+  numSecs: 3000
   startupMode: 0
   startTask: {fileID: 1442701591}
   players:
@@ -8297,6 +8297,7 @@ GameObject:
   - component: {fileID: 1442701591}
   - component: {fileID: 1442701590}
   - component: {fileID: 1442701592}
+  - component: {fileID: 1442701593}
   m_Layer: 6
   m_Name: Task - Xylo
   m_TagString: Untagged
@@ -8479,6 +8480,29 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!164 &1442701593
+AudioReverbFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1442701588}
+  m_Enabled: 1
+  m_DryLevel: 0
+  m_Room: 0
+  m_RoomHF: 0
+  m_DecayTime: 1
+  m_DecayHFRatio: 0.5
+  m_ReflectionsLevel: -10000
+  m_ReverbLevel: 0
+  m_ReverbDelay: 0.04
+  m_Diffusion: 100
+  m_Density: 100
+  m_HFReference: 5000
+  m_RoomLF: 0
+  m_LFReference: 250
+  m_ReflectionsDelay: 0
+  m_ReverbPreset: 27
 --- !u!1 &1499270738
 GameObject:
   m_ObjectHideFlags: 0
@@ -9803,7 +9827,7 @@ Transform:
   m_GameObject: {fileID: 1669547308}
   serializedVersion: 2
   m_LocalRotation: {x: 0.0000000071949984, y: 0.99992335, z: -0.012380723, w: 0.0000005811007}
-  m_LocalPosition: {x: -10.578, y: 1.4, z: -7.198}
+  m_LocalPosition: {x: -3.67, y: 1.4, z: -3.63}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

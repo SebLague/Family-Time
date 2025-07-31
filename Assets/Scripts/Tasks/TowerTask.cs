@@ -154,6 +154,8 @@ public class TowerTask : Task
 
 	public override void Playback(float playTime)
 	{
+		if (keyframes.Count <= 1) return;
+		
 		int prevIndex = 0;
 		int nextIndex = keyframes.Count - 1;
 		int i = (nextIndex) / 2;

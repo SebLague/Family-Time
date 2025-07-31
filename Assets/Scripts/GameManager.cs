@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
 	public TMPro.TMP_Text timerText;
 	public TMPro.TMP_Text playerGoalUI;
 	public FailUI failUI;
-	float playerTimer;
+	public float playerTimer { get; private set; }
 
 
 	bool playbackTest;

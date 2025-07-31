@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class XyloTask : Task
@@ -11,6 +12,9 @@ public class XyloTask : Task
 
 	AudioSource audioSource;
 	int[] notePlayCounts;
+
+	public static List<XyloSoundKeyframe> keyframes = new();
+	float playbackTimePrev;
 
 	void Awake()
 	{
@@ -30,8 +34,16 @@ public class XyloTask : Task
 
 		if (Input.GetMouseButtonDown(0) && selectedNoteIndex != -1)
 		{
-			audioSource.PlayOneShot(noteSounds[selectedNoteIndex], Mathf.Lerp(0.6f, 1, Random.value));
+			PlayNoteSound(selectedNoteIndex);
 			notePlayCounts[selectedNoteIndex]++;
+
+			// Record
+			XyloSoundKeyframe keyframe = new()
+			{
+				time = GameManager.Instance.playerTimer,
+				noteIndex = selectedNoteIndex
+			};
+			keyframes.Add(keyframe);
 		}
 
 		// ------------ Score
@@ -55,7 +67,7 @@ public class XyloTask : Task
 		float scoreT = scoreT_A * 0.5f + scoreT_B * 0.2f + scoreT_C * 0.2f + scoreT_D * 0.1f;
 		int scoreInt = Mathf.CeilToInt(scoreT * 100);
 		if (Application.isEditor && Input.GetKeyDown(KeyCode.Q)) scoreInt = 100;
-		
+
 		if (!taskCompleted)
 		{
 			scoreUI.text = $"music score: {scoreInt} %";
@@ -84,5 +96,29 @@ public class XyloTask : Task
 	{
 		base.ExitTask();
 		scoreUI.gameObject.SetActive(false);
+	}
+
+	public override void Playback(float playTime)
+	{
+		foreach (var frame in keyframes)
+		{
+			if (frame.time > playbackTimePrev && frame.time < playTime)
+			{
+				PlayNoteSound(frame.noteIndex);
+			}
+		}
+
+		playbackTimePrev = playTime;
+	}
+
+	void PlayNoteSound(int noteIndex)
+	{
+		audioSource.PlayOneShot(noteSounds[noteIndex], Mathf.Lerp(0.6f, 1, Random.value));
+	}
+
+	public struct XyloSoundKeyframe
+	{
+		public float time;
+		public int noteIndex;
 	}
 }

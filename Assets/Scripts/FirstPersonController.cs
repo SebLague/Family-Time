@@ -56,9 +56,10 @@ public class FirstPersonController : MonoBehaviour
 		manager = FindFirstObjectByType<GameManager>();
 	}
 
-	public void NotifyTaskCompleted()
+	public void NotifyTaskCompleted(bool forceAllDone = false)
 	{
 		bool done = tasks.All(t => t.taskCompleted);
+		done |= forceAllDone;
 
 		if (done)
 		{
@@ -96,6 +97,7 @@ public class FirstPersonController : MonoBehaviour
 		if (!isControllable || !manager.gameActive) return;
 
 		UpdateController();
+		if (Application.isEditor && Input.GetKeyDown(KeyCode.Delete)) NotifyTaskCompleted(true);
 
 		if (Input.GetKeyDown(KeyCode.Tab) && potentialTask != null)
 		{
@@ -104,11 +106,11 @@ public class FirstPersonController : MonoBehaviour
 		}
 
 		float timeBetweenKeyframes = 1 / 30f;
-		if (playbackKeyframes.Count == 0 || Time.time - playbackKeyframes[^1].time > timeBetweenKeyframes)
+		if (playbackKeyframes.Count == 0 || GameManager.Instance.playerTimer - playbackKeyframes[^1].time > timeBetweenKeyframes)
 		{
 			PlaybackKeyframe frame = new PlaybackKeyframe()
 			{
-				time = Time.time,
+				time = GameManager.Instance.playerTimer,
 				pos = transform.position,
 				rot = transform.rotation,
 				animSpeed = animSpeed,
@@ -267,8 +269,8 @@ public class FirstPersonController : MonoBehaviour
 
 		PlaybackKeyframe frameA = playbackKeyframes[prevIndex];
 		PlaybackKeyframe frameB = playbackKeyframes[nextIndex];
-
 		float abPercent = Mathf.InverseLerp(frameA.time, frameB.time, playTime);
+
 		transform.position = Vector3.Lerp(frameA.pos, frameB.pos, abPercent);
 		transform.rotation = Quaternion.Slerp(frameA.rot, frameB.rot, abPercent);
 

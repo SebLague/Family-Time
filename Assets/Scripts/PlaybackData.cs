@@ -16,6 +16,8 @@ public static class PlaybackData
 		skipMenu = false;
 
 		ScribbleTask.keyframes.Clear();
+		TowerTask.keyframes.Clear();
+		XyloTask.keyframes.Clear();
 	}
 
 	[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]

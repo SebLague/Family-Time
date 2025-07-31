@@ -17,6 +17,8 @@ public class TowerTask : Task
 	Color[] diskCols;
 	int selectedDiskIndex;
 
+	public static List<TowerKeyFrame> keyframes = new();
+
 	void Awake()
 	{
 		poleStart.AddRange(new int[] { 0, 1, 2, 3 });
@@ -86,6 +88,22 @@ public class TowerTask : Task
 		{
 			ExitTask();
 		}
+
+		// Record
+		float timeBetweenKeyframes = 1 / 30f;
+		if (keyframes.Count == 0 || GameManager.Instance.playerTimer - keyframes[^1].time > timeBetweenKeyframes)
+		{
+			TowerKeyFrame frame = new()
+			{
+				time = GameManager.Instance.playerTimer,
+				posA = disks[0].transform.position,
+				posB = disks[1].transform.position,
+				posC = disks[2].transform.position,
+				posD = disks[3].transform.position,
+			};
+
+			keyframes.Add(frame);
+		}
 	}
 
 	List<int> GetPoleFromPoleIndex(int p)
@@ -134,11 +152,66 @@ public class TowerTask : Task
 		ResetCols();
 	}
 
+	public override void Playback(float playTime)
+	{
+		int prevIndex = 0;
+		int nextIndex = keyframes.Count - 1;
+		int i = (nextIndex) / 2;
+		int safety = 10000;
+
+		while (true)
+		{
+			// t lies to left
+			if (playTime <= keyframes[i].time)
+			{
+				nextIndex = i;
+			}
+			// t lies to right
+			else
+			{
+				prevIndex = i;
+			}
+
+			i = (nextIndex + prevIndex) / 2;
+
+			if (nextIndex - prevIndex <= 1)
+			{
+				break;
+			}
+
+			safety--;
+			if (safety <= 0)
+			{
+				Debug.Log("Fix me!");
+				return;
+			}
+		}
+
+
+		var frameA = keyframes[prevIndex];
+		var frameB = keyframes[nextIndex];
+		float abPercent = Mathf.InverseLerp(frameA.time, frameB.time, playTime);
+
+		disks[0].transform.position = Vector3.Lerp(frameA.posA, frameB.posA, abPercent);
+		disks[1].transform.position = Vector3.Lerp(frameA.posB, frameB.posB, abPercent);
+		disks[2].transform.position = Vector3.Lerp(frameA.posC, frameB.posC, abPercent);
+		disks[3].transform.position = Vector3.Lerp(frameA.posD, frameB.posD, abPercent);
+	}
+
 	void ResetCols()
 	{
 		for (int i = 0; i < disks.Length; i++)
 		{
 			disks[i].gameObject.GetComponent<MeshRenderer>().sharedMaterial.color = diskCols[i];
 		}
+	}
+
+	public struct TowerKeyFrame
+	{
+		public float time;
+		public Vector3 posA;
+		public Vector3 posB;
+		public Vector3 posC;
+		public Vector3 posD;
 	}
 }

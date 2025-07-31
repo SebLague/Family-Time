@@ -1,6 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 [RequireComponent(typeof(CharacterController))]
 public class FirstPersonController : MonoBehaviour
@@ -14,9 +15,15 @@ public class FirstPersonController : MonoBehaviour
 	public float sprintSpeed = 5;
 	public Vector2 mouseSensitivity;
 	public Vector2 verticalLookMinMax;
-	public Transform cam;
+	public Camera cam;
 	CharacterController controller;
 	public Animator animator;
+	public SkinnedMeshRenderer skinnedMesh;
+	public float fov = 60;
+	public float fovSprint = 70;
+
+	float fovCur;
+	float fovSmoothRef;
 	float pitch;
 	float velocityY;
 	Vector3 velocity;
@@ -28,6 +35,7 @@ public class FirstPersonController : MonoBehaviour
 
 	void Start()
 	{
+		fovCur = fov;
 		controller = GetComponent<CharacterController>();
 
 		infoUI.text = "";
@@ -93,7 +101,7 @@ public class FirstPersonController : MonoBehaviour
 		pitch += mouseInput.y * mouseSensitivity.y;
 		pitch = ClampAngle(pitch, verticalLookMinMax.x, verticalLookMinMax.y);
 		Quaternion yQuaternion = Quaternion.AngleAxis(pitch, Vector3.left);
-		cam.localRotation = yQuaternion;
+		cam.transform.localRotation = yQuaternion;
 
 		velocityY -= gravity * Time.deltaTime;
 		Vector3 moveDirWorld = transform.TransformDirection(moveDirLocal);
@@ -121,11 +129,20 @@ public class FirstPersonController : MonoBehaviour
 			}
 		}
 
+		if (skinnedMesh != null)
+		{
+			skinnedMesh.shadowCastingMode = cam.transform.forward.y > 0 ? ShadowCastingMode.ShadowsOnly : ShadowCastingMode.On;
+		}
+
 		if (lockCursor)
 		{
 			Cursor.lockState = CursorLockMode.Locked;
 			Cursor.visible = false;
 		}
+
+		float fovTarget = moveDirLocal.z > 0 && sprint ?  fovSprint : fov;
+		fovCur = Mathf.SmoothDamp(fovCur, fovTarget, ref fovSmoothRef, 0.2f);
+		cam.fieldOfView = fovCur;
 	}
 
 	static float ClampAngle(float angle, float min, float max)

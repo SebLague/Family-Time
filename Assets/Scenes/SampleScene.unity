@@ -213,8 +213,11 @@ MonoBehaviour:
   sprintSpeed: 3
   mouseSensitivity: {x: 3, y: 3}
   verticalLookMinMax: {x: -85, y: 85}
-  cam: {fileID: 963194228}
+  cam: {fileID: 963194227}
   animator: {fileID: 1144887219}
+  skinnedMesh: {fileID: 1282407238}
+  fov: 60
+  fovSprint: 60
   isControllable: 0
   infoUI: {fileID: 397297937}
 --- !u!1 &156333597
@@ -1339,8 +1342,11 @@ MonoBehaviour:
   sprintSpeed: 5.5
   mouseSensitivity: {x: 3, y: 3}
   verticalLookMinMax: {x: -85, y: 85}
-  cam: {fileID: 1711720675}
+  cam: {fileID: 1711720677}
   animator: {fileID: 1102867936}
+  skinnedMesh: {fileID: 1946569892}
+  fov: 60
+  fovSprint: 65
   isControllable: 1
   infoUI: {fileID: 397297937}
 --- !u!143 &430008005
@@ -3393,6 +3399,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1216268134}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!137 &1282407238 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 8417361359673230750, guid: 113d89790f6fa7940a71e1ffb0ab0a85, type: 3}
+  m_PrefabInstance: {fileID: 539840967}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1373670070 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: ada4687fa080f0b42a0b652b27bb8bdc, type: 3}
@@ -5181,6 +5192,11 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.047687575, y: 0.022913506, z: 0.010723672}
   m_Center: {x: -0.00007087272, y: 9.3132235e-10, z: 0.005361836}
+--- !u!137 &1946569892 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 938123186080788331, guid: 33a3df8275d18dc4081451022a1a115c, type: 3}
+  m_PrefabInstance: {fileID: 1102867933}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2007100183
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,6 +11,7 @@ public class FirstPersonController : MonoBehaviour
 	public float gravity = 12f;
 	public float jumpForce = 20;
 	public float moveSpeed = 5;
+	public float sprintSpeed = 5;
 	public Vector2 mouseSensitivity;
 	public Vector2 verticalLookMinMax;
 	public Transform cam;
@@ -37,7 +38,7 @@ public class FirstPersonController : MonoBehaviour
 	{
 		cam.gameObject.SetActive(isControllable);
 		if (!isControllable) return;
-		
+
 		UpdateController();
 
 		if (Input.GetKeyDown(KeyCode.Tab) && potentialTask != null)
@@ -96,7 +97,8 @@ public class FirstPersonController : MonoBehaviour
 
 		velocityY -= gravity * Time.deltaTime;
 		Vector3 moveDirWorld = transform.TransformDirection(moveDirLocal);
-		Vector3 targetVelocity = moveDirWorld * moveSpeed;
+		bool sprint = Input.GetKey(KeyCode.LeftShift);
+		Vector3 targetVelocity = moveDirWorld * (sprint ? sprintSpeed : moveSpeed);
 		velocity = Vector3.SmoothDamp(new Vector3(velocity.x, 0, velocity.z), targetVelocity, ref velSmoothRef, controller.isGrounded ? smoothVelTGround : smoothVelTAir);
 		velocity.y = velocityY;
 
@@ -111,6 +113,11 @@ public class FirstPersonController : MonoBehaviour
 			if (fwdSpeedParam < 0.1f)
 			{
 				animator.speed = 1 + sideSpeedParam * 2.5f;
+				if (sprint) animator.speed *= 1.5f;
+			}
+			else
+			{
+				if (sprint) animator.speed = 1.5f;
 			}
 		}
 

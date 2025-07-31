@@ -26,11 +26,7 @@ public class TowerTask : Task
 
 		// ----- Test state
 		if (!taskActive) ExitTask();
-		if (taskActive)
-		{
-			Baby baby = FindFirstObjectByType<Baby>(FindObjectsInactive.Include);
-			EnterTask(baby.gameObject.GetComponent<FirstPersonController>());
-		}
+		if (taskActive) EnterTask();
 	}
 
 
@@ -128,9 +124,9 @@ public class TowerTask : Task
 		pole.Add(value);
 	}
 
-	public override void EnterTask(FirstPersonController controller)
+	public override void EnterTask()
 	{
-		base.EnterTask(controller);
+		base.EnterTask();
 		selectedDiskIndex = -1;
 	}
 

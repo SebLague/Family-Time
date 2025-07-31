@@ -8,13 +8,12 @@ public abstract class Task : MonoBehaviour
 	public bool taskActive;
 	public bool taskCompleted;
 	public Camera cam;
-	protected FirstPersonController controller;
+	public FirstPersonController owner;
 
-	public virtual void EnterTask(FirstPersonController controller)
+	public virtual void EnterTask()
 	{
 		taskActive = true;
-		this.controller = controller;
-		controller.gameObject.SetActive(false);
+		owner.gameObject.SetActive(false);
 		cam.gameObject.SetActive(true);
 
 		Cursor.lockState = CursorLockMode.None;
@@ -23,7 +22,7 @@ public abstract class Task : MonoBehaviour
 
 	public virtual void ExitTask()
 	{
-		if (controller) controller.gameObject.SetActive(true);
+		owner.gameObject.SetActive(true);
 		cam.gameObject.SetActive(false);
 		taskActive = false;
 	}

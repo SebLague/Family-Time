@@ -32,11 +32,7 @@ public class ScribbleTask : Task
 
 		// ----- Test state
 		if (!taskActive) ExitTask();
-		if (taskActive)
-		{
-			Baby baby = FindFirstObjectByType<Baby>(FindObjectsInactive.Include);
-			EnterTask(baby.gameObject.GetComponent<FirstPersonController>());
-		}
+		if (taskActive) EnterTask();
 	}
 
 	void Update()
@@ -140,9 +136,9 @@ public class ScribbleTask : Task
 		activeCrayon.gameObject.SetActive(false);
 	}
 
-	public override void EnterTask(FirstPersonController controller)
+	public override void EnterTask()
 	{
-		base.EnterTask(controller);
+		base.EnterTask();
 
 		scoreUI.gameObject.SetActive(true);
 		ReturnCrayon();

@@ -3,8 +3,8 @@ using UnityEngine;
 public class XyloTask : Task
 {
 	[Header("Xylo")]
-
 	public TMPro.TMP_Text scoreUI;
+
 	public BoxCollider[] notes;
 	public AudioClip[] noteSounds;
 	public Color textColDone;
@@ -19,11 +19,7 @@ public class XyloTask : Task
 
 		// ----- Test state
 		if (!taskActive) ExitTask();
-		if (taskActive)
-		{
-			Baby baby = FindFirstObjectByType<Baby>(FindObjectsInactive.Include);
-			EnterTask(baby.gameObject.GetComponent<FirstPersonController>());
-		}
+		if (taskActive) EnterTask();
 	}
 
 
@@ -78,9 +74,9 @@ public class XyloTask : Task
 		}
 	}
 
-	public override void EnterTask(FirstPersonController controller)
+	public override void EnterTask()
 	{
-		base.EnterTask(controller);
+		base.EnterTask();
 		scoreUI.gameObject.SetActive(true);
 	}
 

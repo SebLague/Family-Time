@@ -38,7 +38,7 @@ public class FirstPersonController : MonoBehaviour
 
 		if (Input.GetKeyDown(KeyCode.Tab) && potentialTask != null)
 		{
-			potentialTask.EnterTask(this);
+			potentialTask.EnterTask();
 			infoUI.text = "";
 		}
 	}
@@ -48,8 +48,11 @@ public class FirstPersonController : MonoBehaviour
 		if (other.gameObject.GetComponent<Task>())
 		{
 			Task task = other.gameObject.GetComponent<Task>();
-			potentialTask = task;
-			infoUI.text = task.infoString;
+			if (task.owner == this)
+			{
+				potentialTask = task;
+				infoUI.text = task.infoString;
+			}
 		}
 	}
 
@@ -57,8 +60,12 @@ public class FirstPersonController : MonoBehaviour
 	{
 		if (other.gameObject.GetComponent<Task>())
 		{
-			infoUI.text = "";
-			potentialTask = null;
+			Task task = other.gameObject.GetComponent<Task>();
+			if (task.owner == this)
+			{
+				infoUI.text = "";
+				potentialTask = null;
+			}
 		}
 	}
 
@@ -94,12 +101,12 @@ public class FirstPersonController : MonoBehaviour
 		{
 			float fwdSpeedParam = Mathf.Abs(Vector3.Dot(moveDirWorld, transform.forward) * 1.5f);
 			float sideSpeedParam = Mathf.Abs(Vector3.Dot(moveDirWorld, transform.right) * 1);
-			animator.SetFloat("Speed",fwdSpeedParam);
+			animator.SetFloat("Speed", fwdSpeedParam);
 			animator.speed = 1;
 
 			if (fwdSpeedParam < 0.1f)
 			{
-				animator.speed = 1 + sideSpeedParam*2.5f;
+				animator.speed = 1 + sideSpeedParam * 2.5f;
 			}
 		}
 

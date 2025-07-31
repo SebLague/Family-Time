@@ -44,7 +44,7 @@ public class FirstPersonController : MonoBehaviour
 	GameManager manager;
 
 
-	List<PlaybackKeyframe> playbackKeyframes = new();
+	[HideInInspector] public List<PlaybackKeyframe> playbackKeyframes = new();
 
 
 	void Start()

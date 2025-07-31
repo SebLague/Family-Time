@@ -64,6 +64,12 @@ public class GameManager : MonoBehaviour
 			mainMenu.SetActive(true);
 			gameHud.SetActive(false);
 			menuCam.gameObject.SetActive(true);
+
+			if (PlaybackData.skipMenu)
+			{
+				playerIndex = PlaybackData.activePlayerIndex;
+				StartGame();
+			}
 		}
 		// Dev startup modes
 		else
@@ -80,6 +86,7 @@ public class GameManager : MonoBehaviour
 	{
 		gameActive = false;
 		timerText.gameObject.SetActive(false);
+		PlaybackData.playbacks[currentPlayer] = currentPlayer.playbackKeyframes;
 	}
 
 	public void NotifyTimeRanOut()
@@ -97,11 +104,14 @@ public class GameManager : MonoBehaviour
 
 	public void RetryLevel()
 	{
-		Debug.Log("TODO: retry level");
+		PlaybackData.skipMenu = true;
+		PlaybackData.activePlayerIndex = playerIndex;
+		SceneManager.LoadScene(0);
 	}
 
 	public void RestartGame()
 	{
+		PlaybackData.Wipe();
 		SceneManager.LoadScene(0);
 	}
 

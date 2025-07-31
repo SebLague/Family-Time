@@ -86,7 +86,10 @@ public class GameManager : MonoBehaviour
 	{
 		gameActive = false;
 		timerText.gameObject.SetActive(false);
-		PlaybackData.playbacks[currentPlayer] = currentPlayer.playbackKeyframes;
+		PlaybackData.playbacks[currentPlayer.playerType] = currentPlayer.playbackKeyframes;
+
+		playerIndex++;
+		RestartTimeLoop();
 	}
 
 	public void NotifyTimeRanOut()
@@ -102,7 +105,7 @@ public class GameManager : MonoBehaviour
 		Cursor.visible = show;
 	}
 
-	public void RetryLevel()
+	public void RestartTimeLoop()
 	{
 		PlaybackData.skipMenu = true;
 		PlaybackData.activePlayerIndex = playerIndex;
@@ -150,6 +153,15 @@ public class GameManager : MonoBehaviour
 
 		if (gameActive)
 		{
+			// playback prev players
+			for (int i = 0; i < playerIndex; i++)
+			{
+				FirstPersonController playbackPlayer = players[i];
+				playbackPlayer.playbackKeyframes = PlaybackData.playbacks[playbackPlayer.playerType];
+				playbackPlayer.PlaybackUpdate(playerTimer);
+			}
+
+			// Update timer
 			playerTimer += Time.deltaTime;
 			float timeRemainingSecs = Mathf.Max(0, numSecs - playerTimer);
 			int minutes = (int)(timeRemainingSecs / 60);

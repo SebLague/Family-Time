@@ -15,7 +15,7 @@ public class FailUI : MonoBehaviour
 
     void Retry()
     {
-        FindFirstObjectByType<GameManager>().RetryLevel();
+        FindFirstObjectByType<GameManager>().RestartTimeLoop();
     }
 
     void Quit()

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public static class PlaybackData
 {
-	public static Dictionary<FirstPersonController, List<FirstPersonController.PlaybackKeyframe>> playbacks = new();
+	public static Dictionary<GameManager.Players, List<FirstPersonController.PlaybackKeyframe>> playbacks = new();
 	public static int activePlayerIndex;
 	public static bool skipMenu;
 

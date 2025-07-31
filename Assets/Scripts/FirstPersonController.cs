@@ -10,7 +10,7 @@ public class FirstPersonController : MonoBehaviour
 {
 	public GameManager.Players playerType;
 	public Task[] tasks;
-	public TMPro.TMP_Text playerGoalUI;
+
 
 	public float smoothVelTAir;
 	public float smoothVelTGround;
@@ -41,6 +41,7 @@ public class FirstPersonController : MonoBehaviour
 	float animTimeScale = 1;
 	bool lockCursor = true;
 	float timeSinceLastGrounded;
+	GameManager manager;
 
 
 	List<PlaybackKeyframe> playbackKeyframes = new();
@@ -52,22 +53,39 @@ public class FirstPersonController : MonoBehaviour
 		controller = GetComponent<CharacterController>();
 
 		infoUI.text = "";
+		manager = FindFirstObjectByType<GameManager>();
+	}
+
+	public void NotifyTaskCompleted()
+	{
+		bool done = tasks.All(t => t.taskCompleted);
+
+		if (done)
+		{
+			Debug.Log("All Tasks Completed");
+			manager.NotifyAllTasksCompleted();
+		}
 	}
 
 	public void SetControllable(bool state)
 	{
+		manager = FindFirstObjectByType<GameManager>();
 		isControllable = state;
 
 		if (isControllable)
 		{
-			playerGoalUI.gameObject.SetActive(true);
+			manager.playerGoalUI.gameObject.SetActive(true);
 			string goalText = "Goals:\n";
 			foreach (Task task in tasks)
 			{
-				goalText += task.goalString + "\n";
+				goalText += TextCol(task.goalString + "\n", manager.goalSuccessCol, task.taskCompleted);
 			}
 
-			playerGoalUI.text = goalText;
+			manager.playerGoalUI.text = goalText;
+		}
+		else
+		{
+			manager.playerGoalUI.gameObject.SetActive(false);
 		}
 	}
 
@@ -99,6 +117,12 @@ public class FirstPersonController : MonoBehaviour
 
 			playbackKeyframes.Add(frame);
 		}
+	}
+
+	string TextCol(string s, Color col, bool setCol)
+	{
+		if (!setCol) return s;
+		return $"<color=#{ColorUtility.ToHtmlStringRGB(col)}>{s}</color>";
 	}
 
 	void OnTriggerEnter(Collider other)

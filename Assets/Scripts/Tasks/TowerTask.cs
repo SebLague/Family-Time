@@ -75,10 +75,10 @@ public class TowerTask : Task
 		}
 
 		// Task completion
-		if (poleEnd.Count == 4)
+		if (poleEnd.Count == 4 || (Application.isEditor && Input.GetKeyDown(KeyCode.Q)))
 		{
 			Debug.Log("Tower completed");
-			taskCompleted = true;
+			TaskCompleted();
 		}
 
 		// -------- Exit

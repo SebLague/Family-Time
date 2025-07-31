@@ -54,6 +54,8 @@ public class XyloTask : Task
 		float scoreT_D = Mathf.Clamp01(notesPlayedAtLeastThrice / 2f);
 		float scoreT = scoreT_A * 0.5f + scoreT_B * 0.2f + scoreT_C * 0.2f + scoreT_D * 0.1f;
 		int scoreInt = Mathf.CeilToInt(scoreT * 100);
+		if (Application.isEditor && Input.GetKeyDown(KeyCode.Q)) scoreInt = 100;
+		
 		if (!taskCompleted)
 		{
 			scoreUI.text = $"music score: {scoreInt} %";
@@ -62,7 +64,7 @@ public class XyloTask : Task
 		if (scoreInt >= 100 && !taskCompleted)
 		{
 			scoreUI.color = textColDone;
-			taskCompleted = true;
+			TaskCompleted();
 		}
 
 		// -------- Exit

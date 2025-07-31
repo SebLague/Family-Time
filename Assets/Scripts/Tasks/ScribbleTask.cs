@@ -29,14 +29,13 @@ public class ScribbleTask : Task
 		scribbleCompute.SetTexture(1, "Tex", tex);
 		scribbleCompute.SetInts("Res", tex.width, tex.height);
 		ComputeHelper.Dispatch(scribbleCompute, tex.width, tex.height, kernelIndex: 0);
-		
+
 		ExitTask();
 	}
 
 	void Update()
 	{
 		if (!taskActive) return;
-
 
 
 		// --------- Crayon selection
@@ -96,6 +95,8 @@ public class ScribbleTask : Task
 		}
 
 		int scoreInt = Mathf.CeilToInt(currScoreT * 100);
+		if (Application.isEditor && Input.GetKeyDown(KeyCode.Q)) scoreInt = 100;
+
 		if (!taskCompleted)
 		{
 			scoreUI.text = $"scribble score: {scoreInt}%";
@@ -103,8 +104,8 @@ public class ScribbleTask : Task
 
 		if (scoreInt >= 100 && !taskCompleted)
 		{
-			taskCompleted = true;
 			scoreUI.color = textColDone;
+			TaskCompleted();
 		}
 
 

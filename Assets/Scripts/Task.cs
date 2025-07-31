@@ -4,16 +4,24 @@ public abstract class Task : MonoBehaviour
 {
 	[Header("Task")]
 	public string infoString;
+
 	public string goalString;
 
-	public bool taskCompleted;
+	public bool taskCompleted { get; private set; }
 	public Camera cam;
 	public FirstPersonController owner;
 	protected bool taskActive;
 
+	protected void TaskCompleted()
+	{
+		taskCompleted = true;
+		owner.NotifyTaskCompleted();
+	}
+
 	public virtual void EnterTask()
 	{
 		taskActive = true;
+		owner.SetControllable(false);
 		owner.gameObject.SetActive(false);
 		cam.gameObject.SetActive(true);
 
@@ -24,9 +32,12 @@ public abstract class Task : MonoBehaviour
 	public virtual void ExitTask()
 	{
 		owner.gameObject.SetActive(true);
+		owner.SetControllable(true);
 		cam.gameObject.SetActive(false);
 		taskActive = false;
 	}
+
+
 
 	public int GetNearestMouseOverIndex(BoxCollider[] elements)
 	{

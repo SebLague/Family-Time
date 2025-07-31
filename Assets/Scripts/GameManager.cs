@@ -23,6 +23,10 @@ public class GameManager : MonoBehaviour
 	public GameObject mainMenu;
 	public GameObject gameHud;
 	public IntroUI introUI;
+	public Color goalSuccessCol;
+	public TMPro.TMP_Text timerText;
+	public TMPro.TMP_Text playerGoalUI;
+	float playerTimer;
 
 
 	bool playbackTest;
@@ -32,6 +36,7 @@ public class GameManager : MonoBehaviour
 
 	bool waitingForPlayerConfirm;
 	FirstPersonController currentPlayer;
+	bool gameActive;
 
 	void Start()
 	{
@@ -55,6 +60,17 @@ public class GameManager : MonoBehaviour
 
 			if (startupMode == StartupMode.DevTask) startTask.EnterTask();
 		}
+	}
+
+	public void NotifyAllTasksCompleted()
+	{
+		gameActive = false;
+		timerText.gameObject.SetActive(false);
+	}
+
+	public void NotifyTimeRanOut()
+	{
+		Debug.Log("Time Ran Out");
 	}
 
 	public void StartGame()
@@ -85,6 +101,24 @@ public class GameManager : MonoBehaviour
 				currentPlayer.SetControllable(true);
 				introUI.gameObject.SetActive(false);
 				gameHud.SetActive(true);
+				timerText.gameObject.SetActive(true);
+				gameActive = true;
+			}
+		}
+
+		if (gameActive)
+		{
+			playerTimer += Time.deltaTime;
+			float timeRemainingSecs = Mathf.Max(0, 60 * 3 - playerTimer);
+			int minutes = (int)(timeRemainingSecs / 60);
+			int seconds = (int)(timeRemainingSecs % 60);
+			string formatted = $"{minutes}:{seconds:D2}";
+			timerText.text = formatted;
+
+			if (timeRemainingSecs <= 0)
+			{
+				gameActive = false;
+				NotifyTimeRanOut();
 			}
 		}
 

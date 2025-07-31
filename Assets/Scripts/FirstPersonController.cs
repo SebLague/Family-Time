@@ -33,6 +33,8 @@ public class FirstPersonController : MonoBehaviour
 
 	public TMP_Text infoUI;
 	Task potentialTask;
+	float animSpeed;
+	float animTimeScale = 1;
 
 	List<PlaybackKeyframe> playbackKeyframes = new();
 
@@ -66,7 +68,10 @@ public class FirstPersonController : MonoBehaviour
 				time = Time.time,
 				pos = transform.position,
 				rot = transform.rotation,
+				animSpeed = animSpeed,
+				animTimescale = animTimeScale,
 			};
+			
 			playbackKeyframes.Add(frame);
 		}
 	}
@@ -126,22 +131,29 @@ public class FirstPersonController : MonoBehaviour
 		velocity.y = velocityY;
 
 		controller.Move(velocity * Time.deltaTime);
+
+		animTimeScale = 1.3f;
+		animSpeed = 0;
+		
 		if (animator)
 		{
 			float fwdSpeedParam = Mathf.Abs(Vector3.Dot(moveDirWorld, transform.forward) * 1.5f);
 			float sideSpeedParam = Mathf.Abs(Vector3.Dot(moveDirWorld, transform.right) * 1);
-			animator.SetFloat("Speed", fwdSpeedParam);
-			animator.speed = 1;
-
+			animSpeed = fwdSpeedParam;
+			
 			if (fwdSpeedParam < 0.1f)
 			{
-				animator.speed = 1 + sideSpeedParam * 2.5f;
-				if (sprint) animator.speed *= 1.5f;
+				animTimeScale = 1 + sideSpeedParam * 2.5f;
+				if (sprint) animTimeScale *= 1.7f;
 			}
 			else
 			{
-				if (sprint) animator.speed = 1.5f;
+				if (sprint) animTimeScale = 1.7f;
 			}
+			
+			// Set anim params
+			animator.SetFloat("Speed", animSpeed);
+			animator.speed = animTimeScale;
 		}
 
 		if (skinnedMesh != null)
@@ -202,6 +214,12 @@ public class FirstPersonController : MonoBehaviour
 		float abPercent = Mathf.InverseLerp(frameA.time, frameB.time, playTime);
 		transform.position = Vector3.Lerp(frameA.pos, frameB.pos, abPercent);
 		transform.rotation = Quaternion.Slerp(frameA.rot, frameB.rot, abPercent);
+		
+		if (animator)
+		{
+			animator.speed = Mathf.Lerp(frameA.animTimescale,  frameB.animTimescale, abPercent);
+			animator.SetFloat("Speed", Mathf.Lerp(frameA.animSpeed,  frameB.animSpeed, abPercent));
+		}
 	}
 
 	static float ClampAngle(float angle, float min, float max)
@@ -218,5 +236,7 @@ public class FirstPersonController : MonoBehaviour
 		public float time;
 		public Vector3 pos;
 		public Quaternion rot;
+		public float animSpeed;
+		public float animTimescale;
 	}
 }

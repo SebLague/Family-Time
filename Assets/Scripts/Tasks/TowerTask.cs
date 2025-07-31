@@ -17,16 +17,14 @@ public class TowerTask : Task
 	Color[] diskCols;
 	int selectedDiskIndex;
 
-	void Start()
+	void Awake()
 	{
 		poleStart.AddRange(new int[] { 0, 1, 2, 3 });
 		diskCols = disks.Select(d => d.gameObject.GetComponent<MeshRenderer>().material.color).ToArray();
 		startY = disks[0].transform.localPosition.z;
 		spacingY = disks[1].transform.localPosition.z - startY;
 
-		// ----- Test state
-		if (!taskActive) ExitTask();
-		if (taskActive) EnterTask();
+		ExitTask();
 	}
 
 

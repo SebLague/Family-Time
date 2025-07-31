@@ -12,14 +12,12 @@ public class XyloTask : Task
 	AudioSource audioSource;
 	int[] notePlayCounts;
 
-	void Start()
+	void Awake()
 	{
 		audioSource = GetComponent<AudioSource>();
 		notePlayCounts = new int[notes.Length];
 
-		// ----- Test state
-		if (!taskActive) ExitTask();
-		if (taskActive) EnterTask();
+		ExitTask();
 	}
 
 

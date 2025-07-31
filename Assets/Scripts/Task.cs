@@ -5,10 +5,10 @@ public abstract class Task : MonoBehaviour
 	[Header("Task")]
 	public string infoString;
 
-	public bool taskActive;
 	public bool taskCompleted;
 	public Camera cam;
 	public FirstPersonController owner;
+	protected bool taskActive;
 
 	public virtual void EnterTask()
 	{

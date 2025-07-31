@@ -19,7 +19,7 @@ public class ScribbleTask : Task
 	Vector4[,] imageScoreMap = new Vector4[32, 32];
 	float currScoreT;
 
-	void Start()
+	void Awake()
 	{
 		float pageWidth = paper.transform.localScale.z;
 		float pageHeight = paper.transform.localScale.x;
@@ -29,10 +29,8 @@ public class ScribbleTask : Task
 		scribbleCompute.SetTexture(1, "Tex", tex);
 		scribbleCompute.SetInts("Res", tex.width, tex.height);
 		ComputeHelper.Dispatch(scribbleCompute, tex.width, tex.height, kernelIndex: 0);
-
-		// ----- Test state
-		if (!taskActive) ExitTask();
-		if (taskActive) EnterTask();
+		
+		ExitTask();
 	}
 
 	void Update()

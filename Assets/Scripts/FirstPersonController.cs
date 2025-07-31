@@ -20,6 +20,7 @@ public class FirstPersonController : MonoBehaviour
 	float velocityY;
 	Vector3 velocity;
 	Vector3 velSmoothRef;
+	[HideInInspector] public bool isControllable;
 
 	public TMP_Text infoUI;
 	Task potentialTask;
@@ -34,6 +35,9 @@ public class FirstPersonController : MonoBehaviour
 
 	void Update()
 	{
+		cam.gameObject.SetActive(isControllable);
+		if (!isControllable) return;
+		
 		UpdateController();
 
 		if (Input.GetKeyDown(KeyCode.Tab) && potentialTask != null)

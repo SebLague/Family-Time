@@ -36,6 +36,11 @@ public abstract class Task : MonoBehaviour
 		taskActive = false;
 	}
 
+	public virtual void Playback(float playTime)
+	{
+		
+	}
+
 
 
 	public int GetNearestMouseOverIndex(BoxCollider[] elements)

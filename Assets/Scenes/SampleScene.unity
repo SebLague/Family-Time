@@ -2193,7 +2193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bcc4ebc907f0354b87c5f6175a713ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numSecs: 15
+  numSecs: 30
   startupMode: 0
   startTask: {fileID: 1442701591}
   players:

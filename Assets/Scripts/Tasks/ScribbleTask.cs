@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Seb.Helpers;
 using UnityEngine;
 
@@ -18,6 +19,10 @@ public class ScribbleTask : Task
 	int activeCrayonIndex = -1;
 	Vector4[,] imageScoreMap = new Vector4[32, 32];
 	float currScoreT;
+	Color activeCol;
+	Vector2 uvCurr;
+
+	public static List<ScribbleKeyframe> keyframes = new();
 
 	void Awake()
 	{
@@ -48,22 +53,23 @@ public class ScribbleTask : Task
 		}
 
 		// ------------- Draw
+		bool mouseIsDown = Input.GetMouseButton(0);
 		Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 		paperBoxCollider.Raycast(ray, out RaycastHit hitInfo, 100);
 		if (hitInfo.collider != null && activeCrayon != null)
 		{
 			Vector3 pLocal = paper.transform.InverseTransformPoint(hitInfo.point);
 			Vector2 pLocal2D = new Vector2(pLocal.z, pLocal.x);
-			Vector2 uv = pLocal2D + Vector2.one * 0.5f;
+			uvCurr = pLocal2D + Vector2.one * 0.5f;
 
-			if (Input.GetMouseButton(0))
+			if (mouseIsDown)
 			{
-				scribbleCompute.SetVector("drawUV", uv);
+				scribbleCompute.SetVector("drawUV", uvCurr);
 				ComputeHelper.Dispatch(scribbleCompute, tex.width, tex.height, kernelIndex: 1);
 
 				// ------ Scoring
-				int px = Mathf.Clamp((int)(uv.x * imageScoreMap.GetLength(0)), 0, imageScoreMap.GetLength(0) - 1);
-				int py = Mathf.Clamp((int)(uv.y * imageScoreMap.GetLength(1)), 0, imageScoreMap.GetLength(1) - 1);
+				int px = Mathf.Clamp((int)(uvCurr.x * imageScoreMap.GetLength(0)), 0, imageScoreMap.GetLength(0) - 1);
+				int py = Mathf.Clamp((int)(uvCurr.y * imageScoreMap.GetLength(1)), 0, imageScoreMap.GetLength(1) - 1);
 				int c = activeCrayonIndex;
 
 				Vector4 drawColOnehot = new Vector4(c == 0 ? 1 : 0, c == 1 ? 1 : 0, c == 2 ? 1 : 0, c == 3 ? 1 : 0);
@@ -114,6 +120,21 @@ public class ScribbleTask : Task
 		{
 			ExitTask();
 		}
+
+		// Record
+		float timeBetweenKeyframes = 1 / 30f;
+		if (keyframes.Count == 0 || Time.time - keyframes[^1].time > timeBetweenKeyframes)
+		{
+			ScribbleKeyframe frame = new()
+			{
+				time = Time.time,
+				col = activeCol,
+				uv = uvCurr,
+				mouseIsDown = mouseIsDown
+			};
+
+			keyframes.Add(frame);
+		}
 	}
 
 	void ReturnCrayon()
@@ -131,7 +152,8 @@ public class ScribbleTask : Task
 	{
 		activeCrayonIndex = index;
 		activeCrayon = crayons[index].gameObject;
-		scribbleCompute.SetVector("drawCol", activeCrayon.GetComponent<MeshRenderer>().sharedMaterial.color);
+		activeCol = activeCrayon.GetComponent<MeshRenderer>().sharedMaterial.color;
+		scribbleCompute.SetVector("drawCol", activeCol);
 		activeCrayon.gameObject.SetActive(false);
 	}
 
@@ -168,5 +190,61 @@ public class ScribbleTask : Task
 		}
 
 		return GetMax(v);
+	}
+
+	public override void Playback(float playTime)
+	{
+		int prevIndex = 0;
+		int nextIndex = keyframes.Count - 1;
+		int i = (nextIndex) / 2;
+		int safety = 10000;
+
+		while (true)
+		{
+			// t lies to left
+			if (playTime <= keyframes[i].time)
+			{
+				nextIndex = i;
+			}
+			// t lies to right
+			else
+			{
+				prevIndex = i;
+			}
+
+			i = (nextIndex + prevIndex) / 2;
+
+			if (nextIndex - prevIndex <= 1)
+			{
+				break;
+			}
+
+			safety--;
+			if (safety <= 0)
+			{
+				Debug.Log("Fix me!");
+				return;
+			}
+		}
+
+
+		ScribbleKeyframe frameA = keyframes[prevIndex];
+		ScribbleKeyframe frameB = keyframes[nextIndex];
+		float abPercent = Mathf.InverseLerp(frameA.time, frameB.time, playTime);
+
+		if (frameA.mouseIsDown && frameB.mouseIsDown)
+		{
+			scribbleCompute.SetVector("drawCol", frameA.col);
+			scribbleCompute.SetVector("drawUV", Vector2.Lerp(frameA.uv, frameB.uv, abPercent));
+			ComputeHelper.Dispatch(scribbleCompute, tex.width, tex.height, kernelIndex: 1);
+		}
+	}
+
+	public struct ScribbleKeyframe
+	{
+		public float time;
+		public Vector2 uv;
+		public Color col;
+		public bool mouseIsDown;
 	}
 }

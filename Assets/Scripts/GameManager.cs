@@ -159,6 +159,11 @@ public class GameManager : MonoBehaviour
 				FirstPersonController playbackPlayer = players[i];
 				playbackPlayer.playbackKeyframes = PlaybackData.playbacks[playbackPlayer.playerType];
 				playbackPlayer.PlaybackUpdate(playerTimer);
+
+				foreach (Task task in playbackPlayer.tasks)
+				{
+					task.Playback(playerTimer);
+				}
 			}
 
 			// Update timer

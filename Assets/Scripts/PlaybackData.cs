@@ -7,12 +7,15 @@ public static class PlaybackData
 	public static int activePlayerIndex;
 	public static bool skipMenu;
 
+
 	public static void Wipe()
 	{
 		Debug.Log("Clear all playbacks");
 		playbacks = new();
 		activePlayerIndex = 0;
 		skipMenu = false;
+
+		ScribbleTask.keyframes.Clear();
 	}
 
 	[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]

@@ -93,7 +93,7 @@ public class FirstPersonController : MonoBehaviour
 	void Update()
 	{
 		cam.gameObject.SetActive(isControllable);
-		if (!isControllable) return;
+		if (!isControllable || !manager.gameActive) return;
 
 		UpdateController();
 

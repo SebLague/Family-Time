@@ -23,7 +23,7 @@ public class XyloTask : Task
 
 	void Update()
 	{
-		if (!taskActive) return;
+		if (!taskActive || !GameManager.Instance.gameActive) return;
 
 		// ---------- Play notes
 		int selectedNoteIndex = GetNearestMouseOverIndex(notes);

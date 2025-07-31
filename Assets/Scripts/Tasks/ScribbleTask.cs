@@ -35,7 +35,7 @@ public class ScribbleTask : Task
 
 	void Update()
 	{
-		if (!taskActive) return;
+		if (!taskActive || !GameManager.Instance.gameActive) return;
 
 
 		// --------- Crayon selection

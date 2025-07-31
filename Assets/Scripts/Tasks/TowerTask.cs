@@ -30,7 +30,7 @@ public class TowerTask : Task
 
 	void Update()
 	{
-		if (!taskActive) return;
+		if (!taskActive || !GameManager.Instance.gameActive) return;
 
 		if (Input.GetMouseButtonDown(0))
 		{

@@ -25,8 +25,7 @@ public abstract class Task : MonoBehaviour
 		owner.gameObject.SetActive(false);
 		cam.gameObject.SetActive(true);
 
-		Cursor.lockState = CursorLockMode.None;
-		Cursor.visible = true;
+		GameManager.ShowCursor(true);
 	}
 
 	public virtual void ExitTask()

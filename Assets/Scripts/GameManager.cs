@@ -1,5 +1,6 @@
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class GameManager : MonoBehaviour
 		Teen
 	}
 
+	public int numSecs = 60 * 3;
 	public StartupMode startupMode;
 	public Task startTask;
 	public FirstPersonController[] players;
@@ -26,6 +28,7 @@ public class GameManager : MonoBehaviour
 	public Color goalSuccessCol;
 	public TMPro.TMP_Text timerText;
 	public TMPro.TMP_Text playerGoalUI;
+	public FailUI failUI;
 	float playerTimer;
 
 
@@ -36,7 +39,18 @@ public class GameManager : MonoBehaviour
 
 	bool waitingForPlayerConfirm;
 	FirstPersonController currentPlayer;
-	bool gameActive;
+	public bool gameActive { get; private set; }
+
+	static GameManager instance;
+
+	public static GameManager Instance
+	{
+		get
+		{
+			if (instance == null) instance = FindFirstObjectByType<GameManager>();
+			return instance;
+		}
+	}
 
 	void Start()
 	{
@@ -70,7 +84,25 @@ public class GameManager : MonoBehaviour
 
 	public void NotifyTimeRanOut()
 	{
-		Debug.Log("Time Ran Out");
+		gameActive = false;
+		failUI.gameObject.SetActive(true);
+		ShowCursor(true);
+	}
+
+	public static void ShowCursor(bool show)
+	{
+		Cursor.lockState = show ? CursorLockMode.None : CursorLockMode.Locked;
+		Cursor.visible = show;
+	}
+
+	public void RetryLevel()
+	{
+		Debug.Log("TODO: retry level");
+	}
+
+	public void RestartGame()
+	{
+		SceneManager.LoadScene(0);
 	}
 
 	public void StartGame()
@@ -109,7 +141,7 @@ public class GameManager : MonoBehaviour
 		if (gameActive)
 		{
 			playerTimer += Time.deltaTime;
-			float timeRemainingSecs = Mathf.Max(0, 60 * 3 - playerTimer);
+			float timeRemainingSecs = Mathf.Max(0, numSecs - playerTimer);
 			int minutes = (int)(timeRemainingSecs / 60);
 			int seconds = (int)(timeRemainingSecs % 60);
 			string formatted = $"{minutes}:{seconds:D2}";

@@ -9,12 +9,10 @@ public class ScribbleTask : Task
 	public MeshRenderer paper;
 	public BoxCollider paperBoxCollider;
 	public ComputeShader scribbleCompute;
-	public Camera cam;
 	public BoxCollider[] crayons;
 	public TMPro.TMP_Text scoreUI;
 	public Color textColDone;
 	RenderTexture tex;
-	FirstPersonController controller;
 
 	GameObject activeCrayon;
 	int activeCrayonIndex = -1;
@@ -159,25 +157,17 @@ public class ScribbleTask : Task
 
 	public override void EnterTask(FirstPersonController controller)
 	{
-		this.controller = controller;
-		controller.gameObject.SetActive(false);
-		taskActive = true;
-		cam.gameObject.SetActive(true);
+		base.EnterTask(controller);
+
 		scoreUI.gameObject.SetActive(true);
 		ReturnCrayon();
-
-
-		Cursor.lockState = CursorLockMode.None;
-		Cursor.visible = true;
 	}
 
-	void ExitTask()
+	public override void ExitTask()
 	{
+		base.ExitTask();
 		ReturnCrayon();
-		cam.gameObject.SetActive(false);
-		taskActive = false;
 		scoreUI.gameObject.SetActive(false);
-		if (controller) controller.gameObject.SetActive(true);
 	}
 
 	float GetMax(Vector4 v)

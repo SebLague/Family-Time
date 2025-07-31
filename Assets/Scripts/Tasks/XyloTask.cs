@@ -3,7 +3,6 @@ using UnityEngine;
 public class XyloTask : Task
 {
 	[Header("Xylo")]
-	public Camera cam;
 
 	public TMPro.TMP_Text scoreUI;
 	public BoxCollider[] notes;
@@ -12,7 +11,6 @@ public class XyloTask : Task
 
 	AudioSource audioSource;
 	int[] notePlayCounts;
-	FirstPersonController controller;
 
 	void Start()
 	{
@@ -98,21 +96,13 @@ public class XyloTask : Task
 
 	public override void EnterTask(FirstPersonController controller)
 	{
-		this.controller = controller;
-		taskActive = true;
-		controller.gameObject.SetActive(false);
-		cam.gameObject.SetActive(true);
+		base.EnterTask(controller);
 		scoreUI.gameObject.SetActive(true);
-
-		Cursor.lockState = CursorLockMode.None;
-		Cursor.visible = true;
 	}
 
-	void ExitTask()
+	public override void ExitTask()
 	{
+		base.ExitTask();
 		scoreUI.gameObject.SetActive(false);
-		taskActive = false;
-		cam.gameObject.SetActive(false);
-		if (controller) controller.gameObject.SetActive(true);
 	}
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -33,6 +34,8 @@ public class FirstPersonController : MonoBehaviour
 	public TMP_Text infoUI;
 	Task potentialTask;
 
+	List<PlaybackKeyframe> playbackKeyframes = new();
+
 	void Start()
 	{
 		fovCur = fov;
@@ -53,6 +56,18 @@ public class FirstPersonController : MonoBehaviour
 		{
 			potentialTask.EnterTask();
 			infoUI.text = "";
+		}
+
+		float timeBetweenKeyframes = 1 / 30f;
+		if (playbackKeyframes.Count == 0 || Time.time - playbackKeyframes[^1].time > timeBetweenKeyframes)
+		{
+			PlaybackKeyframe frame = new PlaybackKeyframe()
+			{
+				time = Time.time,
+				pos = transform.position,
+				rot = transform.rotation,
+			};
+			playbackKeyframes.Add(frame);
 		}
 	}
 
@@ -140,9 +155,53 @@ public class FirstPersonController : MonoBehaviour
 			Cursor.visible = false;
 		}
 
-		float fovTarget = moveDirLocal.z > 0 && sprint ?  fovSprint : fov;
+		float fovTarget = moveDirLocal.z > 0 && sprint ? fovSprint : fov;
 		fovCur = Mathf.SmoothDamp(fovCur, fovTarget, ref fovSmoothRef, 0.2f);
 		cam.fieldOfView = fovCur;
+	}
+
+	public void PlaybackUpdate(float playTime)
+	{
+		int prevIndex = 0;
+		int nextIndex = playbackKeyframes.Count - 1;
+		int i = (nextIndex) / 2;
+		int safety = 10000;
+
+		while (true)
+		{
+			// t lies to left
+			if (playTime <= playbackKeyframes[i].time)
+			{
+				nextIndex = i;
+			}
+			// t lies to right
+			else
+			{
+				prevIndex = i;
+			}
+
+			i = (nextIndex + prevIndex) / 2;
+
+			if (nextIndex - prevIndex <= 1)
+			{
+				break;
+			}
+
+			safety--;
+			if (safety <= 0)
+			{
+				Debug.Log("Fix me!");
+				return;
+			}
+		}
+
+
+		PlaybackKeyframe frameA = playbackKeyframes[prevIndex];
+		PlaybackKeyframe frameB = playbackKeyframes[nextIndex];
+
+		float abPercent = Mathf.InverseLerp(frameA.time, frameB.time, playTime);
+		transform.position = Vector3.Lerp(frameA.pos, frameB.pos, abPercent);
+		transform.rotation = Quaternion.Slerp(frameA.rot, frameB.rot, abPercent);
 	}
 
 	static float ClampAngle(float angle, float min, float max)
@@ -152,5 +211,12 @@ public class FirstPersonController : MonoBehaviour
 		if (angle > 360f)
 			angle -= 360f;
 		return Mathf.Clamp(angle, min, max);
+	}
+
+	public struct PlaybackKeyframe
+	{
+		public float time;
+		public Vector3 pos;
+		public Quaternion rot;
 	}
 }

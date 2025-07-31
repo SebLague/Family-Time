@@ -1267,7 +1267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bcc4ebc907f0354b87c5f6175a713ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startupMode: 3
+  startupMode: 2
   startTask: {fileID: 1442701591}
   baby: {fileID: 147061111}
   cat: {fileID: 430008004}

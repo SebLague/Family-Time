@@ -335,7 +335,7 @@ GameObject:
   - component: {fileID: 183735359}
   - component: {fileID: 183735360}
   m_Layer: 6
-  m_Name: Hanoi
+  m_Name: Task - Hanoi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -349,14 +349,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 183735357}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 2.617, y: 0, z: -0.35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 946063153}
   - {fileID: 1523581393}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1568984233}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &183735359
 MonoBehaviour:
@@ -371,7 +371,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   infoString: press space to attempt the tower
-  taskActive: 0
+  taskActive: 1
   taskCompleted: 0
   cam: {fileID: 946063155}
   poles:
@@ -2248,13 +2248,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 946063152}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.25268304, y: 0.6604175, z: -0.25268304, w: 0.6604175}
-  m_LocalPosition: {x: -1.13, y: 1.09, z: -0}
+  m_LocalRotation: {x: 0.13753472, y: 0.6936023, z: -0.13753472, w: 0.6936024}
+  m_LocalPosition: {x: -1.085, y: 0.822, z: 0.078}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 183735358}
-  m_LocalEulerAnglesHint: {x: 41.875, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 22.431, y: 90, z: 0}
 --- !u!81 &946063154
 AudioListener:
   m_ObjectHideFlags: 0
@@ -3218,7 +3218,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   infoString: press space to xylophone
-  taskActive: 1
+  taskActive: 0
   taskCompleted: 0
   cam: {fileID: 422237898}
   scoreUI: {fileID: 820532233}
@@ -3406,6 +3406,14 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 9e40472ef7dd70c4eb254eedf6578c9e, type: 2}
+    - target: {fileID: -3542852092398272455, guid: ada4687fa080f0b42a0b652b27bb8bdc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -3274006528333456403, guid: ada4687fa080f0b42a0b652b27bb8bdc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -1806680513116206669, guid: ada4687fa080f0b42a0b652b27bb8bdc, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -3429,6 +3437,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: ada4687fa080f0b42a0b652b27bb8bdc, type: 3}
       propertyPath: m_Name
       value: Hanoi
+      objectReference: {fileID: 0}
+    - target: {fileID: 4306643203051859313, guid: ada4687fa080f0b42a0b652b27bb8bdc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4865064391339405807, guid: ada4687fa080f0b42a0b652b27bb8bdc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6745302439343835087, guid: ada4687fa080f0b42a0b652b27bb8bdc, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -3837,6 +3853,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 183735358}
   - {fileID: 1442701589}
   - {fileID: 1796826505}
   m_Father: {fileID: 0}
@@ -4851,4 +4868,3 @@ SceneRoots:
   - {fileID: 619135361}
   - {fileID: 1564880405}
   - {fileID: 245182705}
-  - {fileID: 183735358}

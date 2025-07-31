@@ -6,6 +6,7 @@ public abstract class Task : MonoBehaviour
 	public string infoString;
 
 	public bool taskActive;
+	public bool taskCompleted;
 
 	public abstract void EnterTask(FirstPersonController controller);
 }

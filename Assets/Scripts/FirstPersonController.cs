@@ -15,6 +15,7 @@ public class FirstPersonController : MonoBehaviour
 	public Vector2 verticalLookMinMax;
 	public Transform cam;
 	CharacterController controller;
+	public Animator animator;
 	float pitch;
 	float velocityY;
 	Vector3 velocity;
@@ -63,7 +64,7 @@ public class FirstPersonController : MonoBehaviour
 
 	void UpdateController()
 	{
-		Vector3 moveDir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
+		Vector3 moveDirLocal = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
 		Vector2 mouseInput = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
 
 		if (controller.isGrounded)
@@ -83,11 +84,24 @@ public class FirstPersonController : MonoBehaviour
 		cam.localRotation = yQuaternion;
 
 		velocityY -= gravity * Time.deltaTime;
-		Vector3 targetVelocity = transform.TransformDirection(moveDir) * moveSpeed;
+		Vector3 moveDirWorld = transform.TransformDirection(moveDirLocal);
+		Vector3 targetVelocity = moveDirWorld * moveSpeed;
 		velocity = Vector3.SmoothDamp(new Vector3(velocity.x, 0, velocity.z), targetVelocity, ref velSmoothRef, controller.isGrounded ? smoothVelTGround : smoothVelTAir);
 		velocity.y = velocityY;
 
 		controller.Move(velocity * Time.deltaTime);
+		if (animator)
+		{
+			float fwdSpeedParam = Mathf.Abs(Vector3.Dot(moveDirWorld, transform.forward) * 1.5f);
+			float sideSpeedParam = Mathf.Abs(Vector3.Dot(moveDirWorld, transform.right) * 1);
+			animator.SetFloat("Speed",fwdSpeedParam);
+			animator.speed = 1;
+
+			if (fwdSpeedParam < 0.1f)
+			{
+				animator.speed = 1 + sideSpeedParam*2.5f;
+			}
+		}
 
 		if (lockCursor)
 		{

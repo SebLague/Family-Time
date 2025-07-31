@@ -383,9 +383,6 @@ MonoBehaviour:
   - {fileID: 1523581400}
   - {fileID: 1523581402}
   - {fileID: 1523581399}
-  poleStart: 
-  poleEnd: 
-  poleMiddle: 
 --- !u!135 &183735360
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2199,8 +2196,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.0038513984, y: 0.008, z: 0.11}
-  m_Center: {x: -0.0000000071595423, y: 0.029999997, z: 0.062409077}
+  m_Size: {x: 0.0038513981, y: 0.008, z: 0.11}
+  m_Center: {x: -0.000000007450581, y: -0.0000000037252903, z: -0.0000000018626478}
 --- !u!65 &867670727
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2220,8 +2217,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.0038513984, y: 0.008, z: 0.11}
-  m_Center: {x: -0.0000000071595423, y: -0.029999997, z: 0.062409077}
+  m_Size: {x: 0.0038513981, y: 0.008, z: 0.11}
+  m_Center: {x: -0.000000007450581, y: -0.0000000037252903, z: -0.0000000018626478}
 --- !u!1 &946063152
 GameObject:
   m_ObjectHideFlags: 0
@@ -3408,11 +3405,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 9e40472ef7dd70c4eb254eedf6578c9e, type: 2}
     - target: {fileID: -3542852092398272455, guid: ada4687fa080f0b42a0b652b27bb8bdc, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.07
       objectReference: {fileID: 0}
     - target: {fileID: -3274006528333456403, guid: ada4687fa080f0b42a0b652b27bb8bdc, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.09
       objectReference: {fileID: 0}
     - target: {fileID: -1806680513116206669, guid: ada4687fa080f0b42a0b652b27bb8bdc, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -3439,12 +3436,20 @@ PrefabInstance:
       value: Hanoi
       objectReference: {fileID: 0}
     - target: {fileID: 4306643203051859313, guid: ada4687fa080f0b42a0b652b27bb8bdc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 4306643203051859313, guid: ada4687fa080f0b42a0b652b27bb8bdc, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 4865064391339405807, guid: ada4687fa080f0b42a0b652b27bb8bdc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.029999994
       objectReference: {fileID: 0}
     - target: {fileID: 4865064391339405807, guid: ada4687fa080f0b42a0b652b27bb8bdc, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 6745302439343835087, guid: ada4687fa080f0b42a0b652b27bb8bdc, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -3524,12 +3529,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.011816954, y: 0.011816952, z: 0.018164147}
-  m_Center: {x: -0.000000007450581, y: 0.0000000037252903, z: 0.085779876}
+  m_Size: {x: 0.011816954, y: 0.011816952, z: 0.018164149}
+  m_Center: {x: -0.000000007450581, y: 0.000000005122274, z: 0.00000001955777}
 --- !u!65 &1523581400
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3545,12 +3550,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.021911692, y: 0.02191169, z: 0.018164162}
-  m_Center: {x: -0.000000007450581, y: 0.0000000037252903, z: 0.048908196}
+  m_Size: {x: 0.021911692, y: 0.02191169, z: 0.018164163}
+  m_Center: {x: -0.000000007450581, y: 0.0000000027939682, z: 0.0000000018626434}
 --- !u!65 &1523581401
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3566,12 +3571,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.028819319, y: 0.028819315, z: 0.018164167}
-  m_Center: {x: -0.000000007450581, y: 0.0000000037252903, z: 0.03072463}
+  m_Size: {x: 0.028819319, y: 0.028819315, z: 0.018164165}
+  m_Center: {x: -0.000000007450581, y: -9.3132213e-10, z: 0.0000000065192562}
 --- !u!65 &1523581402
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3587,12 +3592,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.016784191, y: 0.01678419, z: 0.018164158}
-  m_Center: {x: -0.000000007450581, y: 0.0000000037252903, z: 0.06734404}
+  m_Size: {x: 0.016784191, y: 0.01678419, z: 0.018164163}
+  m_Center: {x: -0.000000007450581, y: 0.0000000037252903, z: -0.00000001583248}
 --- !u!65 &1523581403
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3612,8 +3617,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.0038513984, y: 0.008, z: 0.11}
-  m_Center: {x: -0.0000000071595423, y: 9.313226e-10, z: 0.062409077}
+  m_Size: {x: 0.0038513981, y: 0.008, z: 0.11}
+  m_Center: {x: -0.000000007450581, y: -0.0000000037252903, z: -0.0000000018626478}
 --- !u!1 &1525951049
 GameObject:
   m_ObjectHideFlags: 0

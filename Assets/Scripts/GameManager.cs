@@ -7,13 +7,15 @@ public class GameManager : MonoBehaviour
 		Game,
 		DevTask,
 		Baby,
-		Cat
+		Cat,
+		Teen,
 	}
 
 	public StartupMode startupMode;
 	public Task startTask;
 	public FirstPersonController baby;
 	public FirstPersonController cat;
+	public FirstPersonController teen;
 	public Camera menuCam;
 	public GameObject mainMenu;
 	public GameObject gameHud;
@@ -23,7 +25,7 @@ public class GameManager : MonoBehaviour
 
 	void Start()
 	{
-		FirstPersonController[] all = new[] { cat, baby };
+		FirstPersonController[] all = new[] { cat, baby, teen };
 		foreach (FirstPersonController c in all)
 		{
 			c.isControllable = false;
@@ -42,19 +44,15 @@ public class GameManager : MonoBehaviour
 			gameHud.SetActive(true);
 			menuCam.gameObject.SetActive(false);
 
-			if (startupMode == StartupMode.DevTask)
-			{
-				startTask.EnterTask();
-			}
-			else if (startupMode == StartupMode.Baby)
-			{
-				baby.isControllable = true;
-			}
-			else if (startupMode == StartupMode.Cat)
-			{
-				cat.isControllable = true;
-			}
+			if (startupMode == StartupMode.DevTask) startTask.EnterTask();
+			else if (startupMode == StartupMode.Baby) baby.isControllable = true;
+			else if (startupMode == StartupMode.Cat) cat.isControllable = true;
+			else if (startupMode == StartupMode.Teen) teen.isControllable = true;
 		}
+	}
+
+	public void StartGame()
+	{
 	}
 
 	void Update()

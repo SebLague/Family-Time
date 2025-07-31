@@ -1,7 +1,7 @@
 using Seb.Helpers;
 using UnityEngine;
 
-public class Scribble : Task
+public class ScribbleTask : Task
 {
 	[Header("Scribble")]
 	public int texRes = 512;
@@ -32,6 +32,7 @@ public class Scribble : Task
 		scribbleCompute.SetInts("Res", tex.width, tex.height);
 		ComputeHelper.Dispatch(scribbleCompute, tex.width, tex.height, kernelIndex: 0);
 
+		// ----- Test state
 		if (!taskActive) ExitTask();
 		if (taskActive)
 		{
@@ -91,7 +92,6 @@ public class Scribble : Task
 
 				Vector4 drawColOnehot = new Vector4(c == 0 ? 1 : 0, c == 1 ? 1 : 0, c == 2 ? 1 : 0, c == 3 ? 1 : 0);
 				imageScoreMap[px, py] = drawColOnehot;
-				Debug.Log(drawColOnehot);
 
 				int fillCount = 0;
 				Vector4 colCounts = Vector4.zero;
@@ -109,10 +109,12 @@ public class Scribble : Task
 					}
 				}
 
-				float fillScoreT = Maths.EaseCubeIn(Mathf.Clamp01(fillCount / 350f));
+				float fillScoreT = Maths.EaseCubeIn(Mathf.Clamp01(fillCount / 300f));
+				float secondMostUsedCol = GetSecondHighest(colCounts);
+				fillScoreT *= Mathf.Lerp(0.5f, 1, secondMostUsedCol / 80f);
 				const int colScoreMax = 40;
 				float colScoreT = Vector4.Dot(Vector4.Min(Vector4.one * colScoreMax, colCounts), Vector4.one * (1f / colScoreMax)) / 4f;
-				currScoreT = fillScoreT * 0.5f + colScoreT * 0.5f;
+				currScoreT = fillScoreT * 0.3f + colScoreT * 0.7f;
 			}
 		}
 
@@ -121,6 +123,7 @@ public class Scribble : Task
 		{
 			scoreUI.text = $"scribble score: {scoreInt}%";
 		}
+
 		if (scoreInt >= 100 && !taskCompleted)
 		{
 			taskCompleted = true;
@@ -175,5 +178,25 @@ public class Scribble : Task
 		taskActive = false;
 		scoreUI.gameObject.SetActive(false);
 		if (controller) controller.gameObject.SetActive(true);
+	}
+
+	float GetMax(Vector4 v)
+	{
+		return Mathf.Max(v.x, v.y, v.z, v.w);
+	}
+
+	float GetSecondHighest(Vector4 v)
+	{
+		float max = GetMax(v);
+		for (int i = 0; i < 4; i++)
+		{
+			if (v[i] == max)
+			{
+				v[i] = 0;
+				break;
+			}
+		}
+
+		return GetMax(v);
 	}
 }

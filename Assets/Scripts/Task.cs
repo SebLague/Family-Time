@@ -4,6 +4,7 @@ public abstract class Task : MonoBehaviour
 {
 	[Header("Task")]
 	public string infoString;
+	public string goalString;
 
 	public bool taskCompleted;
 	public Camera cam;

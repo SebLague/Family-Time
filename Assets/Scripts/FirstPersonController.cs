@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -8,7 +9,9 @@ using UnityEngine.Rendering;
 public class FirstPersonController : MonoBehaviour
 {
 	public GameManager.Players playerType;
-	bool lockCursor = true;
+	public Task[] tasks;
+	public TMPro.TMP_Text playerGoalUI;
+
 	public float smoothVelTAir;
 	public float smoothVelTGround;
 	public float gravity = 12f;
@@ -30,14 +33,18 @@ public class FirstPersonController : MonoBehaviour
 	float velocityY;
 	Vector3 velocity;
 	Vector3 velSmoothRef;
-	[HideInInspector] public bool isControllable;
+	bool isControllable;
 
 	public TMP_Text infoUI;
 	Task potentialTask;
 	float animSpeed;
 	float animTimeScale = 1;
+	bool lockCursor = true;
+	float timeSinceLastGrounded;
+
 
 	List<PlaybackKeyframe> playbackKeyframes = new();
+
 
 	void Start()
 	{
@@ -45,6 +52,23 @@ public class FirstPersonController : MonoBehaviour
 		controller = GetComponent<CharacterController>();
 
 		infoUI.text = "";
+	}
+
+	public void SetControllable(bool state)
+	{
+		isControllable = state;
+
+		if (isControllable)
+		{
+			playerGoalUI.gameObject.SetActive(true);
+			string goalText = "Goals:\n";
+			foreach (Task task in tasks)
+			{
+				goalText += task.goalString + "\n";
+			}
+
+			playerGoalUI.text = goalText;
+		}
 	}
 
 
@@ -72,7 +96,7 @@ public class FirstPersonController : MonoBehaviour
 				animSpeed = animSpeed,
 				animTimescale = animTimeScale,
 			};
-			
+
 			playbackKeyframes.Add(frame);
 		}
 	}
@@ -110,9 +134,17 @@ public class FirstPersonController : MonoBehaviour
 
 		if (controller.isGrounded)
 		{
-			velocityY = 0;
+			timeSinceLastGrounded = 0;
+			velocityY = -0.5f;
+		}
+		else
+		{
+			timeSinceLastGrounded += Time.deltaTime;
+		}
 
-			if (Input.GetKeyDown(KeyCode.Space))
+		if (controller.isGrounded || timeSinceLastGrounded < 0.1f)
+		{
+			if (Input.GetKeyDown(KeyCode.Space) && velocity.y <= 0)
 			{
 				velocityY = jumpForce;
 			}
@@ -135,13 +167,13 @@ public class FirstPersonController : MonoBehaviour
 
 		animTimeScale = 1.3f;
 		animSpeed = 0;
-		
+
 		if (animator)
 		{
 			float fwdSpeedParam = Mathf.Abs(Vector3.Dot(moveDirWorld, transform.forward) * 1.5f);
 			float sideSpeedParam = Mathf.Abs(Vector3.Dot(moveDirWorld, transform.right) * 1);
 			animSpeed = fwdSpeedParam;
-			
+
 			if (fwdSpeedParam < 0.1f)
 			{
 				animTimeScale = 1 + sideSpeedParam * 2.5f;
@@ -151,7 +183,7 @@ public class FirstPersonController : MonoBehaviour
 			{
 				if (sprint) animTimeScale = 1.7f;
 			}
-			
+
 			// Set anim params
 			animator.SetFloat("Speed", animSpeed);
 			animator.speed = animTimeScale;
@@ -215,11 +247,11 @@ public class FirstPersonController : MonoBehaviour
 		float abPercent = Mathf.InverseLerp(frameA.time, frameB.time, playTime);
 		transform.position = Vector3.Lerp(frameA.pos, frameB.pos, abPercent);
 		transform.rotation = Quaternion.Slerp(frameA.rot, frameB.rot, abPercent);
-		
+
 		if (animator)
 		{
-			animator.speed = Mathf.Lerp(frameA.animTimescale,  frameB.animTimescale, abPercent);
-			animator.SetFloat("Speed", Mathf.Lerp(frameA.animSpeed,  frameB.animSpeed, abPercent));
+			animator.speed = Mathf.Lerp(frameA.animTimescale, frameB.animTimescale, abPercent);
+			animator.SetFloat("Speed", Mathf.Lerp(frameA.animSpeed, frameB.animSpeed, abPercent));
 		}
 	}
 

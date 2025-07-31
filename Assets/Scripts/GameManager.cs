@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
 	public GameObject gameHud;
 	public IntroUI introUI;
 
+
 	bool playbackTest;
 	float playbackTime;
 
@@ -36,7 +37,7 @@ public class GameManager : MonoBehaviour
 	{
 		foreach (FirstPersonController c in players)
 		{
-			c.isControllable = false;
+			c.SetControllable(false);
 		}
 
 		if (startupMode == StartupMode.Game)
@@ -81,7 +82,7 @@ public class GameManager : MonoBehaviour
 			if (Input.GetKeyDown(KeyCode.Tab))
 			{
 				menuCam.gameObject.SetActive(false);
-				currentPlayer.isControllable = true;
+				currentPlayer.SetControllable(true);
 				introUI.gameObject.SetActive(false);
 				gameHud.SetActive(true);
 			}

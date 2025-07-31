@@ -36,7 +36,7 @@ public class FirstPersonController : MonoBehaviour
 	{
 		UpdateController();
 
-		if (Input.GetKeyDown(KeyCode.Space) && potentialTask != null)
+		if (Input.GetKeyDown(KeyCode.Tab) && potentialTask != null)
 		{
 			potentialTask.EnterTask(this);
 			infoUI.text = "";

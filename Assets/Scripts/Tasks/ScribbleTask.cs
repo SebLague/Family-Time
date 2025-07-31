@@ -44,25 +44,9 @@ public class ScribbleTask : Task
 		if (!taskActive) return;
 
 
-		Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-		RaycastHit hitInfo;
 
 		// --------- Crayon selection
-		int nearestCrayonIndex = -1;
-		float nearestCrayonDistance = float.MaxValue;
-
-		for (int i = 0; i < crayons.Length; i++)
-		{
-			crayons[i].Raycast(ray, out hitInfo, 100);
-			if (hitInfo.collider != null)
-			{
-				if (hitInfo.distance < nearestCrayonDistance)
-				{
-					nearestCrayonIndex = i;
-					nearestCrayonDistance = hitInfo.distance;
-				}
-			}
-		}
+		int nearestCrayonIndex = GetNearestMouseOverIndex(crayons);
 
 		if (Input.GetMouseButtonDown(0) && nearestCrayonIndex != -1)
 		{
@@ -71,7 +55,8 @@ public class ScribbleTask : Task
 		}
 
 		// ------------- Draw
-		paperBoxCollider.Raycast(ray, out hitInfo, 100);
+		Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+		paperBoxCollider.Raycast(ray, out RaycastHit hitInfo, 100);
 		if (hitInfo.collider != null && activeCrayon != null)
 		{
 			Vector3 pLocal = paper.transform.InverseTransformPoint(hitInfo.point);

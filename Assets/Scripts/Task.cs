@@ -27,4 +27,28 @@ public abstract class Task : MonoBehaviour
 		cam.gameObject.SetActive(false);
 		taskActive = false;
 	}
+
+	public int GetNearestMouseOverIndex(BoxCollider[] elements)
+	{
+		RaycastHit hitInfo;
+		Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+
+		int nearestIndex = -1;
+		float nearestDst = float.MaxValue;
+
+		for (int i = 0; i < elements.Length; i++)
+		{
+			elements[i].Raycast(ray, out hitInfo, 100);
+			if (hitInfo.collider != null)
+			{
+				if (hitInfo.distance < nearestDst)
+				{
+					nearestIndex = i;
+					nearestDst = hitInfo.distance;
+				}
+			}
+		}
+
+		return nearestIndex;
+	}
 }

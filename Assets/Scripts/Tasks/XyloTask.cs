@@ -32,23 +32,7 @@ public class XyloTask : Task
 		if (!taskActive) return;
 
 		// ---------- Play notes
-		Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-		RaycastHit hitInfo;
-		int selectedNoteIndex = -1;
-		float nearestDst = float.MaxValue;
-
-		for (int i = 0; i < notes.Length; i++)
-		{
-			notes[i].Raycast(ray, out hitInfo, 100);
-			if (hitInfo.collider != null)
-			{
-				if (hitInfo.distance < nearestDst)
-				{
-					selectedNoteIndex = i;
-					nearestDst = hitInfo.distance;
-				}
-			}
-		}
+		int selectedNoteIndex = GetNearestMouseOverIndex(notes);
 
 		if (Input.GetMouseButtonDown(0) && selectedNoteIndex != -1)
 		{

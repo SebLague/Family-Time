@@ -12,6 +12,7 @@ public class PlanetGen : MonoBehaviour
 	public int noiseSeed;
 	public float noiseScale;
 	public float noiseStrength;
+	public float oceanHeight;
 
 	Vector3[] sphereVerts;
 	int[] sphereIndices;
@@ -20,6 +21,7 @@ public class PlanetGen : MonoBehaviour
 	Mesh planetMesh;
 	bool needsUpdate;
 	OpenSimplexNoise noiseGen;
+	public Transform ocean;
 
 	void Start()
 	{
@@ -65,6 +67,7 @@ public class PlanetGen : MonoBehaviour
 		planetMesh.RecalculateBounds();
 
 		display.sharedMesh = planetMesh;
+		ocean.localScale = Vector3.one * (radius + oceanHeight);
 	}
 
 	float GetNoise(Vector3 p)

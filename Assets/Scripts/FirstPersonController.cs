@@ -68,6 +68,16 @@ public class FirstPersonController : MonoBehaviour
 			Debug.Log("All Tasks Completed");
 			manager.NotifyAllTasksCompleted();
 		}
+		else
+		{
+			if (playerType == GameManager.Players.Cat)
+			{
+				if (tasks.Any(t => t.taskCompleted && t is CatNapTask))
+				{
+					GameManager.Instance.OnFailCatNapTooSoon();
+				}
+			}
+		}
 	}
 
 	public void SetControllable(bool state)

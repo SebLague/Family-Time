@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
 	public const KeyCode CatchFlyKey = KeyCode.Space;
 	public const KeyCode TaskEnterKey = KeyCode.Tab;
-	
+
 	public enum StartupMode
 	{
 		Game,
@@ -95,8 +95,19 @@ public class GameManager : MonoBehaviour
 		RestartTimeLoop();
 	}
 
-	public void NotifyTimeRanOut()
+	public void OnFailTimeRanOut()
 	{
+		OnFail("YOU RAN OUT OF TIME!");
+	}
+
+	public void OnFailCatNapTooSoon()
+	{
+		OnFail("Oh no!\n<size=50%>You fell asleep before accomplishing your goals!");
+	}
+
+	void OnFail(string reason)
+	{
+		failUI.reason.text = reason;
 		gameActive = false;
 		failUI.gameObject.SetActive(true);
 		ShowCursor(true);
@@ -161,7 +172,7 @@ public class GameManager : MonoBehaviour
 			{
 				FirstPersonController playbackPlayer = players[i];
 				playbackPlayer.playbackKeyframes = PlaybackData.playbacks[playbackPlayer.playerType];
-				playbackPlayer.PlaybackUpdate(playerTimer);//
+				playbackPlayer.PlaybackUpdate(playerTimer); //
 
 				foreach (Task task in playbackPlayer.tasks)
 				{
@@ -180,7 +191,7 @@ public class GameManager : MonoBehaviour
 			if (timeRemainingSecs <= 0)
 			{
 				gameActive = false;
-				NotifyTimeRanOut();
+				OnFailTimeRanOut();
 			}
 		}
 

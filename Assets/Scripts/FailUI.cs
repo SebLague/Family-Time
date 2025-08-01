@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class FailUI : MonoBehaviour
 {
+    public TMPro.TMP_Text reason;
     public Button retryButton;
     public Button quitButton;
     

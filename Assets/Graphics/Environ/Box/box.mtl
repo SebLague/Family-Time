@@ -1,0 +1,8 @@
+# Created by Kenney (www.kenney.nl)
+
+newmtl wood
+  Kd 0.88 0.31 0.08
+
+newmtl rock
+  Kd 0.82 0.65 0.36
+

@@ -60,6 +60,7 @@ public class FirstPersonController : MonoBehaviour
 	{
 		bool done = tasks.All(t => t.taskCompleted);
 		done |= forceAllDone;
+		UpdateGoalHud();
 
 		if (done)
 		{
@@ -76,18 +77,28 @@ public class FirstPersonController : MonoBehaviour
 		if (isControllable)
 		{
 			manager.playerGoalUI.gameObject.SetActive(true);
-			string goalText = "Goals:\n";
-			foreach (Task task in tasks)
-			{
-				goalText += TextCol(task.goalString + "\n", manager.goalSuccessCol, task.taskCompleted);
-			}
-
-			manager.playerGoalUI.text = goalText;
+			UpdateGoalHud();
 		}
 		else
 		{
 			manager.playerGoalUI.gameObject.SetActive(false);
 		}
+	}
+
+	public void NotifyTaskProgress()
+	{
+		UpdateGoalHud();
+	}
+
+	void UpdateGoalHud()
+	{
+		string goalText = "Goals:\n";
+		foreach (Task task in tasks)
+		{
+			goalText += task.GetGoalString() + "\n";
+		}
+
+		manager.playerGoalUI.text = goalText;
 	}
 
 
@@ -121,7 +132,7 @@ public class FirstPersonController : MonoBehaviour
 		}
 	}
 
-	string TextCol(string s, Color col, bool setCol)
+	public static string TextCol(string s, Color col, bool setCol)
 	{
 		if (!setCol) return s;
 		return $"<color=#{ColorUtility.ToHtmlStringRGB(col)}>{s}</color>";
@@ -149,7 +160,7 @@ public class FirstPersonController : MonoBehaviour
 	void OnTriggerExit(Collider other)
 	{
 		if (!isControllable || !GameManager.Instance.gameActive) return;
-		
+
 		if (other.gameObject.GetComponent<Task>())
 		{
 			Task task = other.gameObject.GetComponent<Task>();
@@ -242,7 +253,7 @@ public class FirstPersonController : MonoBehaviour
 	public void PlaybackUpdate(float playTime)
 	{
 		if (playbackKeyframes.Count <= 1) return;
-		
+
 		int prevIndex = 0;
 		int nextIndex = playbackKeyframes.Count - 1;
 		int i = (nextIndex) / 2;

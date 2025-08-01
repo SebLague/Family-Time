@@ -57,5 +57,6 @@ public class Candle : MonoBehaviour
 		hasApplied = true;
 		fireStartTime = Time.time + fireStartDelay;
 		rb.AddForce(dir * force + Vector3.up * forceUp, ForceMode.Impulse);
+		FindFirstObjectByType<CandleTask>().OnTopple();
 	}
 }

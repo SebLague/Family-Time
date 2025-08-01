@@ -423,6 +423,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a64cb7da0a20c046b24afe2138e912b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isEnterableTask: 1
   infoString: press space to attempt the tower
   goalString: solve the tower
   cam: {fileID: 946063155}
@@ -1775,6 +1776,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 324597247}
+  - component: {fileID: 324597248}
   m_Layer: 0
   m_Name: Task -- Candles
   m_TagString: Untagged
@@ -1799,6 +1801,23 @@ Transform:
   - {fileID: 2125696960}
   m_Father: {fileID: 1638875248}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &324597248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 324597246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c4e6ad0c7da0294eb9ebf1bdd030ef3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isEnterableTask: 0
+  infoString: 
+  goalString: --- set in script
+  cam: {fileID: 0}
+  owner: {fileID: 430008004}
 --- !u!1 &331565335
 GameObject:
   m_ObjectHideFlags: 0
@@ -2400,6 +2419,7 @@ MonoBehaviour:
   playerType: 0
   tasks:
   - {fileID: 1950498487}
+  - {fileID: 324597248}
   smoothVelTAir: 0.2
   smoothVelTGround: 0.1
   gravity: 12
@@ -5398,11 +5418,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -237365271552377259, guid: 603cb14dd387f434091cbdcb680a8a8a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.231
+      value: 0.224
       objectReference: {fileID: 0}
     - target: {fileID: -237365271552377259, guid: 603cb14dd387f434091cbdcb680a8a8a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.263
+      value: -0.291
       objectReference: {fileID: 0}
     - target: {fileID: -237365271552377259, guid: 603cb14dd387f434091cbdcb680a8a8a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -8897,6 +8917,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c450e221260de545b476fc8f01aa850, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isEnterableTask: 1
   infoString: press space to xylophone
   goalString: make some music
   cam: {fileID: 422237898}
@@ -10960,6 +10981,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea0745edbb97914418d1132ec8408eef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isEnterableTask: 1
   infoString: press space to scribble!
   goalString: draw an artwork
   cam: {fileID: 1064847621}
@@ -11983,6 +12005,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6e7d2d5ba4d04a4da807f4305624e68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isEnterableTask: 1
   infoString: press tab to take a nap
   goalString: take a nap
   cam: {fileID: 1885569969}

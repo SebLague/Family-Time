@@ -3,6 +3,7 @@ using UnityEngine;
 public abstract class Task : MonoBehaviour
 {
 	[Header("Task")]
+	public bool isEnterableTask = true;
 	public string infoString;
 
 	public string goalString;
@@ -12,6 +13,16 @@ public abstract class Task : MonoBehaviour
 	public FirstPersonController owner;
 	protected bool taskActive;
 
+	public string GetGoalString()
+	{
+		return FirstPersonController.TextCol(CustomizeGoalString(), GameManager.Instance.goalSuccessCol, taskCompleted);
+	}
+
+	protected virtual string CustomizeGoalString()
+	{
+		return goalString;
+	}
+
 	protected void TaskCompleted()
 	{
 		taskCompleted = true;
@@ -20,20 +31,26 @@ public abstract class Task : MonoBehaviour
 
 	public virtual void EnterTask()
 	{
-		taskActive = true;
-		owner.SetControllable(false);
-		owner.gameObject.SetActive(false);
-		cam.gameObject.SetActive(true);
+		if (isEnterableTask)
+		{
+			taskActive = true;
+			owner.SetControllable(false);
+			owner.gameObject.SetActive(false);
+			cam.gameObject.SetActive(true);
 
-		GameManager.ShowCursor(true);
+			GameManager.ShowCursor(true);
+		}
 	}
 
 	public virtual void ExitTask()
 	{
-		owner.gameObject.SetActive(true);
-		owner.SetControllable(true);
-		cam.gameObject.SetActive(false);
-		taskActive = false;
+		if (isEnterableTask)
+		{
+			owner.gameObject.SetActive(true);
+			owner.SetControllable(true);
+			cam.gameObject.SetActive(false);
+			taskActive = false;
+		}
 	}
 
 	public virtual void Playback(float playTime)

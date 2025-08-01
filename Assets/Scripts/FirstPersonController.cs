@@ -191,6 +191,7 @@ public class FirstPersonController : MonoBehaviour
 			Task task = other.gameObject.GetComponent<Task>();
 			if (task.owner == this)
 			{
+				task.ownerInRegion = true;
 				potentialTask = task;
 				gameHud.SetInfoText(task.infoString);
 			}
@@ -235,6 +236,8 @@ public class FirstPersonController : MonoBehaviour
 			Task task = other.gameObject.GetComponent<Task>();
 			if (task.owner == this)
 			{
+				task.ownerInRegion = false;
+				if(potentialTask) potentialTask.ownerInRegion = false;
 				gameHud.ClearInfo();
 				potentialTask = null;
 			}

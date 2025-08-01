@@ -19,14 +19,14 @@ public class TowerTask : Task
 
 	public static List<TowerKeyFrame> keyframes = new();
 
-	void Awake()
+	protected override void Awake()
 	{
+		base.Awake();
+
 		poleStart.AddRange(new int[] { 0, 1, 2, 3 });
 		diskCols = disks.Select(d => d.gameObject.GetComponent<MeshRenderer>().material.color).ToArray();
 		startY = disks[0].transform.localPosition.z;
 		spacingY = disks[1].transform.localPosition.z - startY;
-
-		ExitTask();
 	}
 
 
@@ -155,7 +155,7 @@ public class TowerTask : Task
 	public override void Playback(float playTime)
 	{
 		if (keyframes.Count <= 1) return;
-		
+
 		int prevIndex = 0;
 		int nextIndex = keyframes.Count - 1;
 		int i = (nextIndex) / 2;

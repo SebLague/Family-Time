@@ -9,9 +9,9 @@ public class CatNapTask : Task
 	public GameObject zs;
 	public Image snoozeToBlack;
 
-	void Awake()
+	protected override void Awake()
 	{
-		ExitTask();
+		base.Awake();
 	}
 
 	public override void EnterTask()

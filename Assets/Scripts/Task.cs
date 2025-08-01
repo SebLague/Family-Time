@@ -4,6 +4,7 @@ public abstract class Task : MonoBehaviour
 {
 	[Header("Task")]
 	public bool isEnterableTask = true;
+
 	public string infoString;
 	public string goalString;
 
@@ -12,6 +13,12 @@ public abstract class Task : MonoBehaviour
 	public FirstPersonController owner;
 	protected bool taskActive;
 	bool taskCompleteQuiet;
+	[HideInInspector] public bool ownerInRegion;
+
+	protected virtual void Awake()
+	{
+		if (cam) cam.gameObject.SetActive(false);
+	}
 
 	public string GetGoalString()
 	{
@@ -25,9 +32,9 @@ public abstract class Task : MonoBehaviour
 
 	protected void TaskCompleted()
 	{
-		Debug.Log("Task Completed");
 		if (!taskCompleted)
 		{
+			Debug.Log("Task Completed");
 			taskCompleted = true;
 			owner.NotifyTaskCompleted();
 		}

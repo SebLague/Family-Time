@@ -10,10 +10,12 @@ public class CandleTask : Task
 
 	public static List<ToppleEvent> toppleEvents = new();
 
-	void Awake()
+	protected override void Awake()
 	{
-		candles = new (FindObjectsByType<Candle>(FindObjectsInactive.Exclude, FindObjectsSortMode.None));
-		candles.Sort((a,b) => String.Compare(a.name, b.name, StringComparison.Ordinal));
+		base.Awake();
+
+		candles = new(FindObjectsByType<Candle>(FindObjectsInactive.Exclude, FindObjectsSortMode.None));
+		candles.Sort((a, b) => String.Compare(a.name, b.name, StringComparison.Ordinal));
 	}
 
 	void Update()

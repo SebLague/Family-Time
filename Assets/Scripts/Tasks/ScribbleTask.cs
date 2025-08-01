@@ -24,8 +24,10 @@ public class ScribbleTask : Task
 
 	public static List<ScribbleKeyframe> keyframes = new();
 
-	void Awake()
+	protected override void Awake()
 	{
+		base.Awake();
+
 		float pageWidth = paper.transform.localScale.z;
 		float pageHeight = paper.transform.localScale.x;
 		tex = ComputeHelper.CreateRenderTexture(Mathf.CeilToInt(texRes * (pageWidth / pageHeight)), texRes);
@@ -34,8 +36,6 @@ public class ScribbleTask : Task
 		scribbleCompute.SetTexture(1, "Tex", tex);
 		scribbleCompute.SetInts("Res", tex.width, tex.height);
 		ComputeHelper.Dispatch(scribbleCompute, tex.width, tex.height, kernelIndex: 0);
-
-		ExitTask();
 	}
 
 	void Update()
@@ -123,7 +123,7 @@ public class ScribbleTask : Task
 
 		// Record
 		float timeBetweenKeyframes = 1 / 30f;
-		if (keyframes.Count == 0 || GameManager.Instance.playerTimer- keyframes[^1].time > timeBetweenKeyframes)
+		if (keyframes.Count == 0 || GameManager.Instance.playerTimer - keyframes[^1].time > timeBetweenKeyframes)
 		{
 			ScribbleKeyframe frame = new()
 			{
@@ -195,7 +195,7 @@ public class ScribbleTask : Task
 	public override void Playback(float playTime)
 	{
 		if (keyframes.Count <= 1) return;
-		
+
 		int prevIndex = 0;
 		int nextIndex = keyframes.Count - 1;
 		int i = (nextIndex) / 2;

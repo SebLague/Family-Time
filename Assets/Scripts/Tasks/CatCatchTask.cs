@@ -11,8 +11,10 @@ public class CatCatchTask : Task
 	public static List<CatchEvent> events = new();
 	float playbackTimePrev;
 
-	void Awake()
+	protected override void Awake()
 	{
+		base.Awake();
+
 		flies = new(FindObjectsByType<FlyController>(FindObjectsInactive.Exclude, FindObjectsSortMode.None));
 		flies.Sort((a, b) => String.Compare(a.name, b.name, StringComparison.Ordinal));
 		numFlies = flies.Count;

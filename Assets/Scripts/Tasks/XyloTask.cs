@@ -16,12 +16,12 @@ public class XyloTask : Task
 	public static List<XyloSoundKeyframe> keyframes = new();
 	float playbackTimePrev;
 
-	void Awake()
+	protected override void Awake()
 	{
+		base.Awake();
+
 		audioSource = GetComponent<AudioSource>();
 		notePlayCounts = new int[notes.Length];
-
-		ExitTask();
 	}
 
 
@@ -104,7 +104,7 @@ public class XyloTask : Task
 		{
 			if (frame.time > playbackTimePrev && frame.time < playTime)
 			{
-				Debug.Log("playback note: " + frame.noteIndex + "  "  + playTime + "   " + frame.time);
+				Debug.Log("playback note: " + frame.noteIndex + "  " + playTime + "   " + frame.time);
 				PlayNoteSound(frame.noteIndex);
 			}
 		}

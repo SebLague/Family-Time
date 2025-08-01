@@ -42,6 +42,7 @@ public class FirstPersonController : MonoBehaviour
 	bool lockCursor = true;
 	float timeSinceLastGrounded;
 	GameManager manager;
+	List<FlyController> fliesInCatchableRadius = new();
 
 
 	[HideInInspector] public List<PlaybackKeyframe> playbackKeyframes = new();
@@ -110,7 +111,7 @@ public class FirstPersonController : MonoBehaviour
 		UpdateController();
 		if (Application.isEditor && Input.GetKeyDown(KeyCode.Delete)) NotifyTaskCompleted(true);
 
-		if (Input.GetKeyDown(KeyCode.Tab) && potentialTask != null)
+		if (Input.GetKeyDown(GameManager.TaskEnterKey) && potentialTask != null)
 		{
 			potentialTask.EnterTask();
 			infoUI.text = "";
@@ -129,6 +130,18 @@ public class FirstPersonController : MonoBehaviour
 			};
 
 			playbackKeyframes.Add(frame);
+		}
+
+		// Character-specific
+		if (playerType == GameManager.Players.Cat)
+		{
+			if (Input.GetKeyDown(GameManager.CatchFlyKey))
+			{
+				foreach (var f in fliesInCatchableRadius)
+				{
+					f.Catch();
+				}
+			}
 		}
 	}
 
@@ -151,9 +164,17 @@ public class FirstPersonController : MonoBehaviour
 			}
 		}
 
-		if (playerType == GameManager.Players.Cat && other.gameObject.GetComponent<Candle>())
+		if (playerType == GameManager.Players.Cat)
 		{
-			other.gameObject.GetComponent<Candle>().ApplyForce(cam.transform.forward);
+			if (other.gameObject.GetComponent<Candle>())
+			{
+				other.gameObject.GetComponent<Candle>().ApplyForce(cam.transform.forward);
+			}
+
+			if (other.gameObject.GetComponent<FlyController>())
+			{
+				fliesInCatchableRadius.Add(other.gameObject.GetComponent<FlyController>());
+			}
 		}
 	}
 
@@ -168,6 +189,14 @@ public class FirstPersonController : MonoBehaviour
 			{
 				infoUI.text = "";
 				potentialTask = null;
+			}
+		}
+
+		if (playerType == GameManager.Players.Cat)
+		{
+			if (other.gameObject.GetComponent<FlyController>())
+			{
+				fliesInCatchableRadius.Remove(other.gameObject.GetComponent<FlyController>());
 			}
 		}
 	}

@@ -4,6 +4,9 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+	public const KeyCode CatchFlyKey = KeyCode.Space;
+	public const KeyCode TaskEnterKey = KeyCode.Tab;
+	
 	public enum StartupMode
 	{
 		Game,

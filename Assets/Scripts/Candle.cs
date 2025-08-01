@@ -13,6 +13,14 @@ public class Candle : MonoBehaviour
 	float fireStartDelay = 2;
 	float fireStartTime;
 	bool hasStartedFire;
+	public LayerMask foamLayer;
+	float nextFoamTestTime;
+	ParticleSystem fireParticles;
+	int extinguishCounter;
+	bool extinguished;
+	bool notifiedExtinguish;
+	float extinguishTime;
+	readonly Collider[] foamBuffer = new Collider[32];
 
 	void Update()
 	{
@@ -25,9 +33,37 @@ public class Candle : MonoBehaviour
 		{
 			hasStartedFire = true;
 			Vector3 v = rb.ClosestPointOnBounds(rb.position + Vector3.down * 10);
-			Instantiate(firePrefab, v, Quaternion.Euler(-90, 0, 0));
+			GameObject fireInst = Instantiate(firePrefab, v, Quaternion.Euler(-90, 0, 0));
+			fireParticles = fireInst.GetComponent<ParticleSystem>();
+			GetComponent<SphereCollider>().radius *= 2;
+		}
+
+		if (hasStartedFire && Time.time > nextFoamTestTime && !extinguished)
+		{
+			int n = Physics.OverlapSphereNonAlloc(fireParticles.transform.position, 0.7f, foamBuffer, foamLayer, QueryTriggerInteraction.Collide);
+			for (int i = 0; i < n; i++)
+			{
+				extinguishCounter++;
+				foamBuffer[i].gameObject.GetComponent<Foam>().OnFireSlurp();
+			}
+
+			nextFoamTestTime = Time.time + 0.5f;
+		}
+
+		if (hasStartedFire && !extinguished && extinguishCounter > 8)
+		{
+			extinguished = true;
+			fireParticles.Stop();
+			extinguishTime = Time.time;
+		}
+
+		if (extinguished && !notifiedExtinguish && Time.time > extinguishTime + 4)
+		{
+			notifiedExtinguish = true;
+			FindFirstObjectByType<PutOutFiresTask>().NotifyFireOut();
 		}
 	}
+
 
 	public void ApplyForce(Vector3 targDir)
 	{

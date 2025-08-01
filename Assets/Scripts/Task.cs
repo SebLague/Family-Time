@@ -4,10 +4,7 @@ public abstract class Task : MonoBehaviour
 {
 	[Header("Task")]
 	public bool isEnterableTask = true;
-
 	public string infoString;
-
-	[Multiline]
 	public string goalString;
 
 	public bool taskCompleted { get; private set; }

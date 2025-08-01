@@ -13,7 +13,7 @@ public class FireExtinguisher : MonoBehaviour
 
 	void Update()
 	{
-		if (Application.isEditor && Input.GetKeyDown(KeyCode.PageUp))
+		if (Application.isEditor && Input.GetKeyDown(KeyCode.PageUp) && mom.isControllable)
 		{
 			Debug.Log("Dev equip extinguisher");
 			Equip();

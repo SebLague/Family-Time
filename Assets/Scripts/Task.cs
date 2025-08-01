@@ -6,7 +6,7 @@ public abstract class Task : MonoBehaviour
 	public bool isEnterableTask = true;
 
 	public string infoString;
-
+	[Multiline]
 	public string goalString;
 
 	public bool taskCompleted { get; private set; }
@@ -26,6 +26,7 @@ public abstract class Task : MonoBehaviour
 
 	protected void TaskCompleted()
 	{
+		Debug.Log("Task Completed");
 		if (!taskCompleted)
 		{
 			taskCompleted = true;

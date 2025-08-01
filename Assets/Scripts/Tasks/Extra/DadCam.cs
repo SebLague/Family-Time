@@ -4,6 +4,7 @@ public class DadCam : MonoBehaviour
 {
 	public FirstPersonController dad;
 	public FetchTask task;
+	public PicTask picTask;
 	bool equipped;
 
 	void Update()
@@ -24,5 +25,6 @@ public class DadCam : MonoBehaviour
 		equipped = true;
 		GetComponent<SphereCollider>().enabled = false;
 		gameObject.SetActive(false);
+		picTask.NotifyPicMode();
 	}
 }

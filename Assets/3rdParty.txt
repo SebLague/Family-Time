@@ -1,7 +1,11 @@
-SFX
+** SFX
 https://freesound.org/search/?g=0&f=username%3A%22juancamiloorjuela%22+pack_grouping%3A%2213065_Xylophone+Sampler+Pack%22&page=1#sound
 
-Models
+** Icons
+https://www.flaticon.com/free-icon/focus_2284968
+https://www.flaticon.com/free-icons/low-battery
+
+** Models
 Cat by Poly by Google [CC-BY] (https://creativecommons.org/licenses/by/3.0/) via Poly Pizza (https://poly.pizza/m/6dM1J6f6pm9)
 Armchair by CreativeTrio (https://poly.pizza/m/myd1WSucAz)
 Doorway by Kenney (https://poly.pizza/m/NjrIKzZLYv)
@@ -26,6 +30,11 @@ Animated Woman by Quaternius (https://poly.pizza/m/9kF7eTDbhO)
 Man by Quaternius (https://poly.pizza/m/HMnuH5geEG)
 Sunglasses by jeremy [CC-BY] (https://creativecommons.org/licenses/by/3.0/) via Poly Pizza (https://poly.pizza/m/dCm3NXrMtSr)
 Camera by Gabriel Valdivia [CC-BY] (https://creativecommons.org/licenses/by/3.0/) via Poly Pizza (https://poly.pizza/m/eAoNPV5bfmK)
+Wall Shelf by Jarlan Perez [CC-BY] (https://creativecommons.org/licenses/by/3.0/) via Poly Pizza (https://poly.pizza/m/7544dJq1UVu)
+Little Bookcase by Don Carson [CC-BY] (https://creativecommons.org/licenses/by/3.0/) via Poly Pizza (https://poly.pizza/m/74tXfxoDB9b)
+Jar Shelf by Don Carson [CC-BY] (https://creativecommons.org/licenses/by/3.0/) via Poly Pizza (https://poly.pizza/m/1-U0qgqSDp_)
+Plants - Assorted shelf plants by Jakers_H [CC-BY] (https://creativecommons.org/licenses/by/3.0/) via Poly Pizza (https://poly.pizza/m/5COCzyz489J)
+Cabinet by Alex Safayan [CC-BY] (https://creativecommons.org/licenses/by/3.0/) via Poly Pizza (https://poly.pizza/m/fYXt5H0Dskb)
 
 ---- maybe?
 Animated Human by Quaternius (https://poly.pizza/m/c3Ibh9I3udk)

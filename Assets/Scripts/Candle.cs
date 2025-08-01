@@ -52,11 +52,12 @@ public class Candle : MonoBehaviour
 		ApplyForceDir(directions[maxInd].forward);
 	}
 
-	void ApplyForceDir(Vector3 dir)
+	public void ApplyForceDir(Vector3 dir, bool notify = true)
 	{
 		hasApplied = true;
 		fireStartTime = Time.time + fireStartDelay;
 		rb.AddForce(dir * force + Vector3.up * forceUp, ForceMode.Impulse);
-		FindFirstObjectByType<CandleTask>().OnTopple();
+
+		if (notify) FindFirstObjectByType<CandleTask>().OnTopple(this, dir);
 	}
 }

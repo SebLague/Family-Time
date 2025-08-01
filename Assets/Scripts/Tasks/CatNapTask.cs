@@ -35,7 +35,7 @@ public class CatNapTask : Task
 			owner.transform.position = transform.position;
 			owner.transform.rotation = transform.rotation;
 
-			const float duration = 50;
+			const float duration = 5;
 			
 			
 			float animTime = Time.time - animStartedTime;

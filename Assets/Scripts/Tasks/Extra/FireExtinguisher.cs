@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class FireExtinguisher : MonoBehaviour
 {
+	public FetchTask task;
 	public FirstPersonController mom;
 	public Transform equipPos;
 	public Transform nozzle;
@@ -10,7 +11,6 @@ public class FireExtinguisher : MonoBehaviour
 	float lastShootTime;
 	bool equipped;
 
-	// Update is called once per frame
 	void Update()
 	{
 		if (Application.isEditor && Input.GetKeyDown(KeyCode.PageUp))
@@ -37,6 +37,9 @@ public class FireExtinguisher : MonoBehaviour
 
 	public void Equip()
 	{
+		if (equipped) return;
+		
+		task.Fetched();
 		equipped = true;
 		transform.parent = equipPos;
 		transform.localPosition = Vector3.zero;

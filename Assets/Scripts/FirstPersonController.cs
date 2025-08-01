@@ -33,7 +33,7 @@ public class FirstPersonController : MonoBehaviour
 	float velocityY;
 	Vector3 velocity;
 	Vector3 velSmoothRef;
-	bool isControllable;
+	public bool isControllable { get; private set; }
 
 	GameHud gameHud;
 	Task potentialTask;
@@ -53,10 +53,10 @@ public class FirstPersonController : MonoBehaviour
 
 	void Start()
 	{
-		gameHud = FindFirstObjectByType<GameHud>();
+		gameHud = FindFirstObjectByType<GameHud>(FindObjectsInactive.Include);
 		fovCur = fov;
 		controller = GetComponent<CharacterController>();
-		manager = FindFirstObjectByType<GameManager>();
+		manager = FindFirstObjectByType<GameManager>(FindObjectsInactive.Include);
 	}
 
 	public void NotifyTaskCompleted(bool forceAllDone = false)

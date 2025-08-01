@@ -58,7 +58,7 @@ public class PicTask : Task
 
 	protected override string CustomizeGoalString()
 	{
-		return $"take photos for\nfamily album {numPicsTaken} / {picsTotalToTake}";
+		return $"snap pics {numPicsTaken} / {picsTotalToTake}";
 	}
 
 	void OnDestroy()

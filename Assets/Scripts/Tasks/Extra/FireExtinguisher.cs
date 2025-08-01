@@ -30,6 +30,15 @@ public class FireExtinguisher : MonoBehaviour
 		}
 	}
 
+	void LateUpdate()
+	{
+		if (equipped)
+		{
+			transform.position = equipPos.position;
+			transform.rotation = equipPos.rotation;
+		}
+	}
+
 	void Shoot(bool isPlayback = false)
 	{
 		if (Time.time - lastShootTime >= timeBetween || isPlayback)
@@ -65,9 +74,9 @@ public class FireExtinguisher : MonoBehaviour
 
 
 		equipped = true;
-		transform.parent = equipPos;
-		transform.localPosition = Vector3.zero;
-		transform.localRotation = Quaternion.identity;
+		//transform.parent = equipPos;
+		//transform.localPosition = Vector3.zero;
+		//transform.localRotation = Quaternion.identity;
 		GetComponent<SphereCollider>().enabled = false;
 
 		if (!isPlayback)

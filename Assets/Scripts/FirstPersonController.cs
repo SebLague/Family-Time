@@ -140,6 +140,7 @@ public class FirstPersonController : MonoBehaviour
 				rot = transform.rotation,
 				animSpeed = animSpeed,
 				animTimescale = animTimeScale,
+				camRot = cam.transform.rotation,
 			};
 
 			playbackKeyframes.Add(frame);
@@ -386,6 +387,7 @@ public class FirstPersonController : MonoBehaviour
 
 		transform.position = Vector3.Lerp(frameA.pos, frameB.pos, abPercent);
 		transform.rotation = Quaternion.Slerp(frameA.rot, frameB.rot, abPercent);
+		cam.transform.rotation = Quaternion.Slerp(frameA.camRot, frameB.camRot, abPercent);
 
 		if (animator)
 		{
@@ -410,5 +412,6 @@ public class FirstPersonController : MonoBehaviour
 		public Quaternion rot;
 		public float animSpeed;
 		public float animTimescale;
+		public Quaternion camRot; // needed for fire ext 
 	}
 }

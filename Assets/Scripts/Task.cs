@@ -6,6 +6,7 @@ public abstract class Task : MonoBehaviour
 	public bool isEnterableTask = true;
 
 	public string infoString;
+
 	[Multiline]
 	public string goalString;
 
@@ -13,10 +14,11 @@ public abstract class Task : MonoBehaviour
 	public Camera cam;
 	public FirstPersonController owner;
 	protected bool taskActive;
+	bool taskCompleteQuiet;
 
 	public string GetGoalString()
 	{
-		return FirstPersonController.TextCol(CustomizeGoalString(), GameManager.Instance.goalSuccessCol, taskCompleted);
+		return FirstPersonController.TextCol(CustomizeGoalString(), GameManager.Instance.goalSuccessCol, taskCompleted || taskCompleteQuiet);
 	}
 
 	protected virtual string CustomizeGoalString()
@@ -32,6 +34,11 @@ public abstract class Task : MonoBehaviour
 			taskCompleted = true;
 			owner.NotifyTaskCompleted();
 		}
+	}
+
+	protected void TaskCompletedButDontNotify()
+	{
+		taskCompleteQuiet = true;
 	}
 
 

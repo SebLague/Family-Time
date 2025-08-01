@@ -8,13 +8,13 @@ public class PicTask : Task
 {
 	bool picMode;
 	int numPicsTaken;
-	const int picsTotalToTake = 10;
+	const int picsTotalToTake = 5;
 	public GameObject camHud;
 	public GameObject camHudInner;
 	public RawImage camDisplay;
 	public Camera picCaptureCam;
 
-	readonly RenderTexture[] pics = new RenderTexture[picsTotalToTake];
+	public readonly RenderTexture[] pics = new RenderTexture[picsTotalToTake];
 	const float picPreviewDuration = 1;
 	float nextPicableTime;
 
@@ -30,6 +30,11 @@ public class PicTask : Task
 
 		if (Time.time > nextPicableTime && !camHudInner.activeSelf)
 		{
+			if (numPicsTaken >= picsTotalToTake)
+			{
+				TaskCompleted();
+			}
+
 			camDisplay.color = Color.clear;
 			camHudInner.SetActive(true);
 		}
@@ -45,13 +50,9 @@ public class PicTask : Task
 			numPicsTaken++;
 			nextPicableTime = Time.time + picPreviewDuration;
 			camHudInner.SetActive(false);
+			if (numPicsTaken >= picsTotalToTake) TaskCompletedButDontNotify();
+			owner.NotifyTaskProgress();
 			Debug.Log("take pic");
-		}
-
-
-		if (numPicsTaken >= picsTotalToTake)
-		{
-			TaskCompleted();
 		}
 	}
 

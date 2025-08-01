@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
 	public TMPro.TMP_Text playerGoalUI;
 	public FailUI failUI;
 	public float playerTimer { get; private set; }
+	public VictoryUI victoryUI;
 
 
 	bool playbackTest;
@@ -95,8 +96,20 @@ public class GameManager : MonoBehaviour
 		timerText.gameObject.SetActive(false);
 		PlaybackData.playbacks[currentPlayer.playerType] = currentPlayer.playbackKeyframes;
 
-		playerIndex++;
-		RestartTimeLoop();
+		if (currentPlayer.playerType == Players.Father)
+		{
+			Victory();
+		}
+		else
+		{
+			playerIndex++;
+			RestartTimeLoop();
+		}
+	}
+
+	void Victory()
+	{
+		victoryUI.gameObject.SetActive(true);
 	}
 
 	public void OnFailTimeRanOut()

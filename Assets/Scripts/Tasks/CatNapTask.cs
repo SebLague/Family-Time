@@ -1,8 +1,13 @@
+using Seb.Helpers;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CatNapTask : Task
 {
 	bool hasCat;
+	float animStartedTime;
+	public GameObject zs;
+	public Image snoozeToBlack;
 
 	void Awake()
 	{
@@ -13,12 +18,14 @@ public class CatNapTask : Task
 	{
 		base.EnterTask();
 
-		owner.SetControllable(false);
 		owner.gameObject.SetActive(true);
+		owner.SetControllable(false);
 		owner.animator.SetBool("Snooze", true);
 
 		hasCat = true;
-		TaskCompleted();
+		animStartedTime = Time.time;
+		GameManager.Instance.ignoreTimer = true;
+		zs.SetActive(true);
 	}
 
 	void Update()
@@ -27,6 +34,18 @@ public class CatNapTask : Task
 		{
 			owner.transform.position = transform.position;
 			owner.transform.rotation = transform.rotation;
+
+			const float duration = 50;
+			
+			
+			float animTime = Time.time - animStartedTime;
+			float t = animTime / duration;
+			snoozeToBlack.color = new Color(0, 0, 0, Maths.EaseQuadInOut(t));
+			//zs.transform.forward = Vector3.up;
+			if (animTime >= duration)
+			{
+				TaskCompleted();
+			}
 		}
 	}
 }

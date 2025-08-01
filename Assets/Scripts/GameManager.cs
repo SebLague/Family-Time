@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour
 	bool waitingForPlayerConfirm;
 	FirstPersonController currentPlayer;
 	public bool gameActive { get; private set; }
+	[HideInInspector] public bool ignoreTimer;
 
 	static GameManager instance;
 
@@ -156,6 +157,7 @@ public class GameManager : MonoBehaviour
 		{
 			if (Input.GetKeyDown(KeyCode.Tab))
 			{
+				waitingForPlayerConfirm = false;
 				menuCam.gameObject.SetActive(false);
 				currentPlayer.SetControllable(true);
 				introUI.gameObject.SetActive(false);
@@ -188,7 +190,7 @@ public class GameManager : MonoBehaviour
 			string formatted = $"{minutes}:{seconds:D2}";
 			timerText.text = formatted;
 
-			if (timeRemainingSecs <= 0)
+			if (timeRemainingSecs <= 0 && !ignoreTimer)
 			{
 				gameActive = false;
 				OnFailTimeRanOut();

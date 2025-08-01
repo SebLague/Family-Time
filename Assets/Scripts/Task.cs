@@ -4,6 +4,7 @@ public abstract class Task : MonoBehaviour
 {
 	[Header("Task")]
 	public bool isEnterableTask = true;
+
 	public string infoString;
 
 	public string goalString;
@@ -25,9 +26,13 @@ public abstract class Task : MonoBehaviour
 
 	protected void TaskCompleted()
 	{
-		taskCompleted = true;
-		owner.NotifyTaskCompleted();
+		if (!taskCompleted)
+		{
+			taskCompleted = true;
+			owner.NotifyTaskCompleted();
+		}
 	}
+
 
 	public virtual void EnterTask()
 	{
@@ -55,9 +60,7 @@ public abstract class Task : MonoBehaviour
 
 	public virtual void Playback(float playTime)
 	{
-		
 	}
-
 
 
 	public int GetNearestMouseOverIndex(BoxCollider[] elements)

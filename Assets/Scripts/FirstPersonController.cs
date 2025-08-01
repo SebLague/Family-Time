@@ -123,6 +123,7 @@ public class FirstPersonController : MonoBehaviour
 
 		if (Input.GetKeyDown(GameManager.TaskEnterKey) && potentialTask != null)
 		{
+			Debug.Log("enter" + isControllable);
 			potentialTask.EnterTask();
 			infoUI.text = "";
 		}

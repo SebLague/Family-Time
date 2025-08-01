@@ -21,7 +21,7 @@ public class FirstPersonController : MonoBehaviour
 	public Vector2 mouseSensitivity;
 	public Vector2 verticalLookMinMax;
 	public Camera cam;
-	CharacterController controller;
+	[HideInInspector] public CharacterController controller;
 	public Animator animator;
 	public SkinnedMeshRenderer skinnedMesh;
 	public float fov = 60;

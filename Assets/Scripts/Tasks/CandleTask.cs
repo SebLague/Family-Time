@@ -5,7 +5,7 @@ public class CandleTask : Task
 	Candle[] candles;
 	int toppledCount;
 
-	void Start()
+	void Awake()
 	{
 		candles = FindObjectsByType<Candle>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
 	}
@@ -26,6 +26,7 @@ public class CandleTask : Task
 
 	protected override string CustomizeGoalString()
 	{
+		if (candles == null) return "topple candles";
 		return $"topple candles {toppledCount} / {candles.Length}";
 	}
 }

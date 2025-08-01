@@ -129,6 +129,7 @@ public class FirstPersonController : MonoBehaviour
 
 	void OnTriggerEnter(Collider other)
 	{
+		if (!isControllable || !GameManager.Instance.gameActive) return;
 		if (other.gameObject.GetComponent<Task>())
 		{
 			Task task = other.gameObject.GetComponent<Task>();
@@ -138,10 +139,17 @@ public class FirstPersonController : MonoBehaviour
 				infoUI.text = task.infoString;
 			}
 		}
+
+		if (playerType == GameManager.Players.Cat && other.gameObject.GetComponent<Candle>())
+		{
+			other.gameObject.GetComponent<Candle>().ApplyForce(cam.transform.forward);
+		}
 	}
 
 	void OnTriggerExit(Collider other)
 	{
+		if (!isControllable || !GameManager.Instance.gameActive) return;
+		
 		if (other.gameObject.GetComponent<Task>())
 		{
 			Task task = other.gameObject.GetComponent<Task>();

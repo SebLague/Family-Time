@@ -17,7 +17,9 @@ public class GameManager : MonoBehaviour
 	{
 		Cat,
 		Baby,
-		Teen
+		Teen,
+		Mother,
+		Father
 	}
 
 	public int numSecs = 60 * 3;

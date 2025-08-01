@@ -310,6 +310,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 636841138744353288, guid: f7be5ef23ed0d2f4bbd2dee3f3a0ccc9, type: 3}
+      propertyPath: aircraft
+      value: 
+      objectReference: {fileID: 427471359}
     - target: {fileID: 1411490312310008983, guid: f7be5ef23ed0d2f4bbd2dee3f3a0ccc9, type: 3}
       propertyPath: m_Name
       value: Player
@@ -354,6 +358,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8933841246400756411, guid: f7be5ef23ed0d2f4bbd2dee3f3a0ccc9, type: 3}
+      propertyPath: maxSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8933841246400756411, guid: f7be5ef23ed0d2f4bbd2dee3f3a0ccc9, type: 3}
+      propertyPath: minSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8933841246400756411, guid: f7be5ef23ed0d2f4bbd2dee3f3a0ccc9, type: 3}
+      propertyPath: worldRadius
+      value: 12.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8933841246400756411, guid: f7be5ef23ed0d2f4bbd2dee3f3a0ccc9, type: 3}
+      propertyPath: currentSpeed
+      value: 3.0000026
+      objectReference: {fileID: 0}
+    - target: {fileID: 8933841246400756411, guid: f7be5ef23ed0d2f4bbd2dee3f3a0ccc9, type: 3}
+      propertyPath: maxElevation
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8933841246400756411, guid: f7be5ef23ed0d2f4bbd2dee3f3a0ccc9, type: 3}
+      propertyPath: totalTurnAngle
+      value: -213.95358
+      objectReference: {fileID: 0}
+    - target: {fileID: 8933841246400756411, guid: f7be5ef23ed0d2f4bbd2dee3f3a0ccc9, type: 3}
+      propertyPath: currentElevation
+      value: 4.0454383
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -369,6 +401,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1801555067742475342, guid: 457a27826ccb8874eb3717fa23363686, type: 3}
       propertyPath: player
+      value: 
+      objectReference: {fileID: 427471359}
+    - target: {fileID: 1801555067742475342, guid: 457a27826ccb8874eb3717fa23363686, type: 3}
+      propertyPath: aircraft
       value: 
       objectReference: {fileID: 427471359}
     - target: {fileID: 1801555067742475342, guid: 457a27826ccb8874eb3717fa23363686, type: 3}
@@ -550,13 +586,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78574d80bcac40147a6004b87709e293, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  res: 42
+  res: 50
   display: {fileID: 632817469}
-  radius: 4.13
-  noiseSeed: 0
-  noiseScale: 2.46
-  noiseStrength: 1.12
-  oceanHeight: 3.97
+  radius: 15
+  noiseSeed: 5
+  noiseScale: 8.56
+  noiseStrength: 2.13
+  oceanHeight: 15.43
   ocean: {fileID: 183950773}
 --- !u!4 &1771910748
 Transform:

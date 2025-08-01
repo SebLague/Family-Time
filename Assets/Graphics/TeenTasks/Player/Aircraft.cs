@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Aircraft : MonoBehaviour
 {
 
 
@@ -118,20 +118,13 @@ public class Player : MonoBehaviour
 
 	void HandleInput()
 	{
-		HandleDebugInput();
+		Vector2 movementInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+		float accelerateDir = 1;
+		bool boosting = false;
+		UpdateMovementInput(movementInput, accelerateDir, boosting);
 	}
 
-	void HandleDebugInput()
-	{
-		bool devMode = Input.GetKey(KeyCode.LeftBracket) && Input.GetKey(KeyCode.RightBracket);
-		if (Application.isEditor || devMode)
-		{
-			if (Input.GetKeyDown(KeyCode.B))
-			{
-				AddBoost(15);
-			}
-		}
-	}
+
 	void HandleMovement()
 	{
 		// Turn

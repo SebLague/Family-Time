@@ -38,7 +38,7 @@ public class GameCamera : MonoBehaviour
 
 
 	// Other
-	public Player player;
+	public Aircraft aircraft;
 	Transform target;
 	float smoothFovVelocity;
 
@@ -58,7 +58,7 @@ public class GameCamera : MonoBehaviour
 
 	public void InitView()
 	{
-		target = player.transform;
+		target = aircraft.transform;
 		UpdateView();
 		cam.fieldOfView = CalculateFOV();
 	}
@@ -90,13 +90,13 @@ public class GameCamera : MonoBehaviour
 
 	float CalculateFOV()
 	{
-		return (player.IsBoosting) ? fovBoost : Mathf.Lerp(fovSlow, fovFast, player.SpeedT);
+		return (aircraft.IsBoosting) ? fovBoost : Mathf.Lerp(fovSlow, fovFast, aircraft.SpeedT);
 	}
 	
 	void UpdateAlternateView(ViewSettings view)
 	{
 		// Calculate new position
-		Vector3 newPos = target.position + target.forward * view.offset.z + player.GravityUp * view.offset.y;
+		Vector3 newPos = target.position + target.forward * view.offset.z + aircraft.GravityUp * view.offset.y;
 
 		//Calculate look target
 		Vector3 lookTarget = target.position;
@@ -105,7 +105,7 @@ public class GameCamera : MonoBehaviour
 		lookTarget += target.forward * view.lookTargetOffset.z;
 
 		transform.position = newPos;
-		transform.LookAt(lookTarget, player.GravityUp);
+		transform.LookAt(lookTarget, aircraft.GravityUp);
 	}
 	
 

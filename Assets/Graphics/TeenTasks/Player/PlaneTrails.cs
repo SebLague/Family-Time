@@ -9,7 +9,7 @@ public class PlaneTrails : MonoBehaviour
 	public Material trailMaterial;
 	public Color trailCol = Color.white;
 	public TrailRenderer[] trails;
-	public Player player;
+	public Aircraft aircraft;
 
 	public float alphaMin = 0;
 	public float alphaMax = 0.5f;
@@ -31,7 +31,7 @@ public class PlaneTrails : MonoBehaviour
 
 	void Update()
 	{
-		float alpha = Mathf.Lerp(alphaMin, alphaMax, player.SpeedT);
+		float alpha = Mathf.Lerp(alphaMin, alphaMax, aircraft.SpeedT);
 
 		for (int i = 0; i < trails.Length; i++)
 		{

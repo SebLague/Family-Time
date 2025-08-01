@@ -19,6 +19,7 @@ public static class PlaybackData
 		TowerTask.keyframes.Clear();
 		XyloTask.keyframes.Clear();
 		CandleTask.toppleEvents.Clear();
+		CatCatchTask.events.Clear();
 	}
 
 	[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]

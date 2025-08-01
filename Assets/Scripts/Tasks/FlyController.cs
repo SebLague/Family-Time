@@ -43,7 +43,7 @@ public class FlyController : MonoBehaviour
 
 	public void Catch()
 	{
-		FindFirstObjectByType<CatCatchTask>().Caught();
+		FindFirstObjectByType<CatCatchTask>().Caught(this);
 		gameObject.SetActive(false);
 	}
 }

@@ -2,11 +2,15 @@ using UnityEngine;
 
 public class PutOutFiresTask : Task
 {
+	FireExtinguisher fireExtinguisher;
 	int numFires;
 	int numDone;
 
+	public static float equipTime;
+
 	void Start()
 	{
+		fireExtinguisher = FindFirstObjectByType<FireExtinguisher>();
 		numFires = FindObjectsByType<Candle>(FindObjectsInactive.Exclude, FindObjectsSortMode.None).Length;
 	}
 
@@ -19,8 +23,23 @@ public class PutOutFiresTask : Task
 		}
 	}
 
+	public override void Playback(float playTime)
+	{
+		if (playTime > equipTime)
+		{
+			fireExtinguisher.Equip(true);
+		}
+
+		fireExtinguisher.Playback(playTime);
+	}
+
 	protected override string CustomizeGoalString()
 	{
 		return $"Fight fires {numDone} / {numFires}";
+	}
+
+	public void OnExtinguisherEquipped()
+	{
+		equipTime = GameManager.Instance.playerTimer;
 	}
 }

@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
 	int playerIndex;
 
 	bool waitingForPlayerConfirm;
-	FirstPersonController currentPlayer;
+	public FirstPersonController currentPlayer {get; private set;}
 	public bool gameActive { get; private set; }
 	[HideInInspector] public bool ignoreTimer;
 

@@ -37,7 +37,7 @@ public class Candle : MonoBehaviour
 			fireParticles = fireInst.GetComponent<ParticleSystem>();
 			GetComponent<SphereCollider>().radius *= 2;
 		}
-		
+
 		// ---------- put out fire task (mother)
 		if (hasStartedFire && Time.time > nextFoamTestTime && !extinguished)
 		{
@@ -61,7 +61,10 @@ public class Candle : MonoBehaviour
 		if (extinguished && !notifiedExtinguish && Time.time > extinguishTime + 4)
 		{
 			notifiedExtinguish = true;
-			FindFirstObjectByType<PutOutFiresTask>().NotifyFireOut();
+			if (GameManager.Instance.currentPlayer.playerType == GameManager.Players.Mother)
+			{
+				FindFirstObjectByType<PutOutFiresTask>().NotifyFireOut();
+			}
 		}
 	}
 

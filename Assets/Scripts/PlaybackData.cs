@@ -20,6 +20,7 @@ public static class PlaybackData
 		XyloTask.keyframes.Clear();
 		CandleTask.toppleEvents.Clear();
 		CatCatchTask.events.Clear();
+		FireExtinguisher.shootTimes.Clear();
 	}
 
 	[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]

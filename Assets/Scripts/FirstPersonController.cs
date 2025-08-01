@@ -35,25 +35,27 @@ public class FirstPersonController : MonoBehaviour
 	Vector3 velSmoothRef;
 	bool isControllable;
 
-	public TMP_Text infoUI;
+	GameHud gameHud;
 	Task potentialTask;
 	float animSpeed;
 	float animTimeScale = 1;
 	bool lockCursor = true;
 	float timeSinceLastGrounded;
 	GameManager manager;
-	List<FlyController> fliesInCatchableRadius = new();
 
 
 	[HideInInspector] public List<PlaybackKeyframe> playbackKeyframes = new();
 
+	// Player specific
+	List<FlyController> fliesInCatchableRadius = new();
+	FireExtinguisher fireExtPickup;
+	DadCam camPickup;
 
 	void Start()
 	{
+		gameHud = FindFirstObjectByType<GameHud>();
 		fovCur = fov;
 		controller = GetComponent<CharacterController>();
-
-		infoUI.text = "";
 		manager = FindFirstObjectByType<GameManager>();
 	}
 
@@ -125,7 +127,7 @@ public class FirstPersonController : MonoBehaviour
 		{
 			Debug.Log("enter" + isControllable);
 			potentialTask.EnterTask();
-			infoUI.text = "";
+			gameHud.ClearInfo();
 		}
 
 		float timeBetweenKeyframes = 1 / 30f;
@@ -154,6 +156,24 @@ public class FirstPersonController : MonoBehaviour
 				}
 			}
 		}
+		else if (playerType == GameManager.Players.Mother)
+		{
+			if (Input.GetKeyDown(GameManager.PickupKey) && fireExtPickup != null)
+			{
+				fireExtPickup.Equip();
+				fireExtPickup = null;
+				gameHud.ClearInfo();
+			}
+		}
+		else if (playerType == GameManager.Players.Father)
+		{
+			if (Input.GetKeyDown(GameManager.PickupKey) && camPickup != null)
+			{
+				camPickup.Equip();
+				camPickup = null;
+				gameHud.ClearInfo();
+			}
+		}
 	}
 
 	public static string TextCol(string s, Color col, bool setCol)
@@ -171,7 +191,7 @@ public class FirstPersonController : MonoBehaviour
 			if (task.owner == this)
 			{
 				potentialTask = task;
-				infoUI.text = task.infoString;
+				gameHud.SetInfoText(task.infoString);
 			}
 		}
 
@@ -187,6 +207,22 @@ public class FirstPersonController : MonoBehaviour
 				fliesInCatchableRadius.Add(other.gameObject.GetComponent<FlyController>());
 			}
 		}
+		else if (playerType == GameManager.Players.Mother)
+		{
+			if (other.gameObject.GetComponent<FireExtinguisher>())
+			{
+				gameHud.SetInfoText("press F to grab FIRE EXTINGUISHER");
+				fireExtPickup = other.gameObject.GetComponent<FireExtinguisher>();
+			}
+		}
+		else if (playerType == GameManager.Players.Father)
+		{
+			if (other.gameObject.GetComponent<DadCam>())
+			{
+				gameHud.SetInfoText("press F to grab CAMERA");
+				camPickup = other.gameObject.GetComponent<DadCam>();
+			}
+		}
 	}
 
 	void OnTriggerExit(Collider other)
@@ -198,7 +234,7 @@ public class FirstPersonController : MonoBehaviour
 			Task task = other.gameObject.GetComponent<Task>();
 			if (task.owner == this)
 			{
-				infoUI.text = "";
+				gameHud.ClearInfo();
 				potentialTask = null;
 			}
 		}
@@ -208,6 +244,22 @@ public class FirstPersonController : MonoBehaviour
 			if (other.gameObject.GetComponent<FlyController>())
 			{
 				fliesInCatchableRadius.Remove(other.gameObject.GetComponent<FlyController>());
+			}
+		}
+		else if (playerType == GameManager.Players.Mother)
+		{
+			if (other.gameObject.GetComponent<FireExtinguisher>())
+			{
+				gameHud.ClearInfo();
+				fireExtPickup = null;
+			}
+		}
+		else if (playerType == GameManager.Players.Father)
+		{
+			if (other.gameObject.GetComponent<DadCam>())
+			{
+				gameHud.ClearInfo();
+				camPickup = null;
 			}
 		}
 	}

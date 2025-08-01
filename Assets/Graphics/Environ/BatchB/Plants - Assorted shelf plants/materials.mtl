@@ -1,0 +1,57 @@
+newmtl mat13
+  Kd 1.00 0.33 0.00
+
+newmtl mat11
+  Kd 0.00 0.31 0.25
+
+newmtl mat20
+  Kd 0.19 0.09 0.06
+
+newmtl mat9
+  Kd 0.27 0.55 0.07
+
+newmtl mat10
+  Kd 0.07 0.44 0.08
+
+newmtl mat8
+  Kd 0.91 0.05 0.03
+
+newmtl mat0
+  Kd 0.50 0.14 0.58
+
+newmtl mat12
+  Kd 1.00 0.83 0.04
+
+newmtl mat18
+  Kd 1.00 0.61 0.25
+
+newmtl mat19
+  Kd 0.74 0.33 0.06
+
+newmtl mat22
+  Kd 0.35 0.35 0.35
+
+newmtl mat15
+  Kd 0.63 0.70 0.72
+
+newmtl mat23
+  Kd 0.01 0.01 0.01
+
+newmtl mat16
+  Kd 0.19 0.28 0.34
+
+newmtl mat3
+  Kd 0.22 0.74 0.83
+
+newmtl mat17
+  Kd 0.06 0.10 0.13
+
+newmtl mat5
+  Kd 0.00 0.34 0.79
+
+newmtl mat14
+  Kd 1.00 0.09 0.01
+
+newmtl mat6
+  Kd 0.94 0.50 0.65
+

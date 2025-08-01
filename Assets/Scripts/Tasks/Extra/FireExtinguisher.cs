@@ -35,11 +35,12 @@ public class FireExtinguisher : MonoBehaviour
 		}
 	}
 
-	void Equip()
+	public void Equip()
 	{
 		equipped = true;
 		transform.parent = equipPos;
 		transform.localPosition = Vector3.zero;
 		transform.localRotation = Quaternion.identity;
+		GetComponent<SphereCollider>().enabled = false;
 	}
 }

@@ -37,7 +37,8 @@ public class Candle : MonoBehaviour
 			fireParticles = fireInst.GetComponent<ParticleSystem>();
 			GetComponent<SphereCollider>().radius *= 2;
 		}
-
+		
+		// ---------- put out fire task (mother)
 		if (hasStartedFire && Time.time > nextFoamTestTime && !extinguished)
 		{
 			int n = Physics.OverlapSphereNonAlloc(fireParticles.transform.position, 0.7f, foamBuffer, foamLayer, QueryTriggerInteraction.Collide);

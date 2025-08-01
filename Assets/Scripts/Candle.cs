@@ -8,12 +8,24 @@ public class Candle : MonoBehaviour
 	public float forceUp;
 	bool hasApplied;
 	public Transform[] directions;
+	public GameObject firePrefab;
+
+	float fireStartDelay = 2;
+	float fireStartTime;
+	bool hasStartedFire;
 
 	void Update()
 	{
 		if (Application.isEditor && Input.GetKeyDown(KeyCode.PageDown))
 		{
 			ApplyForceDir(directions[0].forward);
+		}
+
+		if (hasApplied && Time.time > fireStartTime && !hasStartedFire)
+		{
+			hasStartedFire = true;
+			Vector3 v = rb.ClosestPointOnBounds(rb.position + Vector3.down * 10);
+			Instantiate(firePrefab, v, Quaternion.Euler(-90, 0, 0));
 		}
 	}
 
@@ -42,6 +54,8 @@ public class Candle : MonoBehaviour
 
 	void ApplyForceDir(Vector3 dir)
 	{
+		hasApplied = true;
+		fireStartTime = Time.time + fireStartDelay;
 		rb.AddForce(dir * force + Vector3.up * forceUp, ForceMode.Impulse);
 	}
 }

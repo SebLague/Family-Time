@@ -7,6 +7,8 @@ public class MainMenu : MonoBehaviour
 	public Button settingsButton;
 	public Button quitButton;
 
+	public GameObject settingsMenu;
+
 	void Start()
 	{
 		playButton.onClick.AddListener(PlayClick);
@@ -23,6 +25,8 @@ public class MainMenu : MonoBehaviour
 	void SettingsClick()
 	{
 		Debug.Log("Settings");
+		gameObject.SetActive(false);
+		settingsMenu.SetActive(true);
 	}
 
 	void QuitClick()

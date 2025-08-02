@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 	//public const KeyCode CatchFlyKey = KeyCode.Space;
 	public const KeyCode PickupKey = KeyCode.F;
 	public const KeyCode TaskEnterKey = KeyCode.F;
+	
 
 	public enum StartupMode
 	{
@@ -69,6 +70,7 @@ public class GameManager : MonoBehaviour
 
 	void Start()
 	{
+		AudioListener.volume = 0.5f;
 		foreach (FirstPersonController c in players)
 		{
 			c.SetControllable(false);

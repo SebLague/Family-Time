@@ -15,6 +15,9 @@ public class IntroUI : MonoBehaviour
 	const string catGoalA = "Catch some bugs";
 	const string catGoalB = "Knock over the candles";
 	const string catGoalC = "Snooze";
+	
+	const string teenGoalA = "Find game controller";
+	const string teenGoalB = "Beat video game";
 
 
 	void Update()
@@ -29,6 +32,7 @@ public class IntroUI : MonoBehaviour
 		if (playerType == GameManager.Players.Mother) playerName2 = "MOM";
 		if (playerType == GameManager.Players.Father) playerName2 = "DAD";
 		if (playerType == GameManager.Players.Cat) playerName2 = "KITTY";
+		if (playerType == GameManager.Players.Teenager) playerName2 = "TEEN";
 		return playerName2;
 	}
 
@@ -42,7 +46,7 @@ public class IntroUI : MonoBehaviour
 		{
 			GameManager.Players.Baby => MakeGoalsString(babyGoalA, babyGoalB, babyGoalC),
 			GameManager.Players.Cat => MakeGoalsString(catGoalA, catGoalB, catGoalC),
-			GameManager.Players.Teen => "teen",
+			GameManager.Players.Teenager => MakeGoalsString(teenGoalA, teenGoalB),
 			_ => "error :("
 		};
 

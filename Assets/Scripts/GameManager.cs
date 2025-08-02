@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 	//public const KeyCode CatchFlyKey = KeyCode.Space;
 	public const KeyCode PickupKey = KeyCode.F;
 	public const KeyCode TaskEnterKey = KeyCode.F;
-	
+
 
 	public enum StartupMode
 	{
@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
 	{
 		Cat,
 		Baby,
-		Teen,
+		Teenager,
 		Mother,
 		Father
 	}
@@ -44,10 +44,11 @@ public class GameManager : MonoBehaviour
 	public SettingsMenu settingsMenu;
 	public PauseMenu pauseMenu;
 	bool isPaused;
+	public static float mouseSensitivityT = 0.5f;
 
 	public float camAnimOffset;
 	public float camAnimSpeed;
-
+	static int numLoads;
 
 	bool playbackTest;
 	float playbackTime;
@@ -61,6 +62,20 @@ public class GameManager : MonoBehaviour
 	float waitStartTime;
 
 	static GameManager instance;
+	
+	[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+	static void Init()
+	{
+		
+		numLoads = 0;
+	}
+
+	void InitStartupSettings()
+	{
+		Debug.Log("init default settings");
+		mouseSensitivityT = 0.5f;
+		AudioListener.volume = 0.5f;
+	}
 
 	public void SetPaused(bool paused)
 	{
@@ -87,7 +102,11 @@ public class GameManager : MonoBehaviour
 
 	void Start()
 	{
-		AudioListener.volume = 0.5f;
+		ShowCursor(true);
+		if (numLoads == 0)
+		{
+			InitStartupSettings();
+		}
 		foreach (FirstPersonController c in players)
 		{
 			c.SetControllable(false);
@@ -119,7 +138,7 @@ public class GameManager : MonoBehaviour
 	public void NotifyAllTasksCompleted()
 	{
 		gameActive = false;
-		
+
 		//playerGoalUI.gameObject.SetActive(false);
 		PlaybackData.playbacks[currentPlayer.playerType] = currentPlayer.playbackKeyframes;
 
@@ -173,12 +192,14 @@ public class GameManager : MonoBehaviour
 	{
 		PlaybackData.skipMenu = true;
 		PlaybackData.activePlayerIndex = playerIndex;
+		numLoads++;
 		SceneManager.LoadScene(0);
 	}
 
 	public void RestartGame()
 	{
 		PlaybackData.Wipe();
+		numLoads++;
 		SceneManager.LoadScene(0);
 	}
 

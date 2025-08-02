@@ -292,8 +292,9 @@ public class FirstPersonController : MonoBehaviour
 			}
 		}
 
-		transform.Rotate(Vector3.up * mouseInput.x * mouseSensitivity.x);
-		pitch += mouseInput.y * mouseSensitivity.y;
+		float sFac = Mathf.Lerp(0.25f, 1.75f, GameManager.mouseSensitivityT);
+		transform.Rotate(Vector3.up * mouseInput.x * mouseSensitivity.x * sFac);
+		pitch += mouseInput.y * mouseSensitivity.y * sFac;
 		pitch = ClampAngle(pitch, verticalLookMinMax.x, verticalLookMinMax.y);
 		Quaternion yQuaternion = Quaternion.AngleAxis(pitch, Vector3.left);
 		cam.transform.localRotation = yQuaternion;

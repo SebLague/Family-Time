@@ -11,6 +11,7 @@ public class SettingsMenu : MonoBehaviour
     public Button fullscreen;
    
     public Slider volumeSlider;
+    public Slider mouseSlider;
     public Button back;
     PauseMenu pauseMenu;
     
@@ -23,10 +24,12 @@ public class SettingsMenu : MonoBehaviour
         borderless.onClick.AddListener(() => Screen.fullScreenMode = FullScreenMode.FullScreenWindow);
         fullscreen.onClick.AddListener(() => Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen);
         volumeSlider.onValueChanged.AddListener(Vol);
+        mouseSlider.onValueChanged.AddListener(Mouse);
         
         back.onClick.AddListener(Back);
         
         volumeSlider.value = AudioListener.volume;
+        mouseSlider.value = GameManager.mouseSensitivityT;
     }
 
     public void NotifyFromPauseMenu(PauseMenu pauseMenu)
@@ -42,6 +45,11 @@ public class SettingsMenu : MonoBehaviour
     void Vol(float v)
     {
         AudioListener.volume = v;
+    }
+    
+    void Mouse(float v)
+    {
+        GameManager.mouseSensitivityT = v;
     }
     
 

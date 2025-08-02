@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,9 @@ using UnityEngine;
 public class Aircraft : MonoBehaviour
 {
 
+	public Transform sun;
+	public Vector2 sunOffset;
+	public float sunSpeed;
 
 	[Header("Startup Settings")]
 	public float startElevationT;
@@ -54,7 +58,6 @@ public class Aircraft : MonoBehaviour
 
 	// Private stuff
 
-
 	GameCamera gameCamera;
 	float smoothedTurnSpeed;
 	float turnSmoothV;
@@ -75,7 +78,20 @@ public class Aircraft : MonoBehaviour
 
 	float nextNavigationLightUpdateTime;
 	bool navigationLightsOn;
-	
+
+	void OnTriggerEnter(Collider other)
+	{
+		if (other.CompareTag("Hoop"))
+		{
+			
+		}
+		else if (other.CompareTag("Terrain"))
+		{
+			
+		}
+		Debug.Log(other.tag);
+	}
+
 
 	void Awake()
 	{
@@ -87,6 +103,8 @@ public class Aircraft : MonoBehaviour
 		currentSpeed = baseTargetSpeed;
 		SetNavigationLightScale(0);
 		boostTimeRemaining = boostTimeAtStart;
+
+		sun.rotation = GetSunTargetRotation();
 	}
 
 	void Update()
@@ -100,6 +118,17 @@ public class Aircraft : MonoBehaviour
 
 		UpdateGraphics();
 
+		
+		sun.rotation = Quaternion.Slerp(sun.rotation, GetSunTargetRotation(), Time.deltaTime * sunSpeed);
+
+	}
+
+	Quaternion GetSunTargetRotation()
+	{
+		Vector3 sunPos = transform.position + transform.position.normalized * 2;
+		Vector3 targSun = transform.position + transform.forward * sunOffset.y + transform.right * sunOffset.x;
+		Quaternion sunTargRot = Quaternion.LookRotation(targSun - sunPos);
+		return sunTargRot;
 	}
 
 	public void UpdateMovementInput(Vector2 moveInput, float accelerateDir, bool boosting)

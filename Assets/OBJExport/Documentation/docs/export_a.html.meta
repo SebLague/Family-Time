@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 409cc65b3071e194fb629f2edd33ea00
+TextScriptImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 22250
+  packageName: Scene OBJ Exporter
+  packageVersion: 2.01
+  assetPath: Assets/OBJExport/Documentation/docs/export_a.html
+  uploadId: 94042

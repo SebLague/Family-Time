@@ -11,8 +11,12 @@ public class IntroUI : MonoBehaviour
 	const string babyGoalB = "Make an awesome artwork";
 	const string babyGoalC = "Play some funky tunes";
 	float time;
-	
-	
+
+	const string catGoalA = "Catch some bugs";
+	const string catGoalB = "Knock over the candles";
+	const string catGoalC = "Snooze";
+
+
 	void Update()
 	{
 		group.alpha = Maths.EaseQuadInOut(time);
@@ -27,11 +31,11 @@ public class IntroUI : MonoBehaviour
 		if (playerType == GameManager.Players.Father) playerName2 = "DAD";
 		if (playerType == GameManager.Players.Cat) playerName2 = "KITTY";
 
-		string headText = $"YOU ARE {playerName}\n<size=25%>YOU HAVE 3 MINUTES TO ACCOMPLISH YOUR {playerName2} GOALS\n(press tab when you are ready to go!)\n";
+		string headText = $"YOU ARE {playerName}\n<size=35%>YOU HAVE 3 MINUTES TO ACCOMPLISH YOUR {playerName2} GOALS";
 		string goalText = playerType switch
 		{
 			GameManager.Players.Baby => MakeGoalsString(babyGoalA, babyGoalB, babyGoalC),
-			GameManager.Players.Cat => "cat",
+			GameManager.Players.Cat => MakeGoalsString(catGoalA, catGoalB, catGoalC),
 			GameManager.Players.Teen => "teen",
 			_ => "error :("
 		};
@@ -46,7 +50,7 @@ public class IntroUI : MonoBehaviour
 		string s = "";
 		for (int i = 0; i < goals.Length; i++)
 		{
-			s += $"-- {goals[i]} --";
+			s += $"~~~ {goals[i]} ~~~";
 			if (i != goals.Length - 1)
 			{
 				s += "\n";

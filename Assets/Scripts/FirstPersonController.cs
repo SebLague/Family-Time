@@ -64,7 +64,7 @@ public class FirstPersonController : MonoBehaviour
 	{
 		bool done = tasks.All(t => t.taskCompleted);
 		done |= forceAllDone;
-		UpdateGoalHud();
+		gameHud.UpdateGoalHud(tasks);
 
 		if (done)
 		{
@@ -91,7 +91,7 @@ public class FirstPersonController : MonoBehaviour
 		if (isControllable)
 		{
 			manager.playerGoalUI.gameObject.SetActive(true);
-			UpdateGoalHud();
+			gameHud.UpdateGoalHud(tasks);
 		}
 		else
 		{
@@ -101,19 +101,10 @@ public class FirstPersonController : MonoBehaviour
 
 	public void NotifyTaskProgress()
 	{
-		UpdateGoalHud();
+		gameHud.UpdateGoalHud(tasks);
 	}
 
-	void UpdateGoalHud()
-	{
-		string goalText = "Goals:\n";
-		foreach (Task task in tasks)
-		{
-			goalText += task.GetGoalString() + "\n";
-		}
 
-		manager.playerGoalUI.text = goalText;
-	}
 
 
 	void Update()
@@ -150,7 +141,7 @@ public class FirstPersonController : MonoBehaviour
 		// Character-specific
 		if (playerType == GameManager.Players.Cat)
 		{
-			if (Input.GetKeyDown(GameManager.CatchFlyKey))
+			//if (Input.GetKeyDown(GameManager.CatchFlyKey))
 			{
 				foreach (var f in fliesInCatchableRadius)
 				{

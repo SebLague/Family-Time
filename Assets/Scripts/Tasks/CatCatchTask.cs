@@ -39,7 +39,7 @@ public class CatCatchTask : Task
 
 	protected override string CustomizeGoalString()
 	{
-		return $"catch flies {numCaught} / {numFlies}";
+		return $"catch bugs {numCaught}/{numFlies}";
 	}
 
 	public override void Playback(float playTime)

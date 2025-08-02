@@ -43,7 +43,7 @@ public class CandleTask : Task
 	protected override string CustomizeGoalString()
 	{
 		if (candles == null) return "topple candles";
-		return $"topple candles {toppledCount} / {candles.Count}";
+		return $"topple candles {toppledCount}/{candles.Count}";
 	}
 
 	public override void Playback(float playTime)

@@ -18,4 +18,15 @@ public class GameHud : MonoBehaviour
 	{
 		infoUI.text = "";
 	}
+
+	public void UpdateGoalHud(Task[] tasks)
+	{
+		string goalText = "";
+		foreach (Task task in tasks)
+		{
+			goalText += task.GetGoalString() + "\n";
+		}
+
+		GameManager.Instance.playerGoalUI.text = goalText;
+	}
 }

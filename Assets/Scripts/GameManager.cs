@@ -4,9 +4,9 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-	public const KeyCode CatchFlyKey = KeyCode.Space;
+	//public const KeyCode CatchFlyKey = KeyCode.Space;
 	public const KeyCode PickupKey = KeyCode.F;
-	public const KeyCode TaskEnterKey = KeyCode.Tab;
+	public const KeyCode TaskEnterKey = KeyCode.F;
 
 	public enum StartupMode
 	{
@@ -53,6 +53,7 @@ public class GameManager : MonoBehaviour
 	public FirstPersonController currentPlayer { get; private set; }
 	public bool gameActive { get; private set; }
 	[HideInInspector] public bool ignoreTimer;
+	float waitStartTime;
 
 	static GameManager instance;
 
@@ -119,12 +120,12 @@ public class GameManager : MonoBehaviour
 
 	public void OnFailTimeRanOut()
 	{
-		OnFail("YOU RAN OUT OF TIME!");
+		OnFail("Oh no...\n<size=50%>You ran out of time!");
 	}
 
 	public void OnFailCatNapTooSoon()
 	{
-		OnFail("Oh no!\n<size=50%>You fell asleep before accomplishing your goals!");
+		OnFail("Oh no...\n<size=50%>You fell asleep before accomplishing your goals!");
 	}
 
 	void OnFail(string reason)
@@ -170,6 +171,7 @@ public class GameManager : MonoBehaviour
 		introUI.gameObject.SetActive(true);
 		introUI.Set(currentPlayer.playerType);
 		waitingForPlayerConfirm = true;
+		waitStartTime = Time.time;
 		//menuCam.GetComponent<CamFixed>().active = false;
 	}
 
@@ -182,8 +184,8 @@ public class GameManager : MonoBehaviour
 			menuCam.transform.position = Vector3.Lerp(menuCam.transform.position, targetPos, Time.deltaTime * camAnimSpeed);
 			menuCam.transform.rotation = Quaternion.Slerp(menuCam.transform.rotation, Quaternion.LookRotation(-currentPlayer.transform.forward, Vector3.up), Time.deltaTime * camAnimSpeed);
 			menuCam.UpdateBaseRot();
-			
-			if (Input.GetKeyDown(KeyCode.Tab))
+
+			if ((Input.anyKeyDown && !Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(2)) && Time.time - waitStartTime > 0.25f)
 			{
 				menuObjects.SetActive(false);
 				waitingForPlayerConfirm = false;

@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
 	public FailUI failUI;
 	public float playerTimer { get; private set; }
 	public VictoryUI victoryUI;
+	public GameObject menuObjects;
 
 
 	bool playbackTest;
@@ -45,7 +46,7 @@ public class GameManager : MonoBehaviour
 	int playerIndex;
 
 	bool waitingForPlayerConfirm;
-	public FirstPersonController currentPlayer {get; private set;}
+	public FirstPersonController currentPlayer { get; private set; }
 	public bool gameActive { get; private set; }
 	[HideInInspector] public bool ignoreTimer;
 
@@ -161,6 +162,7 @@ public class GameManager : MonoBehaviour
 
 	void StartNextPlayer()
 	{
+		
 		mainMenu.gameObject.SetActive(false);
 		introUI.gameObject.SetActive(true);
 		introUI.Set(currentPlayer.playerType);
@@ -173,6 +175,7 @@ public class GameManager : MonoBehaviour
 		{
 			if (Input.GetKeyDown(KeyCode.Tab))
 			{
+				menuObjects.SetActive(false);
 				waitingForPlayerConfirm = false;
 				menuCam.gameObject.SetActive(false);
 				currentPlayer.SetControllable(true);

@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour
 	bool isPaused;
 	public static float mouseSensitivityT = 0.5f;
 	Transform audioListener;
+	public GameObject persistantPrefab;
 
 	public float camAnimOffset;
 	public float camAnimSpeed;
@@ -105,8 +106,7 @@ public class GameManager : MonoBehaviour
 		ShowCursor(true);
 		if (numLoads == 0)
 		{
-			GameObject a = new GameObject("AudioListener");
-			a.AddComponent<AudioListener>();
+			GameObject a = Instantiate(persistantPrefab);
 			audioListener = a.transform;
 			GameObject.DontDestroyOnLoad(audioListener);
 			InitStartupSettings();

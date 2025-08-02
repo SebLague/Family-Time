@@ -79,11 +79,15 @@ public class Aircraft : MonoBehaviour
 	float nextNavigationLightUpdateTime;
 	bool navigationLightsOn;
 
+	int numHoopsHit;
+
 	void OnTriggerEnter(Collider other)
 	{
 		if (other.CompareTag("Hoop"))
 		{
-			
+			other.GetComponent<MeshRenderer>().material.color = Color.green;
+			other.GetComponent<BoxCollider>().enabled = false;
+			numHoopsHit++;
 		}
 		else if (other.CompareTag("Terrain"))
 		{

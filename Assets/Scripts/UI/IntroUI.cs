@@ -15,9 +15,15 @@ public class IntroUI : MonoBehaviour
 	const string catGoalA = "Catch some bugs";
 	const string catGoalB = "Knock over the candles";
 	const string catGoalC = "Snooze";
-	
+
 	const string teenGoalA = "Find game controller";
 	const string teenGoalB = "Beat video game";
+
+	const string momGoalA = "Grab fire extinguisher";
+	const string momGoalB = "Put out the fires";
+
+	const string dadGoalA = "Find camera";
+	const string dadGoalB = "Snap pics for family album";
 
 
 	void Update()
@@ -47,6 +53,8 @@ public class IntroUI : MonoBehaviour
 			GameManager.Players.Baby => MakeGoalsString(babyGoalA, babyGoalB, babyGoalC),
 			GameManager.Players.Cat => MakeGoalsString(catGoalA, catGoalB, catGoalC),
 			GameManager.Players.Teenager => MakeGoalsString(teenGoalA, teenGoalB),
+			GameManager.Players.Mother => MakeGoalsString(momGoalA, momGoalB),
+			GameManager.Players.Father => MakeGoalsString(dadGoalA, dadGoalB),
 			_ => "error :("
 		};
 

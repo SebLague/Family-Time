@@ -21,6 +21,10 @@ public class PutOutFiresTask : Task
 		{
 			TaskCompleted();
 		}
+		else
+		{
+			owner.NotifyTaskProgress();
+		}
 	}
 
 	public override void Playback(float playTime)
@@ -35,7 +39,7 @@ public class PutOutFiresTask : Task
 
 	protected override string CustomizeGoalString()
 	{
-		return $"Fight fires {numDone} / {numFires}";
+		return $"fight fires {numDone}/{numFires}";
 	}
 
 	public void OnExtinguisherEquipped()

@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
 	public PauseMenu pauseMenu;
 	bool isPaused;
 	public static float mouseSensitivityT = 0.5f;
+	public Transform audioListener;
 
 	public float camAnimOffset;
 	public float camAnimSpeed;
@@ -62,11 +63,10 @@ public class GameManager : MonoBehaviour
 	float waitStartTime;
 
 	static GameManager instance;
-	
+
 	[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
 	static void Init()
 	{
-		
 		numLoads = 0;
 	}
 
@@ -107,6 +107,7 @@ public class GameManager : MonoBehaviour
 		{
 			InitStartupSettings();
 		}
+
 		foreach (FirstPersonController c in players)
 		{
 			c.SetControllable(false);
@@ -245,6 +246,7 @@ public class GameManager : MonoBehaviour
 
 		if (gameActive)
 		{
+			audioListener.transform.position = currentPlayer.cam.transform.position;
 			// playback prev players
 			for (int i = 0; i < playerIndex; i++)
 			{
@@ -271,6 +273,10 @@ public class GameManager : MonoBehaviour
 				gameActive = false;
 				OnFailTimeRanOut();
 			}
+		}
+		else
+		{
+			audioListener.transform.position = menuCam.transform.position;
 		}
 
 		if (!mainMenu.gameObject.activeSelf && !settingsMenu.gameObject.activeSelf && !isPaused)

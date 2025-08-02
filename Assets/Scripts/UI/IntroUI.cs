@@ -23,13 +23,19 @@ public class IntroUI : MonoBehaviour
 		time += Time.deltaTime;
 	}
 
-	public void Set(GameManager.Players playerType)
+	public static string GetName2(GameManager.Players playerType)
 	{
-		string playerName = playerType.ToString().ToUpper();
 		string playerName2 = playerType.ToString().ToUpper();
 		if (playerType == GameManager.Players.Mother) playerName2 = "MOM";
 		if (playerType == GameManager.Players.Father) playerName2 = "DAD";
 		if (playerType == GameManager.Players.Cat) playerName2 = "KITTY";
+		return playerName2;
+	}
+
+	public void Set(GameManager.Players playerType)
+	{
+		string playerName = playerType.ToString().ToUpper();
+		string playerName2 = GetName2(playerType);
 
 		string headText = $"YOU ARE {playerName}\n<size=35%>YOU HAVE 3 MINUTES TO ACCOMPLISH YOUR {playerName2} GOALS";
 		string goalText = playerType switch

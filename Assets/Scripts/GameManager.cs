@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
 	public float playerTimer { get; private set; }
 	public VictoryUI victoryUI;
 	public GameObject menuObjects;
+	public PlayerVictoryUI miniVictoryUI;
 
 	public float camAnimOffset;
 	public float camAnimSpeed;
@@ -99,7 +100,8 @@ public class GameManager : MonoBehaviour
 	public void NotifyAllTasksCompleted()
 	{
 		gameActive = false;
-		timerText.gameObject.SetActive(false);
+		
+		//playerGoalUI.gameObject.SetActive(false);
 		PlaybackData.playbacks[currentPlayer.playerType] = currentPlayer.playbackKeyframes;
 
 		if (currentPlayer.playerType == Players.Father)
@@ -108,9 +110,15 @@ public class GameManager : MonoBehaviour
 		}
 		else
 		{
-			playerIndex++;
-			RestartTimeLoop();
+			miniVictoryUI.gameObject.SetActive(true);
 		}
+	}
+
+	public void NotifyContinueAfterIndividualVictory()
+	{
+		playerIndex++;
+		timerText.gameObject.SetActive(false);
+		RestartTimeLoop();
 	}
 
 	void Victory()

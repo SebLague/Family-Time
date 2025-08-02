@@ -34,9 +34,6 @@ public class MainMenu : MonoBehaviour
 
 	void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.Tab))
-		{
-			PlayClick();
-		}
+		if (Input.GetKeyDown(KeyCode.Return)) PlayClick();
 	}
 }

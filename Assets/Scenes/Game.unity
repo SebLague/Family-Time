@@ -7178,6 +7178,7 @@ Transform:
   - {fileID: 1961880519}
   - {fileID: 1622871147}
   - {fileID: 1256048343}
+  - {fileID: 1757489130}
   - {fileID: 1457474222}
   - {fileID: 333940142}
   - {fileID: 288016050}
@@ -7192,7 +7193,6 @@ Transform:
   - {fileID: 322056876}
   - {fileID: 1466092483}
   - {fileID: 1046285359}
-  - {fileID: 1757489130}
   - {fileID: 1592546801}
   - {fileID: 2062803891}
   m_Father: {fileID: 0}
@@ -15531,6 +15531,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: potStew
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 37a02f69937c42b49aa15a3c7e841bad, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 6225450622961806779, guid: 37a02f69937c42b49aa15a3c7e841bad, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -15551,7 +15559,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 844615134}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: cb21a6f4478a939478826ef731b9c2e6, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

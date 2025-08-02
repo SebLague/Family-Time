@@ -182,7 +182,7 @@ public class FirstPersonController : MonoBehaviour
 		if (other.gameObject.CompareTag("PhysExtra"))
 		{
 			float velPhysMul = 1.3f;
-			float yBoost = 1.4f;
+			float yBoost = 1.6f;
 			other.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(velocity.x, Mathf.Max(0, velocity.y) + yBoost, velocity.z) * velPhysMul, ForceMode.VelocityChange);
 		}
 

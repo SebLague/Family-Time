@@ -121,7 +121,7 @@ public class XyloTask : Task
 
 		if (!taskCompleted)
 		{
-			scoreUI.text = $"{scoreInt} %";
+			scoreUI.text = $"{scoreInt}%";
 		}
 
 		if (scoreInt >= 100 && !taskCompleted)

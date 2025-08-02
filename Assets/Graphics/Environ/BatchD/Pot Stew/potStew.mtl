@@ -1,0 +1,20 @@
+# Created by Kenney (www.kenney.nl)
+
+newmtl greyDark
+  Kd 0.25 0.33 0.41
+
+newmtl brown
+  Kd 1.00 0.44 0.21
+
+newmtl brownDark
+  Kd 0.60 0.22 0.11
+
+newmtl yellow
+  Kd 1.00 0.61 0.11
+
+newmtl orange
+  Kd 1.00 0.17 0.04
+
+newmtl _defaultMat
+  Kd 1.00 1.00 1.00
+

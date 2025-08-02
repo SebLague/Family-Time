@@ -12,6 +12,7 @@ public class SettingsMenu : MonoBehaviour
    
     public Slider volumeSlider;
     public Button back;
+    PauseMenu pauseMenu;
     
     
     void Start()
@@ -28,6 +29,16 @@ public class SettingsMenu : MonoBehaviour
         volumeSlider.value = AudioListener.volume;
     }
 
+    public void NotifyFromPauseMenu(PauseMenu pauseMenu)
+    {
+        this.pauseMenu = pauseMenu;
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape)) Back();
+    }
+
     void Vol(float v)
     {
         AudioListener.volume = v;
@@ -39,11 +50,21 @@ public class SettingsMenu : MonoBehaviour
         Screen.SetResolution(x,y, FullScreenMode.Windowed);
         
     }
+
     void Back()
     {
         gameObject.SetActive(false);
-        mainMenu.gameObject.SetActive(true);
+
+        if (pauseMenu)
+        {
+            pauseMenu.gameObject.SetActive(true);
+            pauseMenu = null;
+        }
+        else
+        {
+            mainMenu.gameObject.SetActive(true);
+        }
     }
 
-    
+
 }

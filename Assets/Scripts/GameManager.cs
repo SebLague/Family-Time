@@ -41,6 +41,9 @@ public class GameManager : MonoBehaviour
 	public VictoryUI victoryUI;
 	public GameObject menuObjects;
 	public PlayerVictoryUI miniVictoryUI;
+	public SettingsMenu settingsMenu;
+	public PauseMenu pauseMenu;
+	bool isPaused;
 
 	public float camAnimOffset;
 	public float camAnimSpeed;
@@ -58,6 +61,20 @@ public class GameManager : MonoBehaviour
 	float waitStartTime;
 
 	static GameManager instance;
+
+	public void SetPaused(bool paused)
+	{
+		isPaused = paused;
+		Time.timeScale = paused ? 0 : 1;
+		gameActive = !paused;
+
+		pauseMenu.gameObject.SetActive(paused);
+
+		if (paused)
+		{
+			ShowCursor(true);
+		}
+	}
 
 	public static GameManager Instance
 	{
@@ -168,10 +185,7 @@ public class GameManager : MonoBehaviour
 	public void StartGame()
 	{
 		mainMenu.SetActive(false);
-
-
 		currentPlayer = players[playerIndex];
-
 		StartNextPlayer();
 	}
 
@@ -235,6 +249,14 @@ public class GameManager : MonoBehaviour
 			{
 				gameActive = false;
 				OnFailTimeRanOut();
+			}
+		}
+
+		if (!mainMenu.gameObject.activeSelf && !settingsMenu.gameObject.activeSelf && !isPaused)
+		{
+			if (Input.GetKeyDown(KeyCode.Escape))
+			{
+				SetPaused(true);
 			}
 		}
 

@@ -214,7 +214,7 @@ public class FirstPersonController : MonoBehaviour
 		{
 			if (other.gameObject.GetComponent<FireExtinguisher>())
 			{
-				gameHud.SetInfoText("press F to grab FIRE EXTINGUISHER");
+				gameHud.SetInfoText("F to grab fire extinguisher");
 				fireExtPickup = other.gameObject.GetComponent<FireExtinguisher>();
 			}
 		}
@@ -222,7 +222,7 @@ public class FirstPersonController : MonoBehaviour
 		{
 			if (other.gameObject.GetComponent<DadCam>())
 			{
-				gameHud.SetInfoText("press F to grab CAMERA");
+				gameHud.SetInfoText("F to grab camera");
 				camPickup = other.gameObject.GetComponent<DadCam>();
 			}
 		}

@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class TowerTask : Task
 {
+	public float yAddMul;
+	public float animSpeed;
 	public BoxCollider[] poles;
 	public BoxCollider[] disks;
 
@@ -21,7 +23,9 @@ public class TowerTask : Task
 	int selectedDiskIndex;
 
 	public static List<TowerKeyFrame> keyframes = new();
-	
+	bool isAnimatingDisk;
+	AnimationState animState;
+
 
 	protected override void Awake()
 	{
@@ -44,7 +48,16 @@ public class TowerTask : Task
 			successText.localScale = Vector3.one * Maths.EaseCubeOut(Time.time - successStartTime);
 		}
 
-		if (Input.GetMouseButtonDown(0))
+		if (isAnimatingDisk)
+		{
+			animState.t += Time.deltaTime * animSpeed;
+			if (animState.t >= 1) isAnimatingDisk = false;
+			float yAdd = 1 - Mathf.Pow(2 * Mathf.Clamp01(animState.t) - 1, 2);
+			animState.disk.localPosition = Vector3.Lerp(animState.posStart, animState.posEnd, Maths.EaseQuadInOut(animState.t));
+			animState.disk.localPosition += Vector3.forward * (yAdd * yAddMul * 0.01f);
+		}
+
+		if (Input.GetMouseButtonDown(0) && !isAnimatingDisk)
 		{
 			float dstDisk;
 			float dstPole;
@@ -82,7 +95,15 @@ public class TowerTask : Task
 					// is at top of curr pole (can move from this pole)
 					if (GetPoleValue(currPoleIndex) == selectedDiskIndex)
 					{
-						disks[selectedDiskIndex].transform.localPosition = new Vector3(0, poles[selectedPoleIndex].transform.localPosition.y, startY + GetPoleFromPoleIndex(selectedPoleIndex).Count * spacingY);
+						Vector3 targetLocalPos = new Vector3(0, poles[selectedPoleIndex].transform.localPosition.y, startY + GetPoleFromPoleIndex(selectedPoleIndex).Count * spacingY);
+						animState = new AnimationState()
+						{
+							disk = disks[selectedDiskIndex].transform,
+							posStart = disks[selectedDiskIndex].transform.localPosition,
+							posEnd = targetLocalPos,
+						};
+						isAnimatingDisk = true;
+						//disks[selectedDiskIndex].transform.localPosition = new Vector3(0, poles[selectedPoleIndex].transform.localPosition.y, startY + GetPoleFromPoleIndex(selectedPoleIndex).Count * spacingY);
 						PopFromPole(currPoleIndex);
 						AddToPole(selectedPoleIndex, selectedDiskIndex);
 						selectedDiskIndex = -1;
@@ -96,9 +117,12 @@ public class TowerTask : Task
 		// Task completion
 		if (poleEnd.Count == 4 || poleMiddle.Count == 4 || (Application.isEditor && Input.GetKeyDown(KeyCode.Q)))
 		{
-			successStartTime = Time.time;
-			Debug.Log("Tower completed");
-			TaskCompleted();
+			if (!taskCompleted)
+			{
+				successStartTime = Time.time;
+				Debug.Log("Tower completed");
+				TaskCompleted();
+			}
 		}
 
 		// -------- Exit
@@ -122,6 +146,14 @@ public class TowerTask : Task
 
 			keyframes.Add(frame);
 		}
+	}
+
+	public struct AnimationState
+	{
+		public Transform disk;
+		public Vector3 posStart;
+		public Vector3 posEnd;
+		public float t;
 	}
 
 	List<int> GetPoleFromPoleIndex(int p)

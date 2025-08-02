@@ -1647,12 +1647,13 @@ Transform:
   m_GameObject: {fileID: 183735357}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.57107717, z: -0, w: -0.8208963}
-  m_LocalPosition: {x: -0.57, y: 0, z: 0.68}
+  m_LocalPosition: {x: -0.17, y: 0, z: -0.29}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 527129251}
   - {fileID: 1932335099}
+  - {fileID: 1183875468}
   - {fileID: 946063153}
   - {fileID: 1523581393}
   m_Father: {fileID: 1568984233}
@@ -1675,6 +1676,8 @@ MonoBehaviour:
   cam: {fileID: 946063155}
   owner: {fileID: 147061111}
   ownerInRegion: 0
+  yAddMul: 10
+  animSpeed: 3
   poles:
   - {fileID: 867670727}
   - {fileID: 1523581403}
@@ -17413,13 +17416,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 946063152}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.13753472, y: 0.6936023, z: -0.13753472, w: 0.6936024}
-  m_LocalPosition: {x: -1.085, y: 0.822, z: 0.078}
+  m_LocalRotation: {x: 0.13850193, y: 0.69848007, z: -0.13656066, w: 0.68869007}
+  m_LocalPosition: {x: -1.08, y: 0.822, z: 0.06}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 183735358}
-  m_LocalEulerAnglesHint: {x: 22.431, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 22.429, y: 90.875, z: 0.334}
 --- !u!81 &946063154
 AudioListener:
   m_ObjectHideFlags: 0
@@ -21119,16 +21122,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1183875467}
-  m_LocalRotation: {x: -0.3189873, y: -0.16710053, z: 0.057243887, w: -0.93115395}
-  m_LocalPosition: {x: 0, y: 0, z: 0.176}
-  m_LocalScale: {x: 0.43432003, y: 0.43431997, z: 0.43431997}
+  m_LocalRotation: {x: 0.22916484, y: 0.668933, z: -0.22915766, w: 0.6689536}
+  m_LocalPosition: {x: 0, y: 0, z: 0.07038772}
+  m_LocalScale: {x: 0.4343201, y: 0.43432, z: 0.43432}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1568984233}
+  m_Father: {fileID: 183735358}
   m_LocalEulerAnglesHint: {x: 37.82, y: 89.998, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.832, y: 0.167}
+  m_AnchoredPosition: {x: -0.56365037, y: 0.167}
   m_SizeDelta: {x: 2.1595, y: 0.6598}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1183875469
@@ -26864,7 +26867,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 183735358}
-  - {fileID: 1183875468}
   - {fileID: 1442701589}
   - {fileID: 1796826505}
   m_Father: {fileID: 0}

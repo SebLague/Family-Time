@@ -64,7 +64,7 @@ public class GameCamera : MonoBehaviour
 	}
 
 
-	void LateUpdate()
+	public void UpdateGameCam()
 	{
 		UpdateView();
 

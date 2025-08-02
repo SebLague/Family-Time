@@ -46,6 +46,11 @@ public class VideoGameTask : Task
 		gameController.StartGame(controllerFetch.taskCompleted);
 	}
 
+	public override void Playback(float playTime)
+	{
+		gameController.PlaybackUpdate(playTime);
+	}
+
 	public override void ExitTask()
 	{
 		base.ExitTask();

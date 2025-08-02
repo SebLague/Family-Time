@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Seb.Helpers;
 using UnityEngine;
 
 public class Aircraft : MonoBehaviour
@@ -92,10 +93,15 @@ public class Aircraft : MonoBehaviour
 	float winNotifyTime = -1;
 	[HideInInspector] public bool hasWon;
 	const int numHoops = 11;
+	float startTime;
+
+	public static List<PlaneFrame> frames = new();
+	float playbackTimePrev;
+	public bool playbackMode;
 
 	void OnTriggerEnter(Collider other)
 	{
-		if (!isplaying) return;
+		if (!isplaying && !playbackMode) return;
 		if (other.CompareTag("Hoop"))
 		{
 			other.GetComponent<MeshRenderer>().material.color = Color.green;
@@ -141,6 +147,7 @@ public class Aircraft : MonoBehaviour
 		isplaying = hasController;
 		blackScreen.SetActive(!hasController);
 		noController.SetActive(!hasController);
+		if (isplaying) startTime = Time.time;
 	}
 
 	public void StopGame()
@@ -156,14 +163,15 @@ public class Aircraft : MonoBehaviour
 
 	void Update()
 	{
-		if (!isplaying) return;
-
 		if (Time.time > winNotifyTime && winNotifyTime > 0)
 		{
 			hasWon = true;
 		}
 
-		//if (GameController.IsState(GameState.Playing))
+		if (!isplaying && !playbackMode) return;
+
+
+		if (!playbackMode)
 		{
 			HandleInput();
 			HandleMovement();
@@ -171,9 +179,86 @@ public class Aircraft : MonoBehaviour
 		}
 
 		UpdateGraphics();
-
+		if (!playbackMode)
+		{
+			gameCamera.UpdateGameCam();
+		}
 
 		sun.rotation = Quaternion.Slerp(sun.rotation, GetSunTargetRotation(), Time.deltaTime * sunSpeed);
+
+
+		if (!playbackMode && GameManager.Instance != null)
+		{
+			float timeBetweenKeyframes = 1 / 30f;
+			if (frames.Count == 0 || GameManager.Instance.playerTimer - frames[^1].time > timeBetweenKeyframes)
+			{
+				PlaneFrame f = new()
+				{
+					time = GameManager.Instance.playerTimer,
+					pos = transform.position,
+					rot = transform.rotation,
+					camPos = gameCamera.transform.position,
+					camRot = gameCamera.transform.rotation,
+				};
+
+				frames.Add(f);
+			}
+		}
+	}
+
+	public void PlaybackUpdate(float playTime)
+	{
+		if (frames.Count <= 1) return;
+
+		playbackMode = true;
+
+		int prevIndex = 0;
+		int nextIndex = frames.Count - 1;
+		int i = (nextIndex) / 2;
+		int safety = 10000;
+
+		while (true)
+		{
+			// t lies to left
+			if (playTime <= frames[i].time)
+			{
+				nextIndex = i;
+			}
+			// t lies to right
+			else
+			{
+				prevIndex = i;
+			}
+
+			i = (nextIndex + prevIndex) / 2;
+
+			if (nextIndex - prevIndex <= 1)
+			{
+				break;
+			}
+
+			safety--;
+			if (safety <= 0)
+			{
+				Debug.Log("Fix me!");
+				return;
+			}
+		}
+
+
+		PlaneFrame frameA = frames[prevIndex];
+		PlaneFrame frameB = frames[nextIndex];
+		float abPercent = Mathf.InverseLerp(frameA.time, frameB.time, playTime);
+
+		transform.position = Vector3.Lerp(frameA.pos, frameB.pos, abPercent);
+		transform.rotation = Quaternion.Slerp(frameA.rot, frameB.rot, abPercent);
+		gameCamera.transform.position = Vector3.Lerp(frameA.camPos, frameB.camPos, abPercent);
+		gameCamera.transform.rotation = Quaternion.Slerp(frameA.camRot, frameB.camRot, abPercent);
+
+		if (nextIndex > 1)
+		{
+			blackScreen.SetActive(false);
+		}
 	}
 
 	Quaternion GetSunTargetRotation()
@@ -201,7 +286,7 @@ public class Aircraft : MonoBehaviour
 	void HandleInput()
 	{
 		if (hasWon) return;
-		
+
 		Vector2 movementInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 		float accelerateDir = movementInput.y;
 		bool boosting = false;
@@ -222,9 +307,11 @@ public class Aircraft : MonoBehaviour
 		float targetSpeed = (boosting) ? boostSpeed : baseTargetSpeed;
 		currentSpeed = Mathf.Lerp(currentSpeed, targetSpeed, 1 - Mathf.Pow(speedSmoothing, Time.deltaTime));
 
+		float speedStartMode = Maths.EaseQuadInOut((Time.time - startTime) / 2f);
+
 
 		// Calculate forward and vertical components of the speed based on pitch angle of the plane
-		float forwardSpeed = Mathf.Cos(Mathf.Abs(currentPitchAngle) * Mathf.Deg2Rad) * currentSpeed;
+		float forwardSpeed = Mathf.Cos(Mathf.Abs(currentPitchAngle) * Mathf.Deg2Rad) * currentSpeed * speedStartMode;
 		float verticalVelocity = -Mathf.Sin(currentPitchAngle * Mathf.Deg2Rad) * currentSpeed;
 
 		// Update elevation
@@ -432,5 +519,14 @@ public class Aircraft : MonoBehaviour
 	public float BoostRemainingT
 	{
 		get { return Mathf.Clamp01(boostTimeRemaining / maxBoostTime); }
+	}
+
+	public struct PlaneFrame
+	{
+		public float time;
+		public Vector3 pos;
+		public Quaternion rot;
+		public Vector3 camPos;
+		public Quaternion camRot;
 	}
 }

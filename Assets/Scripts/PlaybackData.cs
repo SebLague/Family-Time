@@ -21,6 +21,7 @@ public static class PlaybackData
 		CandleTask.toppleEvents.Clear();
 		CatCatchTask.events.Clear();
 		FireExtinguisher.shootTimes.Clear();
+		Aircraft.frames.Clear();
 	}
 
 	[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]

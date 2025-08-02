@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
 		Father
 	}
 
+	public Transform title;
 	public int numSecs = 60 * 3;
 	public StartupMode startupMode;
 	public Task startTask;
@@ -40,7 +41,6 @@ public class GameManager : MonoBehaviour
 	public GameObject menuObjects;
 
 	public float camAnimOffset;
-	public Vector3 camAnimOffset3D;
 	public float camAnimSpeed;
 
 
@@ -177,7 +177,8 @@ public class GameManager : MonoBehaviour
 	{
 		if (waitingForPlayerConfirm)
 		{
-			Vector3 targetPos = currentPlayer.cam.transform.position - currentPlayer.transform.forward * camAnimOffset + camAnimOffset3D;
+			title.position += Vector3.up * (Time.deltaTime * 3);
+			Vector3 targetPos = currentPlayer.cam.transform.position - currentPlayer.transform.forward * camAnimOffset + currentPlayer.menuCamOffset;
 			menuCam.transform.position = Vector3.Lerp(menuCam.transform.position, targetPos, Time.deltaTime * camAnimSpeed);
 			menuCam.transform.rotation = Quaternion.Slerp(menuCam.transform.rotation, Quaternion.LookRotation(-currentPlayer.transform.forward, Vector3.up), Time.deltaTime * camAnimSpeed);
 			menuCam.UpdateBaseRot();

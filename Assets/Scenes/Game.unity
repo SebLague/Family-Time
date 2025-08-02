@@ -1097,6 +1097,7 @@ MonoBehaviour:
   - {fileID: 1442701591}
   - {fileID: 1796826508}
   selfHideThreshold: 0
+  menuCamOffset: {x: 0, y: -0.04, z: 0}
   smoothVelTAir: 0.5
   smoothVelTGround: 0.1
   gravity: 12
@@ -1409,6 +1410,7 @@ GameObject:
   m_Component:
   - component: {fileID: 194237258}
   - component: {fileID: 194237259}
+  - component: {fileID: 194237260}
   m_Layer: 5
   m_Name: Player intro ui
   m_TagString: Untagged
@@ -1451,6 +1453,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   header: {fileID: 680396171}
   goals: {fileID: 949505633}
+  group: {fileID: 194237260}
+--- !u!225 &194237260
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 194237257}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &201432609 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1689462117404829777, guid: b028edcfa3e138f47a1753acce9aafa8, type: 3}
@@ -3403,6 +3418,7 @@ MonoBehaviour:
   - {fileID: 642101011}
   - {fileID: 766852798}
   selfHideThreshold: 0
+  menuCamOffset: {x: 0, y: -0.2, z: 0}
   smoothVelTAir: 0.3
   smoothVelTGround: 0.05
   gravity: 12
@@ -4257,15 +4273,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bcc4ebc907f0354b87c5f6175a713ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  title: {fileID: 186352970}
   numSecs: 3000
   startupMode: 0
   startTask: {fileID: 1442701591}
   players:
+  - {fileID: 430008004}
+  - {fileID: 147061111}
   - {fileID: 613399923}
   - {fileID: 336867575}
   - {fileID: 1931072414}
-  - {fileID: 147061111}
-  - {fileID: 430008004}
   menuCam: {fileID: 1669547313}
   mainMenu: {fileID: 1779233156}
   gameHud: {fileID: 1575181038}
@@ -4277,7 +4294,6 @@ MonoBehaviour:
   victoryUI: {fileID: 1577272127}
   menuObjects: {fileID: 608754613}
   camAnimOffset: -0.58
-  camAnimOffset3D: {x: 0, y: 0, z: 0}
   camAnimSpeed: 3
   ignoreTimer: 0
 --- !u!4 &426584851
@@ -4349,6 +4365,7 @@ MonoBehaviour:
   - {fileID: 324597248}
   - {fileID: 1950498487}
   selfHideThreshold: -0.7
+  menuCamOffset: {x: 0, y: 0.03, z: 0}
   smoothVelTAir: 0.2
   smoothVelTGround: 0.1
   gravity: 12
@@ -6014,6 +6031,7 @@ MonoBehaviour:
   - {fileID: 1973021232}
   - {fileID: 1021837115}
   selfHideThreshold: 0
+  menuCamOffset: {x: 0, y: -0.18, z: 0}
   smoothVelTAir: 0.3
   smoothVelTGround: 0.05
   gravity: 12
@@ -11484,7 +11502,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 154}
+  m_AnchoredPosition: {x: 0, y: 416}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &680396171
@@ -11516,8 +11534,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 225b2077d9ef41c45a9796e48854be9f, type: 2}
+  m_sharedMaterial: {fileID: -3642430640704675177, guid: 225b2077d9ef41c45a9796e48854be9f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -11553,7 +11571,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: -6.88
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
@@ -15927,8 +15945,8 @@ MonoBehaviour:
   m_text: "- Solve the confusing puzzle -\n- Make an awesome artwork - \n- Play some
     funky tunes -\n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 225b2077d9ef41c45a9796e48854be9f, type: 2}
+  m_sharedMaterial: {fileID: -3642430640704675177, guid: 225b2077d9ef41c45a9796e48854be9f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -27559,6 +27577,7 @@ MonoBehaviour:
   - {fileID: 1482620304}
   - {fileID: 2108135243}
   selfHideThreshold: 0
+  menuCamOffset: {x: 0, y: 0, z: 0}
   smoothVelTAir: 0.5
   smoothVelTGround: 0.1
   gravity: 12

@@ -11,6 +11,7 @@ public class FirstPersonController : MonoBehaviour
 	public GameManager.Players playerType;
 	public Task[] tasks;
 	public float selfHideThreshold;
+	public Vector3 menuCamOffset;
 
 	public float smoothVelTAir;
 	public float smoothVelTGround;

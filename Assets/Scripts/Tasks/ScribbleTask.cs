@@ -25,6 +25,8 @@ public class ScribbleTask : Task
 	float currScoreT;
 	Color activeCol;
 	Vector2 uvCurr;
+	Vector2 uvPrev;
+	bool hasUvPrev;
 	Vector3[] posRestore;
 	Quaternion[] rotRestore;
 
@@ -68,6 +70,7 @@ public class ScribbleTask : Task
 
 		// ------------- Draw
 		bool mouseIsDown = Input.GetMouseButton(0);
+		if (!mouseIsDown) hasUvPrev = false;
 		Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
 		if (activeCrayon != null)
@@ -90,8 +93,26 @@ public class ScribbleTask : Task
 
 			if (mouseIsDown)
 			{
-				scribbleCompute.SetVector("drawUV", uvCurr);
-				ComputeHelper.Dispatch(scribbleCompute, tex.width, tex.height, kernelIndex: 1);
+				if (hasUvPrev)
+				{
+					float dst = (uvPrev - uvCurr).magnitude;
+					int num = Mathf.Clamp(Mathf.CeilToInt(dst * 100), 1, 15);
+					for (int i = 0; i < num; i++)
+					{
+						float tt = num == 1 ? 1 : i / (num - 1f);
+						Vector2 uvTerp = Vector2.Lerp(uvPrev, uvCurr, tt);
+						scribbleCompute.SetVector("drawUV", uvTerp);
+						ComputeHelper.Dispatch(scribbleCompute, tex.width, tex.height, kernelIndex: 1);
+					}
+				}
+				else
+				{
+					scribbleCompute.SetVector("drawUV", uvCurr);
+					ComputeHelper.Dispatch(scribbleCompute, tex.width, tex.height, kernelIndex: 1);
+				}
+
+				hasUvPrev = true;
+				uvPrev = uvCurr;
 
 				// ------ Scoring
 				int px = Mathf.Clamp((int)(uvCurr.x * imageScoreMap.GetLength(0)), 0, imageScoreMap.GetLength(0) - 1);
@@ -170,7 +191,7 @@ public class ScribbleTask : Task
 		{
 			activeCrayon.SetActive(true);
 			crayons[activeCrayonIndex].enabled = true;
-			activeCrayon.transform.position =  posRestore[activeCrayonIndex];
+			activeCrayon.transform.position = posRestore[activeCrayonIndex];
 			activeCrayon.transform.rotation = rotRestore[activeCrayonIndex];
 		}
 
@@ -201,6 +222,7 @@ public class ScribbleTask : Task
 		base.ExitTask();
 		ReturnCrayon();
 		scoreUI.gameObject.SetActive(false);
+		hasUvPrev = false;
 	}
 
 	float GetMax(Vector4 v)

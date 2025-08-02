@@ -5,6 +5,7 @@ public class CamFixed : MonoBehaviour
 	public float maxAngle;
 	public float smoothTime;
 	Quaternion baseRot;
+	public bool active = true;
 
 	void Start()
 	{
@@ -13,6 +14,8 @@ public class CamFixed : MonoBehaviour
 
 	void Update()
 	{
+		if (!active) return;
+		
 		Vector2 mousePos = Input.mousePosition;
 		Vector2 screenCentre = new Vector2(Screen.width, Screen.height);
 		float tx = Mathf.InverseLerp(0, screenCentre.x, mousePos.x);
@@ -26,5 +29,10 @@ public class CamFixed : MonoBehaviour
 		float rotY = Mathf.Clamp(offset.x * maxAngle, -maxAngle, maxAngle);
 		Quaternion targetRot = baseRot * Quaternion.Euler(rotX, rotY, 0f);
 		transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, Time.deltaTime * smoothTime);
+	}
+
+	public void UpdateBaseRot()
+	{
+		baseRot = transform.rotation;
 	}
 }

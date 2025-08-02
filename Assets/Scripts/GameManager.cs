@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
 	public StartupMode startupMode;
 	public Task startTask;
 	public FirstPersonController[] players;
-	public Camera menuCam;
+	public CamFixed menuCam;
 	public GameObject mainMenu;
 	public GameObject gameHud;
 	public IntroUI introUI;
@@ -38,6 +38,10 @@ public class GameManager : MonoBehaviour
 	public float playerTimer { get; private set; }
 	public VictoryUI victoryUI;
 	public GameObject menuObjects;
+
+	public float camAnimOffset;
+	public Vector3 camAnimOffset3D;
+	public float camAnimSpeed;
 
 
 	bool playbackTest;
@@ -162,17 +166,22 @@ public class GameManager : MonoBehaviour
 
 	void StartNextPlayer()
 	{
-		
 		mainMenu.gameObject.SetActive(false);
 		introUI.gameObject.SetActive(true);
 		introUI.Set(currentPlayer.playerType);
 		waitingForPlayerConfirm = true;
+		//menuCam.GetComponent<CamFixed>().active = false;
 	}
 
 	void Update()
 	{
 		if (waitingForPlayerConfirm)
 		{
+			Vector3 targetPos = currentPlayer.cam.transform.position - currentPlayer.transform.forward * camAnimOffset + camAnimOffset3D;
+			menuCam.transform.position = Vector3.Lerp(menuCam.transform.position, targetPos, Time.deltaTime * camAnimSpeed);
+			menuCam.transform.rotation = Quaternion.Slerp(menuCam.transform.rotation, Quaternion.LookRotation(-currentPlayer.transform.forward, Vector3.up), Time.deltaTime * camAnimSpeed);
+			menuCam.UpdateBaseRot();
+			
 			if (Input.GetKeyDown(KeyCode.Tab))
 			{
 				menuObjects.SetActive(false);

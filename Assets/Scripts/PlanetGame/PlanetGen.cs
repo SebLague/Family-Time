@@ -6,6 +6,8 @@ using UnityEngine;
 public class PlanetGen : MonoBehaviour
 {
 	public int res;
+	public float lac = 2;
+	public int layerCount;
 	public MeshFilter display;
 	int resOld = -1;
 	public float radius;
@@ -73,9 +75,17 @@ public class PlanetGen : MonoBehaviour
 	float GetNoise(Vector3 p)
 	{
 		float h = 0;
-
-		p *= noiseScale;
-		h = (float)noiseGen.Evaluate(p.x, p.y, p.z);
+			p *= noiseScale;
+			float amp = noiseScale;
+			
+		for (int i = 0; i < layerCount; i++)
+		{
+			float n = (float)noiseGen.Evaluate(p.x, p.y, p.z);
+			float shaped = 1 - Mathf.Abs(n*2-1);
+			h += shaped * amp;
+			amp *= 0.5f;
+			p *= lac;
+		}
 
 		return h * noiseStrength;
 	}

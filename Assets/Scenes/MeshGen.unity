@@ -318,6 +318,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1411490312310008983, guid: f7be5ef23ed0d2f4bbd2dee3f3a0ccc9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1879181097023913235, guid: f7be5ef23ed0d2f4bbd2dee3f3a0ccc9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -414,6 +418,10 @@ PrefabInstance:
     - target: {fileID: 3225230433280454298, guid: 457a27826ccb8874eb3717fa23363686, type: 3}
       propertyPath: m_Name
       value: Camera Controller
+      objectReference: {fileID: 0}
+    - target: {fileID: 3225230433280454298, guid: 457a27826ccb8874eb3717fa23363686, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7085717168770488416, guid: 457a27826ccb8874eb3717fa23363686, type: 3}
       propertyPath: m_LocalPosition.x
@@ -586,12 +594,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78574d80bcac40147a6004b87709e293, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  res: 50
+  res: 90
+  lac: 2.43
+  layerCount: 5
   display: {fileID: 632817469}
   radius: 15
   noiseSeed: 5
-  noiseScale: 8.56
-  noiseStrength: 2.13
+  noiseScale: 3.37
+  noiseStrength: 0.38
   oceanHeight: 15.43
   ocean: {fileID: 183950773}
 --- !u!4 &1771910748
@@ -626,7 +636,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!81 &2021633956
 AudioListener:
   m_ObjectHideFlags: 0

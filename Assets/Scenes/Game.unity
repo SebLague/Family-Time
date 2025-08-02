@@ -25500,6 +25500,8 @@ MonoBehaviour:
   owner: {fileID: 147061111}
   ownerInRegion: 0
   bg: {fileID: 1607788829}
+  animSpeed: 3
+  yAddMul: 0.25
   scoreUI: {fileID: 820532233}
   notes:
   - {fileID: 1425552366}

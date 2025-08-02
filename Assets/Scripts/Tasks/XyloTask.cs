@@ -1,9 +1,12 @@
 using System.Collections.Generic;
+using Seb.Helpers;
 using UnityEngine;
 
 public class XyloTask : Task
 {
 	[Header("Xylo")]
+	public float animSpeed = 2;
+	public float yAddMul = 2;
 	public TMPro.TMP_Text scoreUI;
 
 	public BoxCollider[] notes;
@@ -21,6 +24,7 @@ public class XyloTask : Task
 
 	public static List<XyloSoundKeyframe> keyframes = new();
 	float playbackTimePrev;
+	
 
 	protected override void Awake()
 	{
@@ -35,14 +39,52 @@ public class XyloTask : Task
 	void Update()
 	{
 		if (!taskActive || !GameManager.Instance.gameActive) return;
+		
+		// Anim
+		if (animQueue.Count > 0)
+		{
+			AnimState state = animQueue.Peek();
+			if (state.t == 0)
+			{
+				state.pStart = stick.transform.position;
+				state.rStart = stick.transform.rotation;
+			}
+			state.t += Time.deltaTime * animSpeed;
+			
+			float yAdd = 1 - Mathf.Pow(2 * Mathf.Clamp01(state.t) - 1, 2);
+			stick.transform.position = Vector3.Lerp(state.pStart, state.p, Maths.EaseQuadIn(state.t));
+			stick.transform.position += Vector3.up * (yAdd * yAddMul);
+
+			if (state.t >= 0.7f && !state.playedSound)
+			{
+				state.playedSound = true;
+				PlayNoteSound(state.noteIndex);
+				
+			}
+			
+			if (state.t >= 1)
+			{
+				notePlayCounts[state.noteIndex]++;
+				animQueue.Dequeue();
+			}
+		}
 
 		// ---------- Play notes
-		int selectedNoteIndex = GetNearestMouseOverIndex(notes);
+		
+		Vector3 hitPos;
+		int selectedNoteIndex = GetNearestMouseOverIndex(notes, out hitPos);
 
 		if (Input.GetMouseButtonDown(0) && selectedNoteIndex != -1)
 		{
-			PlayNoteSound(selectedNoteIndex);
-			notePlayCounts[selectedNoteIndex]++;
+			AnimState animState = new()
+			{
+				noteIndex = selectedNoteIndex,
+				p = hitPos,
+			};
+			animQueue.Enqueue(animState);
+			
+			//PlayNoteSound(selectedNoteIndex);
+			//notePlayCounts[selectedNoteIndex]++;
 
 			// Record
 			XyloSoundKeyframe keyframe = new()
@@ -93,11 +135,14 @@ public class XyloTask : Task
 		}
 	}
 
-	struct AnimState
+	class AnimState
 	{
 		public float t;
 		public Vector3 p;
 		public int noteIndex;
+		public Vector3 pStart;
+		public Quaternion rStart;
+		public bool playedSound;
 	}
 
 	public override void EnterTask()

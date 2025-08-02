@@ -16,6 +16,8 @@ public class XyloTask : Task
 	public Transform stick;
 
 	Queue<AnimState> animQueue = new();
+	public Transform hitLineA;
+	public Transform hitLineB;
 	
 	
 
@@ -79,7 +81,7 @@ public class XyloTask : Task
 			AnimState animState = new()
 			{
 				noteIndex = selectedNoteIndex,
-				p = hitPos,
+				p = Maths.ClosestPointOnLineSegment(hitPos, hitLineA.position, hitLineB.position),
 			};
 			animQueue.Enqueue(animState);
 			

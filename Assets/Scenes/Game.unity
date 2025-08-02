@@ -24944,6 +24944,7 @@ GameObject:
   - component: {fileID: 1669547310}
   - component: {fileID: 1669547309}
   - component: {fileID: 1669547312}
+  - component: {fileID: 1669547313}
   m_Layer: 0
   m_Name: Menu Cam
   m_TagString: MainCamera
@@ -25040,6 +25041,20 @@ MonoBehaviour:
   targetWidth: 1920
   targetHeight: 1080
   type: 0
+--- !u!114 &1669547313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1669547308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5908af8e4dfbe8449ad8d22992856d7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxAngle: 8
+  smoothTime: 1
 --- !u!4 &1674530237 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -1322919590048205200, guid: 06bd94183f05e234c850930fe19ee0a6, type: 3}

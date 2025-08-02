@@ -11,6 +11,7 @@ public class ScribbleTask : Task
 	public BoxCollider paperBoxCollider;
 	public ComputeShader scribbleCompute;
 	public BoxCollider[] crayons;
+	public Color[] crayonCols;
 	public TMPro.TMP_Text scoreUI;
 	public Color textColDone;
 	RenderTexture tex;
@@ -105,7 +106,7 @@ public class ScribbleTask : Task
 
 		if (!taskCompleted)
 		{
-			scoreUI.text = $"scribble score: {scoreInt}%";
+			scoreUI.text = $"scribble satisfaction: {scoreInt}%";
 		}
 
 		if (scoreInt >= 100 && !taskCompleted)
@@ -152,7 +153,7 @@ public class ScribbleTask : Task
 	{
 		activeCrayonIndex = index;
 		activeCrayon = crayons[index].gameObject;
-		activeCol = activeCrayon.GetComponent<MeshRenderer>().sharedMaterial.color;
+		activeCol = crayonCols[index];
 		scribbleCompute.SetVector("drawCol", activeCol);
 		activeCrayon.gameObject.SetActive(false);
 	}

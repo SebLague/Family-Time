@@ -96,7 +96,7 @@ public class FirstPersonController : MonoBehaviour
 		}
 		else
 		{
-			//manager.playerGoalUI.gameObject.SetActive(false);
+			manager.playerGoalUI.gameObject.SetActive(false);
 		}
 	}
 

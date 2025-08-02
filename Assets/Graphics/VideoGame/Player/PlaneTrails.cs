@@ -31,11 +31,11 @@ public class PlaneTrails : MonoBehaviour
 
 	void Update()
 	{
-		float alpha = Mathf.Lerp(alphaMin, alphaMax, aircraft.SpeedT);
+		//float alpha = Mathf.Lerp(alphaMin, alphaMax, aircraft.SpeedT);
 
 		for (int i = 0; i < trails.Length; i++)
 		{
-			trails[i].sharedMaterial.color = new Color(trailCol.r, trailCol.g, trailCol.b, alpha);
+			trails[i].sharedMaterial.color = new Color(trailCol.r, trailCol.g, trailCol.b, alphaMax);
 		}
 
 	}

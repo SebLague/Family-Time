@@ -5,24 +5,30 @@ using UnityEngine;
 
 public class Aircraft : MonoBehaviour
 {
-
+	public bool isplaying;
 	public Transform sun;
 	public Vector2 sunOffset;
 	public float sunSpeed;
+	public TMPro.TMP_Text scoreText;
+	public GameObject blackScreen;
+	public GameObject noController;
 
 	[Header("Startup Settings")]
 	public float startElevationT;
+
 	bool worldIsSpherical = true;
 
 	public float worldRadius;
 
 	[Header("Elevation")]
 	public float minElevation;
+
 	public float maxElevation;
 	public float currentElevation;
 
 	[Header("Movement")]
 	public float turnSpeedInTopDownView;
+
 	public float turnSpeedInBehindView;
 	public float minSpeed = 4;
 	public float maxSpeed = 12;
@@ -34,6 +40,7 @@ public class Aircraft : MonoBehaviour
 
 	[HideInInspector]
 	public float totalTurnAngle;
+
 	public float smoothRollTime;
 	public float rollAngle;
 	public float smoothPitchTime;
@@ -43,16 +50,17 @@ public class Aircraft : MonoBehaviour
 
 	[Header("Graphics")]
 	public Transform model;
+
 	public Transform[] navigationLights;
 	public Transform[] ailerons;
 	public float aileronAngle = 20;
 	public Transform propeller;
 	public float propellerSpeed;
 
-	
 
 	[Header("Debug")]
 	public float currentSpeed;
+
 	public bool debug_TestInitPos;
 	public bool debug_lockMovement;
 
@@ -79,28 +87,43 @@ public class Aircraft : MonoBehaviour
 	float nextNavigationLightUpdateTime;
 	bool navigationLightsOn;
 
+
 	int numHoopsHit;
+	float winNotifyTime = -1;
+	[HideInInspector] public bool hasWon;
+	const int numHoops = 11;
 
 	void OnTriggerEnter(Collider other)
 	{
+		if (!isplaying) return;
 		if (other.CompareTag("Hoop"))
 		{
 			other.GetComponent<MeshRenderer>().material.color = Color.green;
 			other.GetComponent<BoxCollider>().enabled = false;
 			numHoopsHit++;
+			UpdateScore();
 		}
 		else if (other.CompareTag("Terrain"))
 		{
-			
 		}
+
 		Debug.Log(other.tag);
 	}
 
+	void UpdateScore()
+	{
+		scoreText.text = $"{numHoopsHit} / {numHoops}";
+
+		if (numHoopsHit >= numHoops && winNotifyTime <= 0)
+		{
+			winNotifyTime = Time.time + 1;
+		}
+	}
 
 	void Awake()
 	{
 		gameCamera = FindFirstObjectByType<GameCamera>();
-		
+
 		SetStartPos();
 
 		baseTargetSpeed = Mathf.Lerp(minSpeed, maxSpeed, 0.35f);
@@ -109,10 +132,37 @@ public class Aircraft : MonoBehaviour
 		boostTimeRemaining = boostTimeAtStart;
 
 		sun.rotation = GetSunTargetRotation();
+		UpdateScore();
+		blackScreen.SetActive(true);
+	}
+
+	public void StartGame(bool hasController)
+	{
+		isplaying = hasController;
+		blackScreen.SetActive(!hasController);
+		noController.SetActive(!hasController);
+	}
+
+	public void StopGame()
+	{
+		if (!hasWon)
+		{
+			isplaying = false;
+			noController.SetActive(false);
+			blackScreen.SetActive(true);
+			SetStartPos();
+		}
 	}
 
 	void Update()
 	{
+		if (!isplaying) return;
+
+		if (Time.time > winNotifyTime && winNotifyTime > 0)
+		{
+			hasWon = true;
+		}
+
 		//if (GameController.IsState(GameState.Playing))
 		{
 			HandleInput();
@@ -122,9 +172,8 @@ public class Aircraft : MonoBehaviour
 
 		UpdateGraphics();
 
-		
-		sun.rotation = Quaternion.Slerp(sun.rotation, GetSunTargetRotation(), Time.deltaTime * sunSpeed);
 
+		sun.rotation = Quaternion.Slerp(sun.rotation, GetSunTargetRotation(), Time.deltaTime * sunSpeed);
 	}
 
 	Quaternion GetSunTargetRotation()
@@ -151,8 +200,10 @@ public class Aircraft : MonoBehaviour
 
 	void HandleInput()
 	{
+		if (hasWon) return;
+		
 		Vector2 movementInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-		float accelerateDir = 1;
+		float accelerateDir = movementInput.y;
 		bool boosting = false;
 		UpdateMovementInput(movementInput, accelerateDir, boosting);
 	}
@@ -179,7 +230,7 @@ public class Aircraft : MonoBehaviour
 		// Update elevation
 		currentElevation += verticalVelocity * Time.deltaTime;
 		currentElevation = Mathf.Clamp(currentElevation, minElevation, maxElevation);
-		
+
 
 		UpdatePosition(forwardSpeed);
 		UpdateRotation(turnAmount);
@@ -205,6 +256,7 @@ public class Aircraft : MonoBehaviour
 		{
 			boostTimeRemaining = Mathf.Max(0, boostTimeRemaining - Time.deltaTime);
 		}
+
 		// Increase boost timer gradually when time has been gained
 		if (boostTimeToAdd > 0)
 		{
@@ -228,6 +280,7 @@ public class Aircraft : MonoBehaviour
 		{
 			newPos = new Vector3(newPos.x, currentElevation, newPos.z);
 		}
+
 		transform.position = newPos;
 	}
 
@@ -266,11 +319,11 @@ public class Aircraft : MonoBehaviour
 			navigationLightsOn = isDark;
 			nextNavigationLightUpdateTime = Time.time + 3;
 		}
+
 		SetNavigationLightScale((navigationLightsOn) ? 1 : 0, true);
 
 		void UpdateAileronGraphic(Transform aileron, float targetAngle)
 		{
-
 			Vector3 rot = aileron.localEulerAngles;
 			float smoothAngle = Mathf.LerpAngle(rot.x, targetAngle, Time.deltaTime * 5);
 			aileron.localEulerAngles = new Vector3(smoothAngle, rot.y, rot.z);
@@ -283,10 +336,8 @@ public class Aircraft : MonoBehaviour
 	}
 
 
-
 	public void SetStartPos()
 	{
-
 		currentElevation = Mathf.Lerp(minElevation, maxElevation, startElevationT);
 		transform.position = transform.position.normalized * (worldRadius + currentElevation);
 
@@ -304,10 +355,8 @@ public class Aircraft : MonoBehaviour
 
 			UpdateRotation(0);
 		}
-
 	}
 
-	
 
 	// Allow navigation lights to be turned on and off by scaling them (crude way to allow brightness to fade in/out)
 	void SetNavigationLightScale(float scale, bool smooth = false)
@@ -332,7 +381,7 @@ public class Aircraft : MonoBehaviour
 	{
 		boostTimeToAdd += time;
 	}
-	
+
 
 	public void SetPitch(float pitch)
 	{
@@ -343,43 +392,28 @@ public class Aircraft : MonoBehaviour
 	// ---- Properties ----
 	public Vector3 GravityUp
 	{
-		get
-		{
-			return (worldIsSpherical) ? transform.position.normalized : Vector3.up;
-		}
+		get { return (worldIsSpherical) ? transform.position.normalized : Vector3.up; }
 	}
 
 	public float Height
 	{
-		get
-		{
-			return worldRadius + currentElevation;
-		}
+		get { return worldRadius + currentElevation; }
 	}
 
 	public bool IsBoosting
 	{
-		get
-		{
-			return boosting;
-		}
+		get { return boosting; }
 	}
 
 	public bool BoosterIsCharging
 	{
-		get
-		{
-			return boostTimeToAdd > 0;
-		}
+		get { return boostTimeToAdd > 0; }
 	}
 
 	// Get speed value remapped to [0,1] (0 at min speed, 1 at max speed. Note: still 1 when boosting).
 	public float SpeedT
 	{
-		get
-		{
-			return Mathf.InverseLerp(minSpeed, maxSpeed, currentSpeed);
-		}
+		get { return Mathf.InverseLerp(minSpeed, maxSpeed, currentSpeed); }
 	}
 
 	public float TargetSpeedT
@@ -390,16 +424,13 @@ public class Aircraft : MonoBehaviour
 			{
 				return 1;
 			}
+
 			return Mathf.InverseLerp(minSpeed, maxSpeed, baseTargetSpeed);
 		}
 	}
 
 	public float BoostRemainingT
 	{
-		get
-		{
-			return Mathf.Clamp01(boostTimeRemaining / maxBoostTime);
-		}
+		get { return Mathf.Clamp01(boostTimeRemaining / maxBoostTime); }
 	}
-	
 }

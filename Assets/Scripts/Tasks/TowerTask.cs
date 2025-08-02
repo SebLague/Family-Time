@@ -57,12 +57,21 @@ public class TowerTask : Task
 			animState.disk.localPosition += Vector3.forward * (yAdd * yAddMul * 0.01f);
 		}
 
-		if (Input.GetMouseButtonDown(0) && !isAnimatingDisk)
+		bool mouseDown = Input.GetMouseButtonDown(0);
+		bool mouseUp = Input.GetMouseButtonUp(0);
+
+		if ((mouseDown || mouseUp) && !isAnimatingDisk)
 		{
 			float dstDisk;
 			float dstPole;
 			int newSelectedDiskIndex = GetNearestMouseOverIndex(disks, out dstDisk);
 			int selectedPoleIndex = GetNearestMouseOverIndex(poles, out dstPole);
+
+			if (mouseUp)
+			{
+				newSelectedDiskIndex = -1;
+				dstDisk = float.MaxValue;
+			}
 
 			bool canPole = selectedDiskIndex != -1 && selectedPoleIndex != -1;
 			bool prioPole = dstPole < dstDisk && canPole;

@@ -116,7 +116,7 @@ public class ScribbleTask : Task
 
 
 		// -------- Exit
-		if (Input.GetKeyDown(KeyCode.Escape))
+		if (Input.GetKeyDown(GameManager.TaskEnterKey) && Time.frameCount > enterFrame)
 		{
 			ExitTask();
 		}

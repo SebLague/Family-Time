@@ -14,7 +14,8 @@ public abstract class Task : MonoBehaviour
 	protected bool taskActive;
 	bool taskCompleteQuiet;
 	[HideInInspector] public bool ownerInRegion;
-
+	protected int enterFrame;
+	
 	protected virtual void Awake()
 	{
 		if (cam) cam.gameObject.SetActive(false);
@@ -50,6 +51,7 @@ public abstract class Task : MonoBehaviour
 	{
 		if (isEnterableTask)
 		{
+			enterFrame = Time.frameCount;
 			taskActive = true;
 			owner.SetControllable(false);
 			owner.gameObject.SetActive(false);
@@ -96,6 +98,31 @@ public abstract class Task : MonoBehaviour
 			}
 		}
 
+		return nearestIndex;
+	}
+	
+	public int GetNearestMouseOverIndex(BoxCollider[] elements, out float dst)
+	{
+		RaycastHit hitInfo;
+		Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+
+		int nearestIndex = -1;
+		float nearestDst = float.MaxValue;
+
+		for (int i = 0; i < elements.Length; i++)
+		{
+			elements[i].Raycast(ray, out hitInfo, 100);
+			if (hitInfo.collider != null)
+			{
+				if (hitInfo.distance < nearestDst)
+				{
+					nearestIndex = i;
+					nearestDst = hitInfo.distance;
+				}
+			}
+		}
+
+		dst = nearestDst;
 		return nearestIndex;
 	}
 }

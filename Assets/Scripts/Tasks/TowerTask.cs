@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Seb.Helpers;
 using UnityEngine;
 
 public class TowerTask : Task
@@ -10,6 +11,8 @@ public class TowerTask : Task
 	List<int> poleStart = new();
 	List<int> poleEnd = new();
 	List<int> poleMiddle = new();
+	public Transform successText;
+	float successStartTime;
 
 	float startY;
 	float spacingY;
@@ -18,11 +21,12 @@ public class TowerTask : Task
 	int selectedDiskIndex;
 
 	public static List<TowerKeyFrame> keyframes = new();
+	
 
 	protected override void Awake()
 	{
 		base.Awake();
-
+		successText.gameObject.SetActive(false);
 		poleStart.AddRange(new int[] { 0, 1, 2, 3 });
 		diskCols = disks.Select(d => d.gameObject.GetComponent<MeshRenderer>().material.color).ToArray();
 		startY = disks[0].transform.localPosition.z;
@@ -34,13 +38,26 @@ public class TowerTask : Task
 	{
 		if (!taskActive || !GameManager.Instance.gameActive) return;
 
+		if (taskCompleted)
+		{
+			successText.gameObject.SetActive(true);
+			successText.localScale = Vector3.one * Maths.EaseCubeOut(Time.time - successStartTime);
+		}
+
 		if (Input.GetMouseButtonDown(0))
 		{
-			int newSelectedDiskIndex = GetNearestMouseOverIndex(disks);
-			int selectedPoleIndex = GetNearestMouseOverIndex(poles);
+			float dstDisk;
+			float dstPole;
+			int newSelectedDiskIndex = GetNearestMouseOverIndex(disks, out dstDisk);
+			int selectedPoleIndex = GetNearestMouseOverIndex(poles, out dstPole);
 
-			if (newSelectedDiskIndex != -1)
+			bool canPole = selectedDiskIndex != -1 && selectedPoleIndex != -1;
+			bool prioPole = dstPole < dstDisk && canPole;
+
+			if (newSelectedDiskIndex != -1 && !prioPole)
 			{
+				int currPoleIndex = GetPoleIndexFromDiskIndex(newSelectedDiskIndex);
+				newSelectedDiskIndex = GetPoleValue(currPoleIndex);
 				selectedDiskIndex = newSelectedDiskIndex;
 
 				for (int i = 0; i < disks.Length; i++)
@@ -52,7 +69,7 @@ public class TowerTask : Task
 
 				disks[selectedDiskIndex].gameObject.GetComponent<MeshRenderer>().sharedMaterial.color = diskCols[selectedDiskIndex];
 			}
-			else if (selectedDiskIndex != -1 && selectedPoleIndex != -1)
+			else if (canPole)
 			{
 				int currMaxOnPole = GetPoleValue(selectedPoleIndex);
 				//Debug.Log($"Selected pole: {selectedPoleIndex}  with topDiskIndex = {currMaxOnPole}");
@@ -77,14 +94,15 @@ public class TowerTask : Task
 		}
 
 		// Task completion
-		if (poleEnd.Count == 4 || (Application.isEditor && Input.GetKeyDown(KeyCode.Q)))
+		if (poleEnd.Count == 4 || poleMiddle.Count == 4 || (Application.isEditor && Input.GetKeyDown(KeyCode.Q)))
 		{
+			successStartTime = Time.time;
 			Debug.Log("Tower completed");
 			TaskCompleted();
 		}
 
 		// -------- Exit
-		if (Input.GetKeyDown(KeyCode.Escape))
+		if (Input.GetKeyDown(GameManager.TaskEnterKey) && Time.frameCount > enterFrame)
 		{
 			ExitTask();
 		}

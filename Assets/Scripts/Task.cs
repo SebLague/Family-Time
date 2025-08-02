@@ -15,10 +15,12 @@ public abstract class Task : MonoBehaviour
 	bool taskCompleteQuiet;
 	[HideInInspector] public bool ownerInRegion;
 	protected int enterFrame;
+	public GameObject bg;
 	
 	protected virtual void Awake()
 	{
 		if (cam) cam.gameObject.SetActive(false);
+		if (bg) bg.SetActive(false);
 	}
 
 	public string GetGoalString()
@@ -51,6 +53,7 @@ public abstract class Task : MonoBehaviour
 	{
 		if (isEnterableTask)
 		{
+			if (bg) bg.SetActive(true);
 			enterFrame = Time.frameCount;
 			taskActive = true;
 			owner.SetControllable(false);
@@ -65,6 +68,7 @@ public abstract class Task : MonoBehaviour
 	{
 		if (isEnterableTask)
 		{
+			if (bg) bg.SetActive(false);
 			owner.gameObject.SetActive(true);
 			owner.SetControllable(true);
 			cam.gameObject.SetActive(false);

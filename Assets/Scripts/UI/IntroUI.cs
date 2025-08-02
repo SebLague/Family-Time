@@ -37,7 +37,7 @@ public class IntroUI : MonoBehaviour
 		string playerName = playerType.ToString().ToUpper();
 		string playerName2 = GetName2(playerType);
 
-		string headText = $"YOU ARE {playerName}\n<size=35%>YOU HAVE 3 MINUTES TO ACCOMPLISH YOUR {playerName2} GOALS";
+		string headText = $"YOU ARE {playerName}\n<size=35%><color=#FFFFFFAA>YOU HAVE 3 MINUTES TO ACCOMPLISH YOUR {playerName2} GOALS";
 		string goalText = playerType switch
 		{
 			GameManager.Players.Baby => MakeGoalsString(babyGoalA, babyGoalB, babyGoalC),

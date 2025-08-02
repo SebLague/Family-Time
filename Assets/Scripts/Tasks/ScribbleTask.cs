@@ -7,12 +7,15 @@ public class ScribbleTask : Task
 	[Header("Scribble")]
 	public int texRes = 512;
 
+	public float upDst;
+	public float downDel;
 	public MeshRenderer paper;
 	public BoxCollider paperBoxCollider;
 	public ComputeShader scribbleCompute;
 	public BoxCollider[] crayons;
 	public Color[] crayonCols;
 	public TMPro.TMP_Text scoreUI;
+	public TMPro.TMP_Text instructUI;
 	public Color textColDone;
 	RenderTexture tex;
 
@@ -22,6 +25,8 @@ public class ScribbleTask : Task
 	float currScoreT;
 	Color activeCol;
 	Vector2 uvCurr;
+	Vector3[] posRestore;
+	Quaternion[] rotRestore;
 
 	public static List<ScribbleKeyframe> keyframes = new();
 
@@ -37,6 +42,14 @@ public class ScribbleTask : Task
 		scribbleCompute.SetTexture(1, "Tex", tex);
 		scribbleCompute.SetInts("Res", tex.width, tex.height);
 		ComputeHelper.Dispatch(scribbleCompute, tex.width, tex.height, kernelIndex: 0);
+
+		posRestore = new Vector3[crayons.Length];
+		rotRestore = new Quaternion[crayons.Length];
+		for (int i = 0; i < crayons.Length; i++)
+		{
+			posRestore[i] = crayons[i].transform.position;
+			rotRestore[i] = crayons[i].transform.rotation;
+		}
 	}
 
 	void Update()
@@ -56,6 +69,18 @@ public class ScribbleTask : Task
 		// ------------- Draw
 		bool mouseIsDown = Input.GetMouseButton(0);
 		Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+
+		if (activeCrayon != null)
+		{
+			RaycastHit hitAny;
+			Physics.Raycast(ray, out hitAny);
+			if (hitAny.collider != null)
+			{
+				activeCrayon.transform.localEulerAngles = new Vector3(150, 0, 0);
+				activeCrayon.transform.position = hitAny.point + activeCrayon.transform.up * (upDst + (mouseIsDown ? downDel : 0));
+			}
+		}
+
 		paperBoxCollider.Raycast(ray, out RaycastHit hitInfo, 100);
 		if (hitInfo.collider != null && activeCrayon != null)
 		{
@@ -92,9 +117,9 @@ public class ScribbleTask : Task
 					}
 				}
 
-				float fillScoreT = Maths.EaseCubeIn(Mathf.Clamp01(fillCount / 300f));
+				float fillScoreT = Maths.EaseQuadIn(Mathf.Clamp01(fillCount / 200f));
 				float secondMostUsedCol = GetSecondHighest(colCounts);
-				fillScoreT *= Mathf.Lerp(0.5f, 1, secondMostUsedCol / 80f);
+				fillScoreT *= Mathf.Lerp(0.3f, 1, secondMostUsedCol / 80f);
 				const int colScoreMax = 40;
 				float colScoreT = Vector4.Dot(Vector4.Min(Vector4.one * colScoreMax, colCounts), Vector4.one * (1f / colScoreMax)) / 4f;
 				currScoreT = fillScoreT * 0.3f + colScoreT * 0.7f;
@@ -112,6 +137,7 @@ public class ScribbleTask : Task
 		if (scoreInt >= 100 && !taskCompleted)
 		{
 			scoreUI.color = textColDone;
+			instructUI.text = "F to exit";
 			TaskCompleted();
 		}
 
@@ -143,6 +169,9 @@ public class ScribbleTask : Task
 		if (activeCrayon != null)
 		{
 			activeCrayon.SetActive(true);
+			crayons[activeCrayonIndex].enabled = true;
+			activeCrayon.transform.position =  posRestore[activeCrayonIndex];
+			activeCrayon.transform.rotation = rotRestore[activeCrayonIndex];
 		}
 
 		activeCrayonIndex = -1;
@@ -151,11 +180,12 @@ public class ScribbleTask : Task
 
 	void TakeCrayon(int index)
 	{
+		crayons[index].enabled = false;
 		activeCrayonIndex = index;
 		activeCrayon = crayons[index].gameObject;
 		activeCol = crayonCols[index];
 		scribbleCompute.SetVector("drawCol", activeCol);
-		activeCrayon.gameObject.SetActive(false);
+		//activeCrayon.gameObject.SetActive(false);
 	}
 
 	public override void EnterTask()

@@ -35,6 +35,10 @@ public class CatCatchTask : Task
 		{
 			TaskCompleted();
 		}
+		else
+		{
+			owner.NotifyTaskProgress();
+		}
 	}
 
 	protected override string CustomizeGoalString()

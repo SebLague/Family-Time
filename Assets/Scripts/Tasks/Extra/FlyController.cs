@@ -14,6 +14,7 @@ public class FlyController : MonoBehaviour
 	VertexPath path;
 	float dst = 0;
 
+	bool caught;
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	void Start()
 	{
@@ -43,6 +44,8 @@ public class FlyController : MonoBehaviour
 
 	public void Catch()
 	{
+		if (caught) return;
+		caught = true;
 		FindFirstObjectByType<CatCatchTask>().Caught(this);
 		gameObject.SetActive(false);
 	}

@@ -12,8 +12,8 @@ public class IntroUI : MonoBehaviour
 	const string babyGoalC = "Play some funky tunes";
 	float time;
 
-	const string catGoalA = "Catch some bugs";
-	const string catGoalB = "Knock over the candles";
+	const string catGoalA = "Knock over candles";
+	const string catGoalB = "Catch some bugs";
 	const string catGoalC = "Snooze";
 
 	const string teenGoalA = "Find game controller";

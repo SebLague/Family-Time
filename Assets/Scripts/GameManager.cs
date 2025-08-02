@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
 	public PauseMenu pauseMenu;
 	bool isPaused;
 	public static float mouseSensitivityT = 0.5f;
-	public Transform audioListener;
+	Transform audioListener;
 
 	public float camAnimOffset;
 	public float camAnimSpeed;
@@ -105,8 +105,14 @@ public class GameManager : MonoBehaviour
 		ShowCursor(true);
 		if (numLoads == 0)
 		{
+			GameObject a = new GameObject("AudioListener");
+			a.AddComponent<AudioListener>();
+			audioListener = a.transform;
+			GameObject.DontDestroyOnLoad(audioListener);
 			InitStartupSettings();
 		}
+
+		audioListener = FindFirstObjectByType<AudioListener>().transform;
 
 		foreach (FirstPersonController c in players)
 		{

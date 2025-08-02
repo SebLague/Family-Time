@@ -9,6 +9,12 @@ public class XyloTask : Task
 	public BoxCollider[] notes;
 	public AudioClip[] noteSounds;
 	public Color textColDone;
+	public Transform stickPreview;
+	public Transform stick;
+
+	Queue<AnimState> animQueue = new();
+	
+	
 
 	AudioSource audioSource;
 	int[] notePlayCounts;
@@ -22,6 +28,7 @@ public class XyloTask : Task
 
 		audioSource = GetComponent<AudioSource>();
 		notePlayCounts = new int[notes.Length];
+		stick.gameObject.SetActive(false);
 	}
 
 
@@ -70,7 +77,7 @@ public class XyloTask : Task
 
 		if (!taskCompleted)
 		{
-			scoreUI.text = $"music score: {scoreInt} %";
+			scoreUI.text = $"{scoreInt} %";
 		}
 
 		if (scoreInt >= 100 && !taskCompleted)
@@ -86,16 +93,28 @@ public class XyloTask : Task
 		}
 	}
 
+	struct AnimState
+	{
+		public float t;
+		public Vector3 p;
+		public int noteIndex;
+	}
+
 	public override void EnterTask()
 	{
 		base.EnterTask();
 		scoreUI.gameObject.SetActive(true);
+		stick.gameObject.SetActive(true);
+		stickPreview.gameObject.SetActive(false);
 	}
 
 	public override void ExitTask()
 	{
 		base.ExitTask();
 		scoreUI.gameObject.SetActive(false);
+		
+		stick.gameObject.SetActive(false);
+		stickPreview.gameObject.SetActive(true);
 	}
 
 	public override void Playback(float playTime)

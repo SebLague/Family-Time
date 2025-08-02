@@ -358,7 +358,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &23116678
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2125,7 +2125,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -545.1946}
+  m_AnchoredPosition: {x: 50, y: -488.2654}
   m_SizeDelta: {x: 257.45, y: 22.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &177595703
@@ -6634,8 +6634,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -330.6967}
-  m_SizeDelta: {x: 100, y: 15.3134}
+  m_AnchoredPosition: {x: 50, y: -269.9281}
+  m_SizeDelta: {x: 100, y: 22.9922}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &418061731
 MonoBehaviour:
@@ -8582,8 +8582,7 @@ MonoBehaviour:
   res1: {fileID: 926028878}
   res2: {fileID: 1194183496}
   res3: {fileID: 1952254782}
-  borderless: {fileID: 23116679}
-  fullscreen: {fileID: 1981157684}
+  borderless: {fileID: 1981157684}
   volumeSlider: {fileID: 1520729485}
   mouseSlider: {fileID: 864274167}
   back: {fileID: 1514821867}
@@ -9262,7 +9261,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -518.5847}
+  m_AnchoredPosition: {x: 50, y: -461.65552}
   m_SizeDelta: {x: 100, y: 13.8198}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &630046059
@@ -19069,7 +19068,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -583.4446}
+  m_AnchoredPosition: {x: 50, y: -526.51544}
   m_SizeDelta: {x: 342.23, y: 37.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &864274167
@@ -22219,7 +22218,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -637.1896}
+  m_AnchoredPosition: {x: 50, y: -580.26044}
   m_SizeDelta: {x: 100, y: 53.49}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1019887830
@@ -31604,7 +31603,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -700.46356}
+  m_AnchoredPosition: {x: 50, y: -643.5344}
   m_SizeDelta: {x: 357.45, y: 56.158}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1514821867
@@ -31756,7 +31755,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -484.6748}
+  m_AnchoredPosition: {x: 50, y: -427.7456}
   m_SizeDelta: {x: 342.23, y: 37.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1520729485
@@ -33965,7 +33964,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -374.88242}
+  m_AnchoredPosition: {x: 50, y: -317.95322}
   m_SizeDelta: {x: 357.45, y: 56.158}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1618124803
@@ -38360,7 +38359,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -419.0681}
+  m_AnchoredPosition: {x: 50, y: -362.13892}
   m_SizeDelta: {x: 100, y: 15.3134}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1888429726
@@ -40617,7 +40616,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -286.51102}
+  m_AnchoredPosition: {x: 50, y: -221.903}
   m_SizeDelta: {x: 357.45, y: 56.158}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1981157684
@@ -41814,7 +41813,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -446.4248}
+  m_AnchoredPosition: {x: 50, y: -389.4956}
   m_SizeDelta: {x: 257.45, y: 22.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2107264988

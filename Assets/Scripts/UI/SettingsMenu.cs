@@ -8,7 +8,6 @@ public class SettingsMenu : MonoBehaviour
 	public Button res2;
 	public Button res3;
 	public Button borderless;
-	public Button fullscreen;
 
 	public Slider volumeSlider;
 	public Slider mouseSlider;
@@ -22,8 +21,7 @@ public class SettingsMenu : MonoBehaviour
 		res1.onClick.AddListener(() => SetRes(1280, 720));
 		res2.onClick.AddListener(() => SetRes(1920, 1080));
 		res3.onClick.AddListener(() => SetRes(2560, 1440));
-		borderless.onClick.AddListener(() => Screen.fullScreenMode = FullScreenMode.FullScreenWindow);
-		fullscreen.onClick.AddListener(() => Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen);
+		borderless.onClick.AddListener(FullWin);
 		muteMusic.onClick.AddListener(ToggleMuteMusic);
 		volumeSlider.onValueChanged.AddListener(Vol);
 		mouseSlider.onValueChanged.AddListener(Mouse);
@@ -33,6 +31,13 @@ public class SettingsMenu : MonoBehaviour
 		volumeSlider.value = AudioListener.volume;
 		mouseSlider.value = GameManager.mouseSensitivityT;
 	}
+
+	void FullWin()
+	{
+		Screen.SetResolution(Display.main.systemWidth, Display.main.systemHeight, FullScreenMode.FullScreenWindow);
+		//Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
+	}
+	
 
 	public void NotifyFromPauseMenu(PauseMenu pauseMenu)
 	{

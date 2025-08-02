@@ -43,7 +43,7 @@ public class FirstPersonController : MonoBehaviour
 	bool lockCursor = true;
 	float timeSinceLastGrounded;
 	GameManager manager;
-
+	int physExLayer;
 
 	[HideInInspector] public List<PlaybackKeyframe> playbackKeyframes = new();
 
@@ -54,6 +54,7 @@ public class FirstPersonController : MonoBehaviour
 
 	void Start()
 	{
+		physExLayer = LayerMask.NameToLayer("PhysExtras");
 		gameHud = FindFirstObjectByType<GameHud>(FindObjectsInactive.Include);
 		fovCur = fov;
 		controller = GetComponent<CharacterController>();
@@ -103,8 +104,6 @@ public class FirstPersonController : MonoBehaviour
 	{
 		gameHud.UpdateGoalHud(tasks);
 	}
-
-
 
 
 	void Update()
@@ -177,7 +176,17 @@ public class FirstPersonController : MonoBehaviour
 
 	void OnTriggerEnter(Collider other)
 	{
-		if (!isControllable || !GameManager.Instance.gameActive) return;
+		if (!GameManager.Instance.gameActive) return;
+
+	
+		if (other.gameObject.CompareTag("PhysExtra"))
+		{
+			float velPhysMul = 1.3f;
+			float yBoost = 1.4f;
+			other.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(velocity.x, Mathf.Max(0, velocity.y) + yBoost, velocity.z) * velPhysMul, ForceMode.VelocityChange);
+		}
+
+		if (!isControllable) return;
 		if (other.gameObject.GetComponent<Task>())
 		{
 			Task task = other.gameObject.GetComponent<Task>();
@@ -229,7 +238,7 @@ public class FirstPersonController : MonoBehaviour
 			if (task.owner == this)
 			{
 				task.ownerInRegion = false;
-				if(potentialTask) potentialTask.ownerInRegion = false;
+				if (potentialTask) potentialTask.ownerInRegion = false;
 				gameHud.ClearInfo();
 				potentialTask = null;
 			}

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Hoop
   - Terrain
+  - PhysExtra
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - Foam
   - PhysExtras
   - PlanetGame
-  - 
+  - TaskText3D
   - 
   - 
   - 

@@ -24,9 +24,12 @@ public class Candle : MonoBehaviour
 
 	void Update()
 	{
-		if (Application.isEditor && Input.GetKeyDown(KeyCode.PageDown))
+		if (Application.isEditor)
 		{
-			ApplyForceDir(directions[0].forward);
+			if (Input.GetKeyDown(KeyCode.Alpha1)) ApplyForceDir(directions[0].forward);
+			if (Input.GetKeyDown(KeyCode.Alpha2)) ApplyForceDir(directions[1].forward);
+			if (Input.GetKeyDown(KeyCode.Alpha3)) ApplyForceDir(directions[2].forward);
+			
 		}
 
 		if (hasApplied && Time.time > fireStartTime && !hasStartedFire)

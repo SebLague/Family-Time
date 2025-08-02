@@ -10,7 +10,7 @@ public class FirstPersonController : MonoBehaviour
 {
 	public GameManager.Players playerType;
 	public Task[] tasks;
-
+	public float selfHideThreshold;
 
 	public float smoothVelTAir;
 	public float smoothVelTGround;
@@ -332,7 +332,7 @@ public class FirstPersonController : MonoBehaviour
 
 		if (skinnedMesh != null)
 		{
-			skinnedMesh.shadowCastingMode = cam.transform.forward.y > 0 ? ShadowCastingMode.ShadowsOnly : ShadowCastingMode.On;
+			skinnedMesh.shadowCastingMode = cam.transform.forward.y > selfHideThreshold ? ShadowCastingMode.ShadowsOnly : ShadowCastingMode.On;
 		}
 
 		if (lockCursor)

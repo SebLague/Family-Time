@@ -7103,6 +7103,13 @@ MonoBehaviour:
     volumeT: 0.5
   - clip: {fileID: 8300000, guid: 91bed157aea1dd6498dbd828b6d32b48, type: 3}
     volumeT: 0.5
+  impactSoundsGlass:
+  - clip: {fileID: 8300000, guid: 756aa5e47f40fa24dbe0098720907cc1, type: 3}
+    volumeT: 0.8
+  - clip: {fileID: 8300000, guid: ea0c7abcb0e2c6b428a7efca00314dc6, type: 3}
+    volumeT: 0.8
+  - clip: {fileID: 8300000, guid: 98b70a564e30392408501965d18b1f65, type: 3}
+    volumeT: 0.8
   camAnimOffset: -0.58
   camAnimSpeed: 3
   ignoreTimer: 0

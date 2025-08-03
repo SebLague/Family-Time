@@ -31,6 +31,7 @@ public class CandleTask : Task
 			dir = dir
 		};
 		toppleEvents.Add(e);
+		owner.PlayRandom(GameManager.Instance.impactSoundsGlass);
 
 		toppledCount++;
 		owner.NotifyTaskProgress();

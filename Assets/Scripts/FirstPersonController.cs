@@ -198,11 +198,7 @@ public class FirstPersonController : MonoBehaviour
 			float velPhysMul = 1.3f;
 			float yBoost = 1.6f;
 			other.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(velocity.x, Mathf.Max(0, velocity.y) + yBoost, velocity.z) * velPhysMul, ForceMode.VelocityChange);
-			if (Time.time - lastImpactSfxTime > 0.25f)
-			{
-				var impSfx = GameManager.Instance.impactSounds[UnityEngine.Random.Range(0, GameManager.Instance.impactSounds.Length)];
-				audioSource.PlayOneShot(impSfx.clip, impSfx.volumeT);
-			}
+			PlayImpact();
 		}
 
 		if (!isControllable) return;
@@ -423,6 +419,20 @@ public class FirstPersonController : MonoBehaviour
 			{
 				CatSnooze();
 			}
+		}
+	}
+
+	public void PlayRandom(Sfx[] s)
+	{
+		var impSfx = s[UnityEngine.Random.Range(0, s.Length)];
+		audioSource.PlayOneShot(impSfx.clip, impSfx.volumeT);
+	}
+
+	public void PlayImpact()
+	{
+		if (Time.time - lastImpactSfxTime > 0.25f)
+		{
+			PlayRandom(GameManager.Instance.impactSounds);
 		}
 	}
 

@@ -49,6 +49,7 @@ public class GameManager : MonoBehaviour
 	public GameObject persistantPrefab;
 
 	public Sfx[] impactSounds;
+	public Sfx[] impactSoundsGlass;
 
 	public float camAnimOffset;
 	public float camAnimSpeed;

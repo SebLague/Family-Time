@@ -4208,8 +4208,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.34, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.34, y: 1, z: 1.0612445}
+  m_Center: {x: 0, y: 0, z: -0.001363204}
 --- !u!23 &288016048
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6951,10 +6951,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0.000046640635
-    width: 1
-    height: 0.9999067
+    x: 0.0001976788
+    y: 0
+    width: 0.99960464
+    height: 1
   near clip plane: 0.19
   far clip plane: 15
   field of view: 73.8
@@ -7075,11 +7075,11 @@ MonoBehaviour:
   startupMode: 0
   startTask: {fileID: 1442701591}
   players:
-  - {fileID: 430008004}
-  - {fileID: 336867575}
-  - {fileID: 1931072414}
-  - {fileID: 147061111}
   - {fileID: 613399923}
+  - {fileID: 430008004}
+  - {fileID: 147061111}
+  - {fileID: 1931072414}
+  - {fileID: 336867575}
   menuCam: {fileID: 1669547313}
   mainMenu: {fileID: 1779233156}
   gameHud: {fileID: 1575181038}
@@ -7591,10 +7591,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0.000046640635
-    width: 1
-    height: 0.9999067
+    x: 0.0001976788
+    y: 0
+    width: 0.99960464
+    height: 1
   near clip plane: 0.1
   far clip plane: 100
   field of view: 73.8
@@ -8689,19 +8689,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 392965301542925697, guid: b028edcfa3e138f47a1753acce9aafa8, type: 3}
       propertyPath: m_NormalizedViewPortRect.x
-      value: 0
+      value: 0.0001976788
       objectReference: {fileID: 0}
     - target: {fileID: 392965301542925697, guid: b028edcfa3e138f47a1753acce9aafa8, type: 3}
       propertyPath: m_NormalizedViewPortRect.y
-      value: 0.000046640635
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 392965301542925697, guid: b028edcfa3e138f47a1753acce9aafa8, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
-      value: 1
+      value: 0.99960464
       objectReference: {fileID: 0}
     - target: {fileID: 392965301542925697, guid: b028edcfa3e138f47a1753acce9aafa8, type: 3}
       propertyPath: m_NormalizedViewPortRect.height
-      value: 0.9999067
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1689462117404829777, guid: b028edcfa3e138f47a1753acce9aafa8, type: 3}
       propertyPath: m_IsActive
@@ -17150,7 +17150,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1db1031b9eec0f44b87e44d940e0fa99, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.22
+      value: 3.765
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1db1031b9eec0f44b87e44d940e0fa99, type: 3}
       propertyPath: m_LocalPosition.y
@@ -21095,10 +21095,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0.000046640635
-    width: 1
-    height: 0.9999067
+    x: 0.0001976788
+    y: 0
+    width: 0.99960464
+    height: 1
   near clip plane: 0.025
   far clip plane: 100
   field of view: 73.8
@@ -21499,10 +21499,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0.000046640635
-    width: 1
-    height: 0.9999067
+    x: 0.0001976788
+    y: 0
+    width: 0.99960464
+    height: 1
   near clip plane: 0.19
   far clip plane: 15
   field of view: 73.8
@@ -21728,10 +21728,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0.000046640635
-    width: 1
-    height: 0.9999067
+    x: 0.0001976788
+    y: 0
+    width: 0.99960464
+    height: 1
   near clip plane: 0.1
   far clip plane: 100
   field of view: 73.8
@@ -23183,10 +23183,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0.000046640635
-    width: 1
-    height: 0.9999067
+    x: 0.0001976788
+    y: 0
+    width: 0.99960464
+    height: 1
   near clip plane: 0.19
   far clip plane: 15
   field of view: 63.5
@@ -23852,7 +23852,7 @@ GameObject:
   - component: {fileID: 1106203774}
   - component: {fileID: 1106203773}
   - component: {fileID: 1106203772}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Quad (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24599,10 +24599,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0.000046640635
-    width: 1
-    height: 0.9999067
+    x: 0.0001976788
+    y: 0
+    width: 0.99960464
+    height: 1
   near clip plane: 0.19
   far clip plane: 100
   field of view: 38.7
@@ -27839,7 +27839,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedMax: 5
   speedMin: 3
-  speedMulti: 2
+  speedMulti: 1.5
   wings:
   - {fileID: 2056358769}
   - {fileID: 1294772785}
@@ -27881,8 +27881,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.53
-  m_Center: {x: 0, y: 0.18, z: 0.15}
+  m_Radius: 0.65
+  m_Center: {x: 0, y: 0.13, z: 0.15}
 --- !u!82 &1283131360
 AudioSource:
   m_ObjectHideFlags: 0
@@ -29515,8 +29515,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.77
-  m_Center: {x: 0, y: 0.78, z: 0}
+  m_Radius: 1.16
+  m_Center: {x: 0, y: 1.11, z: 0.48}
 --- !u!114 &1339105179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29586,8 +29586,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.53
-  m_Center: {x: 0, y: 0.18, z: 0.15}
+  m_Radius: 0.65
+  m_Center: {x: 0, y: 0.13, z: 0.15}
 --- !u!114 &1343579579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29602,7 +29602,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedMax: 4
   speedMin: 3.5
-  speedMulti: 2
+  speedMulti: 1.5
   wings:
   - {fileID: 2014857780}
   - {fileID: 244963012}
@@ -29929,8 +29929,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.53
-  m_Center: {x: 0, y: 0.18, z: 0.15}
+  m_Radius: 0.65
+  m_Center: {x: 0, y: 0.13, z: 0.15}
 --- !u!114 &1365635251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29945,7 +29945,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedMax: 3.75
   speedMin: 3.25
-  speedMulti: 2
+  speedMulti: 1.5
   wings:
   - {fileID: 1522711496}
   - {fileID: 1580744705}
@@ -35503,10 +35503,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0.000046640635
-    width: 1
-    height: 0.9999067
+    x: 0.0001976788
+    y: 0
+    width: 0.99960464
+    height: 1
   near clip plane: 0.1
   far clip plane: 100
   field of view: 73.8
@@ -35949,10 +35949,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0.000046640635
-    width: 1
-    height: 0.9999067
+    x: 0.0001976788
+    y: 0
+    width: 0.99960464
+    height: 1
   near clip plane: 0.1
   far clip plane: 100
   field of view: 82.2
@@ -37060,10 +37060,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0.000046640635
-    width: 1
-    height: 0.9999067
+    x: 0.0001976788
+    y: 0
+    width: 0.99960464
+    height: 1
   near clip plane: 0.025
   far clip plane: 100
   field of view: 73.8
@@ -37072,7 +37072,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 983
+    m_Bits: 981
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -37388,10 +37388,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0.000046640635
-    width: 1
-    height: 0.9999067
+    x: 0.0001976788
+    y: 0
+    width: 0.99960464
+    height: 1
   near clip plane: 0.025
   far clip plane: 100
   field of view: 73.8
@@ -37902,8 +37902,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.175961, y: 1.115952, z: 1.805859}
-  m_Center: {x: 0.0053004995, y: 0.54072, z: 0.026589513}
+  m_Size: {x: 0.23640709, y: 0.9826455, z: 1.805859}
+  m_Center: {x: 0.035523534, y: 0.47406673, z: 0.026589505}
 --- !u!4 &1845203328 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 366ca908cf2c28a45bdb8a975b00ae4d, type: 3}
@@ -38699,10 +38699,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0.000046640635
-    width: 1
-    height: 0.9999067
+    x: 0.0001976788
+    y: 0
+    width: 0.99960464
+    height: 1
   near clip plane: 0.19
   far clip plane: 100
   field of view: 73.8

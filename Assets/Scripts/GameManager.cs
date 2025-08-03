@@ -302,21 +302,15 @@ public class GameManager : MonoBehaviour
 	{
 		if (Application.isEditor)
 		{
-			/*
-			if (Input.GetKeyDown(KeyCode.P))
+			
+			if (Input.GetKeyDown(KeyCode.Q))
 			{
-				Debug.Log("TEST");
-				baby.isControllable = false;
-				playbackTest = true;
-				playbackTime = 0;
+				Time.timeScale = 1 - Time.timeScale;
+				gameActive = !gameActive;
+				ShowCursor(true);
 			}
 
-			if (playbackTest)
-			{
-				playbackTime += Time.deltaTime;
-				baby.PlaybackUpdate(playbackTime);
-			}
-			*/
+			
 		}
 	}
 }

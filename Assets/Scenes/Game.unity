@@ -2161,6 +2161,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerType: 1
+  themeSong:
+    clip: {fileID: 8300000, guid: 27270754bb0b5c24c9f273294abd49e3, type: 3}
+    volumeT: 0.15
   tasks:
   - {fileID: 183735359}
   - {fileID: 1442701591}
@@ -6212,6 +6215,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerType: 3
+  themeSong:
+    clip: {fileID: 8300000, guid: e18af2b1826b50742a0a431425139fa0, type: 3}
+    volumeT: 1
   tasks:
   - {fileID: 642101011}
   - {fileID: 766852798}
@@ -6820,6 +6826,79 @@ MonoBehaviour:
   owner: {fileID: 430008004}
   ownerInRegion: 0
   bg: {fileID: 0}
+--- !u!1001 &385933454
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 63734fa3d75382a4bae9fae01094caa4, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5669
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 63734fa3d75382a4bae9fae01094caa4, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.48166093
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 63734fa3d75382a4bae9fae01094caa4, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.8271971
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 63734fa3d75382a4bae9fae01094caa4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.282
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 63734fa3d75382a4bae9fae01094caa4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.757
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 63734fa3d75382a4bae9fae01094caa4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 79.691
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 63734fa3d75382a4bae9fae01094caa4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.70710707
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 63734fa3d75382a4bae9fae01094caa4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 63734fa3d75382a4bae9fae01094caa4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071066
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 63734fa3d75382a4bae9fae01094caa4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 63734fa3d75382a4bae9fae01094caa4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 63734fa3d75382a4bae9fae01094caa4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 63734fa3d75382a4bae9fae01094caa4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 63734fa3d75382a4bae9fae01094caa4, type: 3}
+      propertyPath: m_Name
+      value: Headphones
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 63734fa3d75382a4bae9fae01094caa4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 63734fa3d75382a4bae9fae01094caa4, type: 3}
 --- !u!1 &386551221 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7868069314993001060, guid: b028edcfa3e138f47a1753acce9aafa8, type: 3}
@@ -7625,8 +7704,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 147061110}
   - {fileID: 430008003}
+  - {fileID: 147061110}
   - {fileID: 1931072413}
   - {fileID: 336867574}
   - {fileID: 613399922}
@@ -7667,11 +7746,11 @@ MonoBehaviour:
   startupMode: 0
   startTask: {fileID: 1442701591}
   players:
+  - {fileID: 147061111}
+  - {fileID: 430008004}
   - {fileID: 1931072414}
   - {fileID: 336867575}
-  - {fileID: 430008004}
   - {fileID: 613399923}
-  - {fileID: 147061111}
   menuCam: {fileID: 1669547313}
   mainMenu: {fileID: 1779233156}
   gameHud: {fileID: 1575181038}
@@ -7697,11 +7776,11 @@ MonoBehaviour:
     volumeT: 0.5
   impactSoundsGlass:
   - clip: {fileID: 8300000, guid: 756aa5e47f40fa24dbe0098720907cc1, type: 3}
-    volumeT: 0.8
+    volumeT: 0.4
   - clip: {fileID: 8300000, guid: ea0c7abcb0e2c6b428a7efca00314dc6, type: 3}
-    volumeT: 0.8
+    volumeT: 0.4
   - clip: {fileID: 8300000, guid: 98b70a564e30392408501965d18b1f65, type: 3}
-    volumeT: 0.8
+    volumeT: 0.4
   camAnimOffset: -0.58
   camAnimSpeed: 3
   audioSource2D: {fileID: 0}
@@ -7709,6 +7788,9 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 1a79df69465575a4781e7a5b0c80c370, type: 3}
     volumeT: 0.5
   ignoreTimer: 0
+  menuSong:
+    clip: {fileID: 8300000, guid: 303b6d90a1e1ce34295fbb2c5b54b516, type: 3}
+    volumeT: 1
 --- !u!4 &426584851
 Transform:
   m_ObjectHideFlags: 0
@@ -7736,7 +7818,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -7872,6 +7954,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerType: 0
+  themeSong:
+    clip: {fileID: 8300000, guid: 923d7d365611e174b98f872e3894ef73, type: 3}
+    volumeT: 1
   tasks:
   - {fileID: 324597248}
   - {fileID: 378312124}
@@ -10488,6 +10573,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerType: 4
+  themeSong:
+    clip: {fileID: 8300000, guid: 09aff09b8db574b4b9d09f64739c07bd, type: 3}
+    volumeT: 1
   tasks:
   - {fileID: 1973021232}
   - {fileID: 1021837115}
@@ -42645,6 +42733,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerType: 2
+  themeSong:
+    clip: {fileID: 8300000, guid: 431bae9b8f6b71647bcff5e6e0662505, type: 3}
+    volumeT: 0.3
   tasks:
   - {fileID: 1789755236}
   - {fileID: 1482620304}
@@ -58316,3 +58407,4 @@ SceneRoots:
   - {fileID: 608754614}
   - {fileID: 619135361}
   - {fileID: 387996514}
+  - {fileID: 385933454}

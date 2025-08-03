@@ -71,6 +71,8 @@ public class GameManager : MonoBehaviour
 
 	static GameManager instance;
 
+	public Sfx menuSong;
+
 	[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
 	static void Init()
 	{
@@ -118,6 +120,8 @@ public class GameManager : MonoBehaviour
 			InitStartupSettings();
 		}
 		
+		FindFirstObjectByType<Music>().PlaySong(menuSong.clip, menuSong.volumeT);
+
 		audioSource2D = GetComponent<AudioSource>();
 		audioListener = FindFirstObjectByType<AudioListener>().transform;
 
@@ -147,6 +151,8 @@ public class GameManager : MonoBehaviour
 
 			if (startupMode == StartupMode.DevTask) startTask.EnterTask();
 		}
+
+		
 	}
 
 	public void NotifyAllTasksCompleted()
@@ -190,7 +196,6 @@ public class GameManager : MonoBehaviour
 
 	void OnFail(string reason)
 	{
-		
 		audioSource2D.PlayOneShot(failSfx.clip, failSfx.volumeT);
 		failUI.reason.text = reason;
 		gameActive = false;
@@ -236,7 +241,8 @@ public class GameManager : MonoBehaviour
 		introUI.Set(currentPlayer.playerType);
 		waitingForPlayerConfirm = true;
 		waitStartTime = Time.time;
-		
+		FindFirstObjectByType<Music>().PlaySong(currentPlayer.themeSong.clip, currentPlayer.themeSong.volumeT);
+
 		audioListener.transform.position = menuCam.transform.position;
 		//menuCam.GetComponent<CamFixed>().active = false;
 	}
@@ -299,7 +305,7 @@ public class GameManager : MonoBehaviour
 				OnFailTimeRanOut();
 			}
 		}
-	
+
 
 		if (!mainMenu.gameObject.activeSelf && !settingsMenu.gameObject.activeSelf && !isPaused)
 		{
@@ -316,15 +322,12 @@ public class GameManager : MonoBehaviour
 	{
 		if (Application.isEditor)
 		{
-			
 			if (Input.GetKeyDown(KeyCode.Q))
 			{
 				Time.timeScale = 1 - Time.timeScale;
 				gameActive = !gameActive;
 				ShowCursor(true);
 			}
-
-			
 		}
 	}
 }

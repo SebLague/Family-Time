@@ -10,6 +10,7 @@ using Random = System.Random;
 public class FirstPersonController : MonoBehaviour
 {
 	public GameManager.Players playerType;
+	public Sfx themeSong;
 	public Task[] tasks;
 	public float selfHideThreshold;
 	public Vector3 menuCamOffset;

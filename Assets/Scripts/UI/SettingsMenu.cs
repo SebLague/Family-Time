@@ -51,8 +51,7 @@ public class SettingsMenu : MonoBehaviour
 
 	void ToggleMuteMusic()
 	{
-		var a = FindFirstObjectByType<AudioListener>().gameObject.GetComponent<AudioSource>();
-		a.mute = !a.mute;
+		FindFirstObjectByType<Music>().ToggleMute();
 	}
 
 	void Vol(float v)

@@ -16,6 +16,7 @@ public abstract class Task : MonoBehaviour
 	[HideInInspector] public bool ownerInRegion;
 	protected int enterFrame;
 	public GameObject bg;
+	public Sfx successSfx;
 
 	protected virtual void Awake()
 	{
@@ -38,6 +39,7 @@ public abstract class Task : MonoBehaviour
 		if (!taskCompleted)
 		{
 			Debug.Log("Task Completed");
+			if (successSfx.clip) GameManager.Instance.audioSource2D.PlayOneShot(successSfx.clip, successSfx.volumeT);
 			taskCompleted = true;
 			owner.NotifyTaskCompleted();
 		}

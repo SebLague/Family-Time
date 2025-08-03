@@ -2804,6 +2804,9 @@ MonoBehaviour:
   owner: {fileID: 147061111}
   ownerInRegion: 0
   bg: {fileID: 527129250}
+  successSfx:
+    clip: {fileID: 8300000, guid: e83fdcf75975bc3488cdbc0c9a48c37f, type: 3}
+    volumeT: 0.4
   yAddMul: 10
   animSpeed: 3
   poles:
@@ -2818,7 +2821,7 @@ MonoBehaviour:
   audiosrc: {fileID: 183735361}
   moveSfx:
     clip: {fileID: 8300000, guid: c1cf3e4f010c9aa4b9cfe1475e263dc0, type: 3}
-    volumeT: 0.3
+    volumeT: 0.1
 --- !u!135 &183735360
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -3492,13 +3495,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 238137039}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.035760768, y: 0.21755682, z: 0.009585306, w: -0.97534525}
+  m_LocalRotation: {x: -0.081047945, y: 0.2177672, z: -0.0005352572, w: -0.97262967}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 538559000}
-  m_LocalEulerAnglesHint: {x: 3.761, y: -385.213, z: -1.967}
+  m_LocalEulerAnglesHint: {x: 9.085, y: -385.398, z: -1.988}
 --- !u!1 &244963011
 GameObject:
   m_ObjectHideFlags: 0
@@ -5576,15 +5579,15 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 322000308}
   m_LocalRotation: {x: 0.7069236, y: -0, z: -0, w: 0.70728993}
-  m_LocalPosition: {x: 0, y: 0, z: 0.66168}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.662}
+  m_LocalScale: {x: 0.9298369, y: 0.9298369, z: 0.9298369}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1796826505}
   m_LocalEulerAnglesHint: {x: 89.972, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.439, y: 0.0011299998}
+  m_AnchoredPosition: {x: -0.42, y: 0.0011299998}
   m_SizeDelta: {x: 2.1595, y: 0.6598}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!4 &322056876 stripped
@@ -5801,6 +5804,9 @@ MonoBehaviour:
   owner: {fileID: 430008004}
   ownerInRegion: 0
   bg: {fileID: 0}
+  successSfx:
+    clip: {fileID: 0}
+    volumeT: 0
 --- !u!1001 &329763566
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6858,6 +6864,9 @@ MonoBehaviour:
   owner: {fileID: 430008004}
   ownerInRegion: 0
   bg: {fileID: 0}
+  successSfx:
+    clip: {fileID: 0}
+    volumeT: 0
 --- !u!1 &386551221 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7868069314993001060, guid: b028edcfa3e138f47a1753acce9aafa8, type: 3}
@@ -7580,9 +7589,9 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.00019049644
+    x: 0.00042539835
     y: 0
-    width: 0.999619
+    width: 0.9991492
     height: 1
   near clip plane: 0.19
   far clip plane: 15
@@ -7705,10 +7714,10 @@ MonoBehaviour:
   startupMode: 0
   startTask: {fileID: 1442701591}
   players:
+  - {fileID: 336867575}
   - {fileID: 430008004}
   - {fileID: 147061111}
   - {fileID: 1931072414}
-  - {fileID: 336867575}
   - {fileID: 613399923}
   menuCam: {fileID: 1669547313}
   mainMenu: {fileID: 1779233156}
@@ -7915,7 +7924,7 @@ MonoBehaviour:
   playerType: 0
   themeSong:
     clip: {fileID: 8300000, guid: 33af9a613b9ab2042820783dceadd58d, type: 3}
-    volumeT: 0.5
+    volumeT: 0.4
   tasks:
   - {fileID: 324597248}
   - {fileID: 378312124}
@@ -8328,9 +8337,9 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.00019049644
+    x: 0.00042539835
     y: 0
-    width: 0.999619
+    width: 0.9991492
     height: 1
   near clip plane: 0.1
   far clip plane: 100
@@ -9698,7 +9707,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 392965301542925697, guid: b028edcfa3e138f47a1753acce9aafa8, type: 3}
       propertyPath: m_NormalizedViewPortRect.x
-      value: 0.00019049644
+      value: 0.00042539835
       objectReference: {fileID: 0}
     - target: {fileID: 392965301542925697, guid: b028edcfa3e138f47a1753acce9aafa8, type: 3}
       propertyPath: m_NormalizedViewPortRect.y
@@ -9706,7 +9715,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 392965301542925697, guid: b028edcfa3e138f47a1753acce9aafa8, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
-      value: 0.999619
+      value: 0.9991492
       objectReference: {fileID: 0}
     - target: {fileID: 392965301542925697, guid: b028edcfa3e138f47a1753acce9aafa8, type: 3}
       propertyPath: m_NormalizedViewPortRect.height
@@ -11118,6 +11127,9 @@ MonoBehaviour:
   owner: {fileID: 336867575}
   ownerInRegion: 0
   bg: {fileID: 0}
+  successSfx:
+    clip: {fileID: 0}
+    volumeT: 0
   selfFetch: 0
   hideOnSelfFetch: {fileID: 0}
   completedSfx:
@@ -19445,6 +19457,9 @@ MonoBehaviour:
   owner: {fileID: 336867575}
   ownerInRegion: 0
   bg: {fileID: 0}
+  successSfx:
+    clip: {fileID: 8300000, guid: 2a02990f0e95ae140ace58281098f9bb, type: 3}
+    volumeT: 0.5
 --- !u!1 &767179119
 GameObject:
   m_ObjectHideFlags: 0
@@ -22678,9 +22693,9 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.00019049644
+    x: 0.00042539835
     y: 0
-    width: 0.999619
+    width: 0.9991492
     height: 1
   near clip plane: 0.025
   far clip plane: 100
@@ -23082,9 +23097,9 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.00019049644
+    x: 0.00042539835
     y: 0
-    width: 0.999619
+    width: 0.9991492
     height: 1
   near clip plane: 0.19
   far clip plane: 15
@@ -23311,9 +23326,9 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.00019049644
+    x: 0.00042539835
     y: 0
-    width: 0.999619
+    width: 0.9991492
     height: 1
   near clip plane: 0.1
   far clip plane: 100
@@ -24353,6 +24368,9 @@ MonoBehaviour:
   owner: {fileID: 613399923}
   ownerInRegion: 0
   bg: {fileID: 0}
+  successSfx:
+    clip: {fileID: 8300000, guid: 2a02990f0e95ae140ace58281098f9bb, type: 3}
+    volumeT: 0.5
   camHud: {fileID: 704799493}
   camHudInner: {fileID: 845317605}
   camDisplay: {fileID: 791948867}
@@ -24786,9 +24804,9 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.00019049644
+    x: 0.00042539835
     y: 0
-    width: 0.999619
+    width: 0.9991492
     height: 1
   near clip plane: 0.19
   far clip plane: 15
@@ -26203,9 +26221,9 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.00019049644
+    x: 0.00042539835
     y: 0
-    width: 0.999619
+    width: 0.9991492
     height: 1
   near clip plane: 0.19
   far clip plane: 100
@@ -32996,6 +33014,9 @@ MonoBehaviour:
   owner: {fileID: 147061111}
   ownerInRegion: 0
   bg: {fileID: 1607788829}
+  successSfx:
+    clip: {fileID: 8300000, guid: 8840c3ed951cbe847ac3f7bcb691b37b, type: 3}
+    volumeT: 0.4
   animSpeed: 3
   yAddMul: 0.25
   scoreUI: {fileID: 820532233}
@@ -33764,6 +33785,9 @@ MonoBehaviour:
   owner: {fileID: 1931072414}
   ownerInRegion: 0
   bg: {fileID: 0}
+  successSfx:
+    clip: {fileID: 0}
+    volumeT: 0
   selfFetch: 1
   hideOnSelfFetch: {fileID: 2058203038}
   completedSfx:
@@ -37630,9 +37654,9 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.00019049644
+    x: 0.00042539835
     y: 0
-    width: 0.999619
+    width: 0.9991492
     height: 1
   near clip plane: 0.1
   far clip plane: 100
@@ -38076,9 +38100,9 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.00019049644
+    x: 0.00042539835
     y: 0
-    width: 0.999619
+    width: 0.9991492
     height: 1
   near clip plane: 0.1
   far clip plane: 100
@@ -38675,6 +38699,9 @@ MonoBehaviour:
   owner: {fileID: 1931072414}
   ownerInRegion: 0
   bg: {fileID: 0}
+  successSfx:
+    clip: {fileID: 0}
+    volumeT: 0
   balls:
   - {fileID: 1475629255}
   - {fileID: 1264405529}
@@ -38712,7 +38739,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 8800f75e2c1868649927b0f0f4ab00dc, type: 3}
   m_Resource: {fileID: 8300000, guid: 8800f75e2c1868649927b0f0f4ab00dc, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.7
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -39088,6 +39115,7 @@ GameObject:
   - component: {fileID: 1796826505}
   - component: {fileID: 1796826508}
   - component: {fileID: 1796826506}
+  - component: {fileID: 1796826509}
   m_Layer: 6
   m_Name: Task - Scribble
   m_TagString: Untagged
@@ -39163,6 +39191,9 @@ MonoBehaviour:
   owner: {fileID: 147061111}
   ownerInRegion: 0
   bg: {fileID: 0}
+  successSfx:
+    clip: {fileID: 8300000, guid: 2a02990f0e95ae140ace58281098f9bb, type: 3}
+    volumeT: 0.45
   texRes: 512
   upDst: -0.52
   downDel: 0.02
@@ -39182,6 +39213,107 @@ MonoBehaviour:
   scoreUI: {fileID: 322000309}
   instructUI: {fileID: 254289130}
   textColDone: {r: 0.32156864, g: 0.9254902, b: 0.17254902, a: 1}
+  maxSfxVol: 1
+  crayonChangeSfx:
+    clip: {fileID: 8300000, guid: 6a243a99e0763c14fa7f599494fc417f, type: 3}
+    volumeT: 0.1
+--- !u!82 &1796826509
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1796826504}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: efe814b5d68444c4c8711267f5066859, type: 3}
+  m_Resource: {fileID: 8300000, guid: efe814b5d68444c4c8711267f5066859, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1800795489
 GameObject:
   m_ObjectHideFlags: 0
@@ -39242,9 +39374,9 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.00019049644
+    x: 0.00042539835
     y: 0
-    width: 0.999619
+    width: 0.9991492
     height: 1
   near clip plane: 0.025
   far clip plane: 100
@@ -39570,9 +39702,9 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.00019049644
+    x: 0.00042539835
     y: 0
-    width: 0.999619
+    width: 0.9991492
     height: 1
   near clip plane: 0.025
   far clip plane: 100
@@ -41132,9 +41264,9 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.00019049644
+    x: 0.00042539835
     y: 0
-    width: 0.999619
+    width: 0.9991492
     height: 1
   near clip plane: 0.19
   far clip plane: 100
@@ -43461,6 +43593,9 @@ MonoBehaviour:
   owner: {fileID: 430008004}
   ownerInRegion: 0
   bg: {fileID: 0}
+  successSfx:
+    clip: {fileID: 0}
+    volumeT: 0
   zs: {fileID: 658298818}
   snoozeToBlack: {fileID: 1376562982}
   spotHolder: {fileID: 323949357}
@@ -43862,6 +43997,9 @@ MonoBehaviour:
   owner: {fileID: 613399923}
   ownerInRegion: 0
   bg: {fileID: 0}
+  successSfx:
+    clip: {fileID: 0}
+    volumeT: 0
   selfFetch: 0
   hideOnSelfFetch: {fileID: 0}
   completedSfx:
@@ -45331,6 +45469,9 @@ MonoBehaviour:
   owner: {fileID: 1931072414}
   ownerInRegion: 0
   bg: {fileID: 0}
+  successSfx:
+    clip: {fileID: 0}
+    volumeT: 0
   screen: {fileID: 713959392}
   gameCam: {fileID: 1317203162}
   gameController: {fileID: 184699681}

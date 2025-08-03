@@ -11,7 +11,7 @@ public class Music : MonoBehaviour
 	bool muted = false;
 	public float maxVol = 1;
 	bool isCrossFade;
-	float volFac = 1;
+	[HideInInspector] public float volFac = 1;
 	float blendFromVal;
 	Coroutine x;
 

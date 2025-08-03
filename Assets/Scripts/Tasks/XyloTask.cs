@@ -18,8 +18,8 @@ public class XyloTask : Task
 	Queue<AnimState> animQueue = new();
 	public Transform hitLineA;
 	public Transform hitLineB;
-	
-	
+
+	float volRestore;
 
 	AudioSource audioSource;
 	int[] notePlayCounts;
@@ -153,11 +153,15 @@ public class XyloTask : Task
 		scoreUI.gameObject.SetActive(true);
 		stick.gameObject.SetActive(true);
 		stickPreview.gameObject.SetActive(false);
+
+		volRestore = FindFirstObjectByType<Music>().volFac;
+		FindFirstObjectByType<Music>().volFac = 0;
 	}
 
 	public override void ExitTask()
 	{
 		base.ExitTask();
+		FindFirstObjectByType<Music>().volFac = volRestore;
 		scoreUI.gameObject.SetActive(false);
 		
 		stick.gameObject.SetActive(false);

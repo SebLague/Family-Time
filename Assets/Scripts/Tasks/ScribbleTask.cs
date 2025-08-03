@@ -29,13 +29,16 @@ public class ScribbleTask : Task
 	bool hasUvPrev;
 	Vector3[] posRestore;
 	Quaternion[] rotRestore;
+	public float maxSfxVol = 1;
+	AudioSource audioSource;
+	public Sfx crayonChangeSfx;
 
 	public static List<ScribbleKeyframe> keyframes = new();
 
 	protected override void Awake()
 	{
 		base.Awake();
-
+		audioSource = GetComponent<AudioSource>();
 		float pageWidth = paper.transform.localScale.z;
 		float pageHeight = paper.transform.localScale.x;
 		tex = ComputeHelper.CreateRenderTexture(Mathf.CeilToInt(texRes * (pageWidth / pageHeight)), texRes);
@@ -68,6 +71,8 @@ public class ScribbleTask : Task
 			TakeCrayon(nearestCrayonIndex);
 		}
 
+		float targetVol = 0;
+
 		// ------------- Draw
 		bool mouseIsDown = Input.GetMouseButton(0);
 		if (!mouseIsDown) hasUvPrev = false;
@@ -93,9 +98,10 @@ public class ScribbleTask : Task
 
 			if (mouseIsDown)
 			{
+				float dst = 0;
 				if (hasUvPrev)
 				{
-					float dst = (uvPrev - uvCurr).magnitude;
+					dst = (uvPrev - uvCurr).magnitude;
 					int num = Mathf.Clamp(Mathf.CeilToInt(dst * 100), 1, 15);
 					for (int i = 0; i < num; i++)
 					{
@@ -110,6 +116,9 @@ public class ScribbleTask : Task
 					scribbleCompute.SetVector("drawUV", uvCurr);
 					ComputeHelper.Dispatch(scribbleCompute, tex.width, tex.height, kernelIndex: 1);
 				}
+
+				float vel = dst / Time.deltaTime;
+				targetVol = Mathf.InverseLerp(0, 3, vel);
 
 				hasUvPrev = true;
 				uvPrev = uvCurr;
@@ -162,6 +171,7 @@ public class ScribbleTask : Task
 			TaskCompleted();
 		}
 
+		audioSource.volume = Mathf.Lerp(audioSource.volume, targetVol * maxSfxVol, Time.deltaTime * 6);
 
 		// -------- Exit
 		if (Input.GetKeyDown(GameManager.TaskEnterKey) && Time.frameCount > enterFrame)
@@ -201,6 +211,7 @@ public class ScribbleTask : Task
 
 	void TakeCrayon(int index)
 	{
+		GameManager.Instance.audioSource2D.PlayOneShot(crayonChangeSfx.clip, crayonChangeSfx.volumeT);
 		crayons[index].enabled = false;
 		activeCrayonIndex = index;
 		activeCrayon = crayons[index].gameObject;

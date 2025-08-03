@@ -169,6 +169,7 @@ public class GameManager : MonoBehaviour
 		else
 		{
 			miniVictoryUI.gameObject.SetActive(true);
+			ShowCursor(true);
 		}
 	}
 

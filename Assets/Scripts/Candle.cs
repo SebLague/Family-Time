@@ -9,6 +9,7 @@ public class Candle : MonoBehaviour
 	bool hasApplied;
 	public Transform[] directions;
 	public GameObject firePrefab;
+	Light light;
 
 	float fireStartDelay = 2;
 	float fireStartTime;
@@ -21,6 +22,11 @@ public class Candle : MonoBehaviour
 	bool notifiedExtinguish;
 	float extinguishTime;
 	readonly Collider[] foamBuffer = new Collider[32];
+
+	void Start()
+	{
+		light = GetComponentInChildren<Light>();
+	}
 
 	void Update()
 	{
@@ -54,6 +60,11 @@ public class Candle : MonoBehaviour
 			nextFoamTestTime = Time.time + 0.5f;
 		}
 
+		if (extinguished)
+		{
+			light.intensity = Mathf.Lerp(light.intensity, 0, Time.deltaTime);
+		}
+
 		if (hasStartedFire && !extinguished && extinguishCounter > 8)
 		{
 			extinguished = true;
@@ -61,7 +72,7 @@ public class Candle : MonoBehaviour
 			extinguishTime = Time.time;
 		}
 
-		if (extinguished && !notifiedExtinguish && Time.time > extinguishTime + 4)
+		if (extinguished && !notifiedExtinguish && Time.time > extinguishTime + 2)
 		{
 			notifiedExtinguish = true;
 			if (GameManager.Instance.currentPlayer.playerType == GameManager.Players.Mother)

@@ -2178,7 +2178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerType: 1
   themeSong:
-    clip: {fileID: 8300000, guid: 27270754bb0b5c24c9f273294abd49e3, type: 3}
+    clip: {fileID: 8300000, guid: 9f2bee6ec74cb4547b87ea6e96027b24, type: 3}
     volumeT: 0.15
   tasks:
   - {fileID: 183735359}
@@ -6248,7 +6248,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerType: 3
   themeSong:
-    clip: {fileID: 8300000, guid: e18af2b1826b50742a0a431425139fa0, type: 3}
+    clip: {fileID: 8300000, guid: f6c5d0ef4210990448f4ca5f1d1a0956, type: 3}
     volumeT: 0.75
   tasks:
   - {fileID: 642101011}
@@ -6858,79 +6858,6 @@ MonoBehaviour:
   owner: {fileID: 430008004}
   ownerInRegion: 0
   bg: {fileID: 0}
---- !u!1001 &385933454
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 63734fa3d75382a4bae9fae01094caa4, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.5669
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 63734fa3d75382a4bae9fae01094caa4, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.48166093
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 63734fa3d75382a4bae9fae01094caa4, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.8271971
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 63734fa3d75382a4bae9fae01094caa4, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.282
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 63734fa3d75382a4bae9fae01094caa4, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.757
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 63734fa3d75382a4bae9fae01094caa4, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 79.691
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 63734fa3d75382a4bae9fae01094caa4, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.70710707
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 63734fa3d75382a4bae9fae01094caa4, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 63734fa3d75382a4bae9fae01094caa4, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.7071066
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 63734fa3d75382a4bae9fae01094caa4, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 63734fa3d75382a4bae9fae01094caa4, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 63734fa3d75382a4bae9fae01094caa4, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 63734fa3d75382a4bae9fae01094caa4, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 63734fa3d75382a4bae9fae01094caa4, type: 3}
-      propertyPath: m_Name
-      value: Headphones
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 63734fa3d75382a4bae9fae01094caa4, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 63734fa3d75382a4bae9fae01094caa4, type: 3}
 --- !u!1 &386551221 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7868069314993001060, guid: b028edcfa3e138f47a1753acce9aafa8, type: 3}
@@ -7653,10 +7580,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0.0003811121
-    width: 1
-    height: 0.9992378
+    x: 0.00019049644
+    y: 0
+    width: 0.999619
+    height: 1
   near clip plane: 0.19
   far clip plane: 15
   field of view: 73.8
@@ -7778,11 +7705,11 @@ MonoBehaviour:
   startupMode: 0
   startTask: {fileID: 1442701591}
   players:
-  - {fileID: 613399923}
-  - {fileID: 147061111}
   - {fileID: 430008004}
+  - {fileID: 147061111}
   - {fileID: 1931072414}
   - {fileID: 336867575}
+  - {fileID: 613399923}
   menuCam: {fileID: 1669547313}
   mainMenu: {fileID: 1779233156}
   gameHud: {fileID: 1575181038}
@@ -7987,7 +7914,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerType: 0
   themeSong:
-    clip: {fileID: 8300000, guid: 923d7d365611e174b98f872e3894ef73, type: 3}
+    clip: {fileID: 8300000, guid: 33af9a613b9ab2042820783dceadd58d, type: 3}
     volumeT: 0.5
   tasks:
   - {fileID: 324597248}
@@ -8401,10 +8328,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0.0003811121
-    width: 1
-    height: 0.9992378
+    x: 0.00019049644
+    y: 0
+    width: 0.999619
+    height: 1
   near clip plane: 0.1
   far clip plane: 100
   field of view: 73.8
@@ -9771,19 +9698,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 392965301542925697, guid: b028edcfa3e138f47a1753acce9aafa8, type: 3}
       propertyPath: m_NormalizedViewPortRect.x
-      value: 0
+      value: 0.00019049644
       objectReference: {fileID: 0}
     - target: {fileID: 392965301542925697, guid: b028edcfa3e138f47a1753acce9aafa8, type: 3}
       propertyPath: m_NormalizedViewPortRect.y
-      value: 0.0003811121
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 392965301542925697, guid: b028edcfa3e138f47a1753acce9aafa8, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
-      value: 1
+      value: 0.999619
       objectReference: {fileID: 0}
     - target: {fileID: 392965301542925697, guid: b028edcfa3e138f47a1753acce9aafa8, type: 3}
       propertyPath: m_NormalizedViewPortRect.height
-      value: 0.9992378
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1689462117404829777, guid: b028edcfa3e138f47a1753acce9aafa8, type: 3}
       propertyPath: m_IsActive
@@ -10606,7 +10533,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerType: 4
   themeSong:
-    clip: {fileID: 8300000, guid: 09aff09b8db574b4b9d09f64739c07bd, type: 3}
+    clip: {fileID: 8300000, guid: f35de47f3dba28442981f0136a21c1a4, type: 3}
     volumeT: 0.6
   tasks:
   - {fileID: 1973021232}
@@ -18193,6 +18120,7 @@ GameObject:
   - component: {fileID: 714469615}
   - component: {fileID: 714469614}
   - component: {fileID: 714469613}
+  - component: {fileID: 714469616}
   m_Layer: 5
   m_Name: B
   m_TagString: Untagged
@@ -18302,6 +18230,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 714469611}
   m_CullTransparentMesh: 1
+--- !u!114 &714469616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 714469611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a5d573266bf2cc4da8b655037ec9e55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseOverSfx:
+    clip: {fileID: 8300000, guid: 081fc8d27ab303d4994c4c8a774219f9, type: 3}
+    volumeT: 0.06
 --- !u!1 &716746283
 GameObject:
   m_ObjectHideFlags: 0
@@ -22735,10 +22678,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0.0003811121
-    width: 1
-    height: 0.9992378
+    x: 0.00019049644
+    y: 0
+    width: 0.999619
+    height: 1
   near clip plane: 0.025
   far clip plane: 100
   field of view: 73.8
@@ -23139,10 +23082,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0.0003811121
-    width: 1
-    height: 0.9992378
+    x: 0.00019049644
+    y: 0
+    width: 0.999619
+    height: 1
   near clip plane: 0.19
   far clip plane: 15
   field of view: 73.8
@@ -23368,10 +23311,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0.0003811121
-    width: 1
-    height: 0.9992378
+    x: 0.00019049644
+    y: 0
+    width: 0.999619
+    height: 1
   near clip plane: 0.1
   far clip plane: 100
   field of view: 73.8
@@ -24843,10 +24786,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0.0003811121
-    width: 1
-    height: 0.9992378
+    x: 0.00019049644
+    y: 0
+    width: 0.999619
+    height: 1
   near clip plane: 0.19
   far clip plane: 15
   field of view: 63.5
@@ -26260,10 +26203,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0.0003811121
-    width: 1
-    height: 0.9992378
+    x: 0.00019049644
+    y: 0
+    width: 0.999619
+    height: 1
   near clip plane: 0.19
   far clip plane: 100
   field of view: 38.7
@@ -26825,6 +26768,7 @@ GameObject:
   - component: {fileID: 1164633547}
   - component: {fileID: 1164633546}
   - component: {fileID: 1164633545}
+  - component: {fileID: 1164633548}
   m_Layer: 5
   m_Name: C (1)
   m_TagString: Untagged
@@ -26934,6 +26878,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1164633543}
   m_CullTransparentMesh: 1
+--- !u!114 &1164633548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1164633543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a5d573266bf2cc4da8b655037ec9e55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseOverSfx:
+    clip: {fileID: 8300000, guid: 081fc8d27ab303d4994c4c8a774219f9, type: 3}
+    volumeT: 0.06
 --- !u!1 &1170574148
 GameObject:
   m_ObjectHideFlags: 0
@@ -37671,10 +37630,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0.0003811121
-    width: 1
-    height: 0.9992378
+    x: 0.00019049644
+    y: 0
+    width: 0.999619
+    height: 1
   near clip plane: 0.1
   far clip plane: 100
   field of view: 73.8
@@ -38117,10 +38076,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0.0003811121
-    width: 1
-    height: 0.9992378
+    x: 0.00019049644
+    y: 0
+    width: 0.999619
+    height: 1
   near clip plane: 0.1
   far clip plane: 100
   field of view: 82.2
@@ -39283,10 +39242,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0.0003811121
-    width: 1
-    height: 0.9992378
+    x: 0.00019049644
+    y: 0
+    width: 0.999619
+    height: 1
   near clip plane: 0.025
   far clip plane: 100
   field of view: 60
@@ -39611,10 +39570,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0.0003811121
-    width: 1
-    height: 0.9992378
+    x: 0.00019049644
+    y: 0
+    width: 0.999619
+    height: 1
   near clip plane: 0.025
   far clip plane: 100
   field of view: 73.8
@@ -39737,6 +39696,7 @@ GameObject:
   - component: {fileID: 1826454650}
   - component: {fileID: 1826454649}
   - component: {fileID: 1826454648}
+  - component: {fileID: 1826454651}
   m_Layer: 5
   m_Name: C
   m_TagString: Untagged
@@ -39846,6 +39806,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1826454646}
   m_CullTransparentMesh: 1
+--- !u!114 &1826454651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1826454646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a5d573266bf2cc4da8b655037ec9e55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseOverSfx:
+    clip: {fileID: 8300000, guid: 081fc8d27ab303d4994c4c8a774219f9, type: 3}
+    volumeT: 0.06
 --- !u!1 &1833281376
 GameObject:
   m_ObjectHideFlags: 0
@@ -41157,10 +41132,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0.0003811121
-    width: 1
-    height: 0.9992378
+    x: 0.00019049644
+    y: 0
+    width: 0.999619
+    height: 1
   near clip plane: 0.19
   far clip plane: 100
   field of view: 73.8
@@ -42629,6 +42604,7 @@ GameObject:
   - component: {fileID: 1925585312}
   - component: {fileID: 1925585311}
   - component: {fileID: 1925585310}
+  - component: {fileID: 1925585313}
   m_Layer: 5
   m_Name: B (1)
   m_TagString: Untagged
@@ -42738,6 +42714,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1925585308}
   m_CullTransparentMesh: 1
+--- !u!114 &1925585313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1925585308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a5d573266bf2cc4da8b655037ec9e55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseOverSfx:
+    clip: {fileID: 8300000, guid: 081fc8d27ab303d4994c4c8a774219f9, type: 3}
+    volumeT: 0.06
 --- !u!1 &1928408588
 GameObject:
   m_ObjectHideFlags: 0
@@ -42942,7 +42933,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerType: 2
   themeSong:
-    clip: {fileID: 8300000, guid: 431bae9b8f6b71647bcff5e6e0662505, type: 3}
+    clip: {fileID: 8300000, guid: 55b27af8201110045b7abc7b455b41c6, type: 3}
     volumeT: 0.2
   tasks:
   - {fileID: 1789755236}
@@ -58663,4 +58654,3 @@ SceneRoots:
   - {fileID: 608754614}
   - {fileID: 619135361}
   - {fileID: 387996514}
-  - {fileID: 385933454}

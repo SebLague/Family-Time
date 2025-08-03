@@ -29,6 +29,9 @@ public class FirstPersonController : MonoBehaviour
 	public SkinnedMeshRenderer skinnedMesh;
 	public float fov = 60;
 	public float fovSprint = 70;
+	
+	Vector2 mouseInput;
+	public float smoothingSpeed = 1;
 
 	float fovCur;
 	float fovSmoothRef;
@@ -283,12 +286,15 @@ public class FirstPersonController : MonoBehaviour
 		}
 	}
 
+	
+
 	void UpdateController()
 	{
 		Vector3 moveDirLocal = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
 		//Vector2 mouseInput = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
-		Vector2 mouseInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
-
+		Vector2 mouseInputTarget = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+		
+		mouseInput = Vector2.Lerp(mouseInput, mouseInputTarget, 1f - Mathf.Exp(-smoothingSpeed * Time.deltaTime));
 		if (controller.isGrounded)
 		{
 			timeSinceLastGrounded = 0;

@@ -2200,6 +2200,7 @@ MonoBehaviour:
   skinnedMesh: {fileID: 1282407238}
   fov: 60
   fovSprint: 60
+  smoothingSpeed: 25
   onControllableSfx:
     clip: {fileID: 0}
     volumeT: 0
@@ -6278,6 +6279,7 @@ MonoBehaviour:
   skinnedMesh: {fileID: 171465068}
   fov: 60
   fovSprint: 60
+  smoothingSpeed: 25
   onControllableSfx:
     clip: {fileID: 0}
     volumeT: 0
@@ -7592,9 +7594,9 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.00042539835
+    x: 0
     y: 0
-    width: 0.9991492
+    width: 1
     height: 1
   near clip plane: 0.19
   far clip plane: 15
@@ -7717,10 +7719,10 @@ MonoBehaviour:
   startupMode: 0
   startTask: {fileID: 1442701591}
   players:
-  - {fileID: 1931072414}
-  - {fileID: 336867575}
   - {fileID: 430008004}
   - {fileID: 147061111}
+  - {fileID: 1931072414}
+  - {fileID: 336867575}
   - {fileID: 613399923}
   menuCam: {fileID: 1669547313}
   mainMenu: {fileID: 1779233156}
@@ -7948,6 +7950,7 @@ MonoBehaviour:
   skinnedMesh: {fileID: 1946569892}
   fov: 60
   fovSprint: 65
+  smoothingSpeed: 25
   onControllableSfx:
     clip: {fileID: 8300000, guid: f7766657dcfb11244a65a6326e32320d, type: 3}
     volumeT: 0.075
@@ -8340,9 +8343,9 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.00042539835
+    x: 0
     y: 0
-    width: 0.9991492
+    width: 1
     height: 1
   near clip plane: 0.1
   far clip plane: 100
@@ -9710,7 +9713,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 392965301542925697, guid: b028edcfa3e138f47a1753acce9aafa8, type: 3}
       propertyPath: m_NormalizedViewPortRect.x
-      value: 0.00042539835
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 392965301542925697, guid: b028edcfa3e138f47a1753acce9aafa8, type: 3}
       propertyPath: m_NormalizedViewPortRect.y
@@ -9718,7 +9721,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 392965301542925697, guid: b028edcfa3e138f47a1753acce9aafa8, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
-      value: 0.9991492
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 392965301542925697, guid: b028edcfa3e138f47a1753acce9aafa8, type: 3}
       propertyPath: m_NormalizedViewPortRect.height
@@ -10566,6 +10569,7 @@ MonoBehaviour:
   skinnedMesh: {fileID: 573849492}
   fov: 60
   fovSprint: 60
+  smoothingSpeed: 25
   onControllableSfx:
     clip: {fileID: 0}
     volumeT: 0
@@ -22696,9 +22700,9 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.00042539835
+    x: 0
     y: 0
-    width: 0.9991492
+    width: 1
     height: 1
   near clip plane: 0.025
   far clip plane: 100
@@ -23100,9 +23104,9 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.00042539835
+    x: 0
     y: 0
-    width: 0.9991492
+    width: 1
     height: 1
   near clip plane: 0.19
   far clip plane: 15
@@ -23329,9 +23333,9 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.00042539835
+    x: 0
     y: 0
-    width: 0.9991492
+    width: 1
     height: 1
   near clip plane: 0.1
   far clip plane: 100
@@ -24807,9 +24811,9 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.00042539835
+    x: 0
     y: 0
-    width: 0.9991492
+    width: 1
     height: 1
   near clip plane: 0.19
   far clip plane: 15
@@ -26223,9 +26227,9 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.00042539835
+    x: 0
     y: 0
-    width: 0.9991492
+    width: 1
     height: 1
   near clip plane: 0.19
   far clip plane: 100
@@ -37656,9 +37660,9 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.00042539835
+    x: 0
     y: 0
-    width: 0.9991492
+    width: 1
     height: 1
   near clip plane: 0.1
   far clip plane: 100
@@ -38102,9 +38106,9 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.00042539835
+    x: 0
     y: 0
-    width: 0.9991492
+    width: 1
     height: 1
   near clip plane: 0.1
   far clip plane: 100
@@ -39376,9 +39380,9 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.00042539835
+    x: 0
     y: 0
-    width: 0.9991492
+    width: 1
     height: 1
   near clip plane: 0.025
   far clip plane: 100
@@ -39704,9 +39708,9 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.00042539835
+    x: 0
     y: 0
-    width: 0.9991492
+    width: 1
     height: 1
   near clip plane: 0.025
   far clip plane: 100
@@ -41266,9 +41270,9 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.00042539835
+    x: 0
     y: 0
-    width: 0.9991492
+    width: 1
     height: 1
   near clip plane: 0.19
   far clip plane: 100
@@ -43089,6 +43093,7 @@ MonoBehaviour:
   skinnedMesh: {fileID: 282856075}
   fov: 60
   fovSprint: 60
+  smoothingSpeed: 25
   onControllableSfx:
     clip: {fileID: 0}
     volumeT: 0

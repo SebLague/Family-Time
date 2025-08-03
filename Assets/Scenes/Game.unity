@@ -6217,7 +6217,7 @@ MonoBehaviour:
   playerType: 3
   themeSong:
     clip: {fileID: 8300000, guid: e18af2b1826b50742a0a431425139fa0, type: 3}
-    volumeT: 1
+    volumeT: 0.75
   tasks:
   - {fileID: 642101011}
   - {fileID: 766852798}
@@ -7746,11 +7746,11 @@ MonoBehaviour:
   startupMode: 0
   startTask: {fileID: 1442701591}
   players:
+  - {fileID: 613399923}
   - {fileID: 147061111}
   - {fileID: 430008004}
   - {fileID: 1931072414}
   - {fileID: 336867575}
-  - {fileID: 613399923}
   menuCam: {fileID: 1669547313}
   mainMenu: {fileID: 1779233156}
   gameHud: {fileID: 1575181038}
@@ -7956,7 +7956,7 @@ MonoBehaviour:
   playerType: 0
   themeSong:
     clip: {fileID: 8300000, guid: 923d7d365611e174b98f872e3894ef73, type: 3}
-    volumeT: 1
+    volumeT: 0.5
   tasks:
   - {fileID: 324597248}
   - {fileID: 378312124}
@@ -10575,7 +10575,7 @@ MonoBehaviour:
   playerType: 4
   themeSong:
     clip: {fileID: 8300000, guid: 09aff09b8db574b4b9d09f64739c07bd, type: 3}
-    volumeT: 1
+    volumeT: 0.6
   tasks:
   - {fileID: 1973021232}
   - {fileID: 1021837115}
@@ -38561,7 +38561,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 8800f75e2c1868649927b0f0f4ab00dc, type: 3}
   m_Resource: {fileID: 8300000, guid: 8800f75e2c1868649927b0f0f4ab00dc, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.4
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -42735,7 +42735,7 @@ MonoBehaviour:
   playerType: 2
   themeSong:
     clip: {fileID: 8300000, guid: 431bae9b8f6b71647bcff5e6e0662505, type: 3}
-    volumeT: 0.3
+    volumeT: 0.2
   tasks:
   - {fileID: 1789755236}
   - {fileID: 1482620304}

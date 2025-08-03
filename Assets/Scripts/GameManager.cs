@@ -236,6 +236,7 @@ public class GameManager : MonoBehaviour
 
 	void StartNextPlayer()
 	{
+		ShowCursor(false);
 		mainMenu.gameObject.SetActive(false);
 		introUI.gameObject.SetActive(true);
 		introUI.Set(currentPlayer.playerType);

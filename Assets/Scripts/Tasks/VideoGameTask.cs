@@ -10,11 +10,13 @@ public class VideoGameTask : Task
 	public Camera gameCam;
 	public Aircraft gameController;
 	public FetchTask controllerFetch;
+	public Transform controllerGraphic;
 
 	RenderTexture rt;
 	public float maxVol;
 	public Sfx winSfx;
 	public AudioSource audioSource;
+	public float controllerAngleT;
 
 	protected override void Awake()
 	{
@@ -44,12 +46,17 @@ public class VideoGameTask : Task
 		{
 			ExitTask();
 		}
+
+		Vector3 a = controllerGraphic.localEulerAngles;
+		a.z = gameController.currentRollAngle * controllerAngleT;
+		controllerGraphic.localEulerAngles = a;
 	}
 
 	public override void EnterTask()
 	{
 		base.EnterTask();
 
+		controllerGraphic.gameObject.SetActive(controllerFetch.taskCompleted);
 		gameController.StartGame(controllerFetch.taskCompleted);
 		GameManager.ShowCursor(false);
 		//GameManager.Instance.playerGoalUI.gameObject.SetActive(true);

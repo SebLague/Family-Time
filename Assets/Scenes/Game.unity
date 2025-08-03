@@ -4053,7 +4053,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 05e47acb60839624c8db3aeb0de1e84e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1406159263}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 05e47acb60839624c8db3aeb0de1e84e, type: 3}
 --- !u!4 &257352470 stripped
@@ -7714,10 +7717,10 @@ MonoBehaviour:
   startupMode: 0
   startTask: {fileID: 1442701591}
   players:
+  - {fileID: 1931072414}
   - {fileID: 336867575}
   - {fileID: 430008004}
   - {fileID: 147061111}
-  - {fileID: 1931072414}
   - {fileID: 613399923}
   menuCam: {fileID: 1669547313}
   mainMenu: {fileID: 1779233156}
@@ -26190,7 +26193,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1406159263}
   - {fileID: 257352470}
   m_Father: {fileID: 2108135241}
   m_LocalEulerAnglesHint: {x: 3.64, y: 0, z: 0}
@@ -32258,16 +32260,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1406159262}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.596}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0.0000000074522, y: -0.9979827, z: 0.063487306, w: 0.000010644561}
+  m_LocalPosition: {x: 0, y: 0, z: -4.8006935}
+  m_LocalScale: {x: 22.868101, y: 22.868095, z: 22.868095}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1142927034}
+  m_Father: {fileID: 257352470}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.01, y: -0.16}
+  m_AnchoredPosition: {x: -0.22878414, y: -0.49801326}
   m_SizeDelta: {x: 2.1595, y: 0.6598}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1406159264
@@ -45476,11 +45478,13 @@ MonoBehaviour:
   gameCam: {fileID: 1317203162}
   gameController: {fileID: 184699681}
   controllerFetch: {fileID: 1482620304}
+  controllerGraphic: {fileID: 257352470}
   maxVol: 0.8
   winSfx:
     clip: {fileID: 8300000, guid: e83fdcf75975bc3488cdbc0c9a48c37f, type: 3}
     volumeT: 0.5
   audioSource: {fileID: 2108135244}
+  controllerAngleT: -0.2
 --- !u!82 &2108135244
 AudioSource:
   m_ObjectHideFlags: 0

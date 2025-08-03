@@ -7094,6 +7094,15 @@ MonoBehaviour:
   settingsMenu: {fileID: 579924740}
   pauseMenu: {fileID: 158671452}
   persistantPrefab: {fileID: 8387799925898007664, guid: c887bf43856b13a45b774417e044dfb8, type: 3}
+  impactSounds:
+  - clip: {fileID: 8300000, guid: 1506a12c6e46c3f4d84b16dc63d78b50, type: 3}
+    volumeT: 0.5
+  - clip: {fileID: 8300000, guid: 1b14795b20301d342b369be38f44e4cb, type: 3}
+    volumeT: 0.4
+  - clip: {fileID: 8300000, guid: a06ea2b752e70414c8ffb754df3ac79e, type: 3}
+    volumeT: 0.5
+  - clip: {fileID: 8300000, guid: 91bed157aea1dd6498dbd828b6d32b48, type: 3}
+    volumeT: 0.5
   camAnimOffset: -0.58
   camAnimSpeed: 3
   ignoreTimer: 0

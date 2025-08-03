@@ -48,6 +48,8 @@ public class GameManager : MonoBehaviour
 	Transform audioListener;
 	public GameObject persistantPrefab;
 
+	public Sfx[] impactSounds;
+
 	public float camAnimOffset;
 	public float camAnimSpeed;
 	static int numLoads;

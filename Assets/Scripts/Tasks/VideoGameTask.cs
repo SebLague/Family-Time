@@ -12,6 +12,9 @@ public class VideoGameTask : Task
 	public FetchTask controllerFetch;
 
 	RenderTexture rt;
+	public float maxVol;
+	public Sfx winSfx;
+	public AudioSource audioSource;
 
 	protected override void Awake()
 	{
@@ -25,10 +28,14 @@ public class VideoGameTask : Task
 
 	void Update()
 	{
+		float targVol = (taskActive && controllerFetch.taskCompleted) ? maxVol : 0;
+		audioSource.volume = Mathf.Lerp(audioSource.volume, targVol, Time.deltaTime * 6);
+
 		if (!taskActive || !GameManager.Instance.gameActive) return;
 
-		if (gameController.hasWon)
+		if (gameController.hasWon && !taskCompleted)
 		{
+			GameManager.Instance.audioSource2D.PlayOneShot(winSfx.clip, winSfx.volumeT);
 			TaskCompleted();
 		}
 
@@ -44,6 +51,8 @@ public class VideoGameTask : Task
 		base.EnterTask();
 
 		gameController.StartGame(controllerFetch.taskCompleted);
+		GameManager.ShowCursor(false);
+		//GameManager.Instance.playerGoalUI.gameObject.SetActive(true);
 	}
 
 	public override void Playback(float playTime)

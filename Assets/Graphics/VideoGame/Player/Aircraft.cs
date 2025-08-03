@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class Aircraft : MonoBehaviour
 {
+	public GameObject winUI;
 	public bool isplaying;
 	public Transform sun;
 	public Vector2 sunOffset;
@@ -18,6 +19,7 @@ public class Aircraft : MonoBehaviour
 	public float startElevationT;
 
 	bool worldIsSpherical = true;
+	public Sfx hoopSfx;
 
 	public float worldRadius;
 
@@ -104,6 +106,9 @@ public class Aircraft : MonoBehaviour
 		if (!isplaying && !playbackMode) return;
 		if (other.CompareTag("Hoop"))
 		{
+			GetComponent<AudioSource>().volume = UnityEngine.Random.Range(0.8f, 1f);
+			GetComponent<AudioSource>().pitch = UnityEngine.Random.Range(0.9f, 1.1f);
+			GetComponent<AudioSource>().PlayOneShot(hoopSfx.clip, hoopSfx.volumeT);
 			other.GetComponent<MeshRenderer>().material.color = Color.green;
 			other.GetComponent<BoxCollider>().enabled = false;
 			numHoopsHit++;
@@ -166,6 +171,7 @@ public class Aircraft : MonoBehaviour
 		if (Time.time > winNotifyTime && winNotifyTime > 0)
 		{
 			hasWon = true;
+			winUI.SetActive(true);
 		}
 
 		if (!isplaying && !playbackMode) return;

@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
 	float playbackTime;
 
 	int playerIndex;
-	AudioSource audioSource2D;
+	[HideInInspector] public AudioSource audioSource2D;
 	public Sfx failSfx;
 
 	bool waitingForPlayerConfirm;

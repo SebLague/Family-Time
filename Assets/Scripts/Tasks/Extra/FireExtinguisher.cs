@@ -11,10 +11,21 @@ public class FireExtinguisher : MonoBehaviour
 	public float timeBetween;
 	float lastShootTime;
 	bool equipped;
+	
+	AudioSource audioSource;
 
 	public static List<float> shootTimes = new();
 	float playbackTimePrev;
 	int playbackIndexPrev;
+	float targetVol;
+	public float volumeMax;
+	public float volDecay;
+	public float volResponseSpeed;
+
+	void Start()
+	{
+		audioSource = GetComponent<AudioSource>();
+	}
 
 	void Update()
 	{
@@ -28,6 +39,12 @@ public class FireExtinguisher : MonoBehaviour
 		{
 			Shoot();
 		}
+		
+		// vol
+		targetVol -= Time.deltaTime * volDecay;
+		targetVol = Mathf.Clamp01(targetVol);
+		audioSource.volume = Mathf.Lerp(audioSource.volume, targetVol*volumeMax, Time.deltaTime * volResponseSpeed);
+		
 	}
 
 	void LateUpdate()
@@ -46,6 +63,7 @@ public class FireExtinguisher : MonoBehaviour
 			Foam foam = Instantiate(foamPrefab, nozzle.position, nozzle.rotation);
 			foam.Init(mom.controller.velocity);
 			lastShootTime = Time.time;
+			targetVol = 1;
 
 			if (!isPlayback) shootTimes.Add(GameManager.Instance.playerTimer);
 		}

@@ -18,7 +18,8 @@ public class FetchTask : Task
 	public void Fetched()
 	{
 		if (taskCompleted) return;
-		if (completedSfx.clip) AudioSource.PlayClipAtPoint(completedSfx.clip, owner.cam.transform.position, completedSfx.volumeT);
+		//if (completedSfx.clip) AudioSource.PlayClipAtPoint(completedSfx.clip, owner.cam.transform.position, completedSfx.volumeT);
+		if (completedSfx.clip) GameManager.Instance.audioSource2D.PlayOneShot(completedSfx.clip, completedSfx.volumeT);
 		if (GetComponent<SphereCollider>()) GetComponent<SphereCollider>().enabled = false;
 		TaskCompleted();
 	}

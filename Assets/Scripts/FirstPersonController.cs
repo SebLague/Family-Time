@@ -429,12 +429,14 @@ public class FirstPersonController : MonoBehaviour
 
 	public void PlayRandom(Sfx[] s)
 	{
+		if (!GameManager.Instance.gameActive) return;
 		var impSfx = s[UnityEngine.Random.Range(0, s.Length)];
 		audioSource.PlayOneShot(impSfx.clip, impSfx.volumeT);
 	}
 
 	public void PlayImpact()
 	{
+		if (!GameManager.Instance.gameActive) return;
 		if (Time.time - lastImpactSfxTime > 0.25f)
 		{
 			PlayRandom(GameManager.Instance.impactSounds);
@@ -443,6 +445,7 @@ public class FirstPersonController : MonoBehaviour
 
 	public void CatCatchSfx()
 	{
+		if (!GameManager.Instance.gameActive) return;
 		audioSource.PlayOneShot(catBugSfx.clip, catSleepSfx.volumeT);
 	}
 

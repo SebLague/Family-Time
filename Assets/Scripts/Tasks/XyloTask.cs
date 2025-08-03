@@ -184,7 +184,8 @@ public class XyloTask : Task
 
 	void PlayNoteSound(int noteIndex)
 	{
-		audioSource.PlayOneShot(noteSounds[noteIndex], Mathf.Lerp(0.6f, 1, Random.value));
+		if (!GameManager.Instance.gameActive) return;
+		audioSource.PlayOneShot(noteSounds[noteIndex], Mathf.Lerp(0.7f, 1, Random.value) * 0.6f);
 	}
 
 	public struct XyloSoundKeyframe

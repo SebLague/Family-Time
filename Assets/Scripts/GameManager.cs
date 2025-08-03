@@ -60,6 +60,8 @@ public class GameManager : MonoBehaviour
 	float playbackTime;
 
 	int playerIndex;
+	AudioSource audioSource2D;
+	public Sfx failSfx;
 
 	bool waitingForPlayerConfirm;
 	public FirstPersonController currentPlayer { get; private set; }
@@ -115,7 +117,8 @@ public class GameManager : MonoBehaviour
 			GameObject.DontDestroyOnLoad(audioListener);
 			InitStartupSettings();
 		}
-
+		
+		audioSource2D = GetComponent<AudioSource>();
 		audioListener = FindFirstObjectByType<AudioListener>().transform;
 
 		foreach (FirstPersonController c in players)
@@ -187,6 +190,8 @@ public class GameManager : MonoBehaviour
 
 	void OnFail(string reason)
 	{
+		
+		audioSource2D.PlayOneShot(failSfx.clip, failSfx.volumeT);
 		failUI.reason.text = reason;
 		gameActive = false;
 		failUI.gameObject.SetActive(true);

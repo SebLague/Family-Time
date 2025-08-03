@@ -14,6 +14,7 @@ https://opengameart.org/content/win-sound-effect
 https://opengameart.org/content/well-done
 https://opengameart.org/content/win-sound-1
 https://opengameart.org/content/completion-sound
+https://opengameart.org/content/game-over-trumpet-sfx
 
 ** Icons
 https://www.flaticon.com/free-icon/focus_2284968

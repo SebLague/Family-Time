@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7741147982656953690}
   - component: {fileID: 2589338821024738392}
   m_Layer: 0
-  m_Name: Persistant
+  m_Name: Persistant Audio
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -54,7 +54,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 569d44654583e9441925de26727676c1, type: 3}
   m_Resource: {fileID: 8300000, guid: 569d44654583e9441925de26727676c1, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.042
   m_Pitch: 1
   Loop: 1
   Mute: 0

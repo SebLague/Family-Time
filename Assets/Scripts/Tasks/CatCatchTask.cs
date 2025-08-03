@@ -30,6 +30,7 @@ public class CatCatchTask : Task
 		events.Add(e);
 
 		numCaught++;
+		owner.CatCatchSfx();
 
 		if (numCaught >= numFlies)
 		{
@@ -53,6 +54,7 @@ public class CatCatchTask : Task
 			if (frame.time > playbackTimePrev && frame.time < playTime)
 			{
 				flies[frame.flyIndex].gameObject.SetActive(false);
+				owner.CatCatchSfx();
 			}
 		}
 

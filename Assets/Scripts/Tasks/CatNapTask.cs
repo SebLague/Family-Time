@@ -33,7 +33,8 @@ public class CatNapTask : Task
 		owner.gameObject.SetActive(true);
 		owner.SetControllable(false);
 		owner.skinnedMesh.shadowCastingMode = ShadowCastingMode.On;
-		owner.animator.SetBool("Snooze", true);
+		
+		owner.CatSnooze();
 
 		hasCat = true;
 		animStartedTime = Time.time;

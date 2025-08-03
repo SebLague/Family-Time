@@ -224,6 +224,8 @@ public class GameManager : MonoBehaviour
 		introUI.Set(currentPlayer.playerType);
 		waitingForPlayerConfirm = true;
 		waitStartTime = Time.time;
+		
+		audioListener.transform.position = menuCam.transform.position;
 		//menuCam.GetComponent<CamFixed>().active = false;
 	}
 
@@ -280,10 +282,7 @@ public class GameManager : MonoBehaviour
 				OnFailTimeRanOut();
 			}
 		}
-		else
-		{
-			audioListener.transform.position = menuCam.transform.position;
-		}
+	
 
 		if (!mainMenu.gameObject.activeSelf && !settingsMenu.gameObject.activeSelf && !isPaused)
 		{

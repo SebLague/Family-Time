@@ -51,6 +51,21 @@ public class FirstPersonController : MonoBehaviour
 	List<FlyController> fliesInCatchableRadius = new();
 	FireExtinguisher fireExtPickup;
 	DadCam camPickup;
+	AudioSource audioSource;
+
+	[Header("Sfx")]
+	public Sfx onControllableSfx;
+
+	public Sfx catSleepSfx;
+	public Sfx catBugSfx;
+	bool isCatSnoozing;
+
+	[System.Serializable]
+	public struct Sfx
+	{
+		public AudioClip clip;
+		[Range(0, 1)] public float volumeT;
+	}
 
 	void Start()
 	{
@@ -59,6 +74,7 @@ public class FirstPersonController : MonoBehaviour
 		fovCur = fov;
 		controller = GetComponent<CharacterController>();
 		manager = FindFirstObjectByType<GameManager>(FindObjectsInactive.Include);
+		audioSource = GetComponent<AudioSource>();
 	}
 
 	public void NotifyTaskCompleted(bool forceAllDone = false)
@@ -93,6 +109,9 @@ public class FirstPersonController : MonoBehaviour
 		{
 			manager.playerGoalUI.gameObject.SetActive(true);
 			gameHud.UpdateGoalHud(tasks);
+
+
+			if (onControllableSfx.clip) audioSource.PlayOneShot(onControllableSfx.clip, onControllableSfx.volumeT);
 		}
 		else
 		{
@@ -178,7 +197,7 @@ public class FirstPersonController : MonoBehaviour
 	{
 		if (!GameManager.Instance.gameActive) return;
 
-	
+
 		if (other.gameObject.CompareTag("PhysExtra"))
 		{
 			float velPhysMul = 1.3f;
@@ -399,7 +418,29 @@ public class FirstPersonController : MonoBehaviour
 		{
 			animator.speed = Mathf.Lerp(frameA.animTimescale, frameB.animTimescale, abPercent);
 			animator.SetFloat("Speed", Mathf.Lerp(frameA.animSpeed, frameB.animSpeed, abPercent));
+
+			if (nextIndex >= playbackKeyframes.Count - 1)
+			{
+				CatSnooze();
+			}
 		}
+	}
+
+	public void CatCatchSfx()
+	{
+		audioSource.PlayOneShot(catBugSfx.clip, catSleepSfx.volumeT);
+	}
+
+	public void CatSnooze()
+	{
+		if (isCatSnoozing) return;
+		isCatSnoozing = true;
+
+		audioSource.clip = catSleepSfx.clip;
+		audioSource.volume = catSleepSfx.volumeT;
+		audioSource.loop = true;
+		audioSource.Play();
+		animator.SetBool("Snooze", true);
 	}
 
 	static float ClampAngle(float angle, float min, float max)

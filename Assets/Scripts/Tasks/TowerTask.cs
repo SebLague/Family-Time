@@ -24,6 +24,8 @@ public class TowerTask : Task
 
 	public static List<TowerKeyFrame> keyframes = new();
 	bool isAnimatingDisk;
+	public AudioSource audiosrc;
+	public Sfx moveSfx;
 	AnimationState animState;
 
 
@@ -35,6 +37,7 @@ public class TowerTask : Task
 		{
 			poleStart.Add(i);
 		}
+
 		diskCols = disks.Select(d => d.gameObject.GetComponent<MeshRenderer>().material.color).ToArray();
 		startY = disks[0].transform.localPosition.z;
 		spacingY = disks[1].transform.localPosition.z - startY;
@@ -114,6 +117,8 @@ public class TowerTask : Task
 							posStart = disks[selectedDiskIndex].transform.localPosition,
 							posEnd = targetLocalPos,
 						};
+						audiosrc.pitch = Mathf.Lerp(0.8f, 1.2f, selectedDiskIndex / (disks.Length - 1f));
+						audiosrc.PlayOneShot(moveSfx.clip, moveSfx.volumeT);
 						isAnimatingDisk = true;
 						//disks[selectedDiskIndex].transform.localPosition = new Vector3(0, poles[selectedPoleIndex].transform.localPosition.y, startY + GetPoleFromPoleIndex(selectedPoleIndex).Count * spacingY);
 						PopFromPole(currPoleIndex);
@@ -275,6 +280,7 @@ public class TowerTask : Task
 		public float time;
 		public Vector3 posA;
 		public Vector3 posB;
+
 		public Vector3 posC;
 		//public Vector3 posD;
 	}

@@ -1,4 +1,5 @@
 using System.Linq;
+using Seb.Helpers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -281,6 +282,11 @@ public class GameManager : MonoBehaviour
 			int seconds = (int)(timeRemainingSecs % 60);
 			string formatted = $"{minutes}:{seconds:D2}";
 			timerText.text = formatted;
+			if (timeRemainingSecs < 5)
+			{
+				timerText.color = Color.Lerp(timerText.color, Color.red, Time.deltaTime * 0.3f);
+				timerText.transform.localScale = Vector3.one * Mathf.Lerp(1.3f, 1, Maths.EaseQuadInOut(timeRemainingSecs / 5f));
+			}
 
 			if (timeRemainingSecs <= 0 && !ignoreTimer)
 			{

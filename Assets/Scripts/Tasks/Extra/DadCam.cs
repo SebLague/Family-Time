@@ -7,6 +7,7 @@ public class DadCam : MonoBehaviour
 	public PicTask picTask;
 	bool equipped;
 
+
 	void Update()
 	{
 		if (Application.isEditor && Input.GetKeyDown(KeyCode.PageUp) && dad.isControllable)
@@ -20,7 +21,6 @@ public class DadCam : MonoBehaviour
 	public void Equip()
 	{
 		if (equipped) return;
-
 		task.Fetched();
 		equipped = true;
 		GetComponent<SphereCollider>().enabled = false;

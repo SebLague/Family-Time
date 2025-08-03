@@ -34,10 +34,11 @@ public class SettingsMenu : MonoBehaviour
 
 	void FullWin()
 	{
-		Screen.SetResolution(Display.main.systemWidth, Display.main.systemHeight, FullScreenMode.FullScreenWindow);
+		FullScreenMode mode = Input.GetKey(KeyCode.LeftAlt) ? FullScreenMode.ExclusiveFullScreen : FullScreenMode.FullScreenWindow;
+		Screen.SetResolution(Display.main.systemWidth, Display.main.systemHeight, mode);
 		//Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
 	}
-	
+
 
 	public void NotifyFromPauseMenu(PauseMenu pauseMenu)
 	{

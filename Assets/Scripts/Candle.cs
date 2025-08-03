@@ -9,7 +9,7 @@ public class Candle : MonoBehaviour
 	bool hasApplied;
 	public Transform[] directions;
 	public GameObject firePrefab;
-	Light light;
+	Light candleLight;
 
 	float fireStartDelay = 2;
 	float fireStartTime;
@@ -25,7 +25,7 @@ public class Candle : MonoBehaviour
 
 	void Start()
 	{
-		light = GetComponentInChildren<Light>();
+		candleLight = GetComponentInChildren<Light>();
 	}
 
 	void Update()
@@ -62,7 +62,7 @@ public class Candle : MonoBehaviour
 
 		if (extinguished)
 		{
-			light.intensity = Mathf.Lerp(light.intensity, 0, Time.deltaTime);
+			candleLight.intensity = Mathf.Lerp(candleLight.intensity, 0, Time.deltaTime);
 		}
 
 		if (hasStartedFire && !extinguished && extinguishCounter > 8)

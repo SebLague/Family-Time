@@ -31,7 +31,10 @@ public class TowerTask : Task
 	{
 		base.Awake();
 		successText.gameObject.SetActive(false);
-		poleStart.AddRange(new int[] { 0, 1, 2, 3 });
+		for (int i = 0; i < disks.Length; i++)
+		{
+			poleStart.Add(i);
+		}
 		diskCols = disks.Select(d => d.gameObject.GetComponent<MeshRenderer>().material.color).ToArray();
 		startY = disks[0].transform.localPosition.z;
 		spacingY = disks[1].transform.localPosition.z - startY;
@@ -124,7 +127,7 @@ public class TowerTask : Task
 		}
 
 		// Task completion
-		if (poleEnd.Count == 4 || poleMiddle.Count == 4 || (Application.isEditor && Input.GetKeyDown(KeyCode.Q)))
+		if (poleEnd.Count == disks.Length || poleMiddle.Count == disks.Length || (Application.isEditor && Input.GetKeyDown(KeyCode.Q)))
 		{
 			if (!taskCompleted)
 			{
@@ -150,7 +153,7 @@ public class TowerTask : Task
 				posA = disks[0].transform.position,
 				posB = disks[1].transform.position,
 				posC = disks[2].transform.position,
-				posD = disks[3].transform.position,
+				//posD = disks[3].transform.position,
 			};
 
 			keyframes.Add(frame);
@@ -256,7 +259,7 @@ public class TowerTask : Task
 		disks[0].transform.position = Vector3.Lerp(frameA.posA, frameB.posA, abPercent);
 		disks[1].transform.position = Vector3.Lerp(frameA.posB, frameB.posB, abPercent);
 		disks[2].transform.position = Vector3.Lerp(frameA.posC, frameB.posC, abPercent);
-		disks[3].transform.position = Vector3.Lerp(frameA.posD, frameB.posD, abPercent);
+		//disks[3].transform.position = Vector3.Lerp(frameA.posD, frameB.posD, abPercent);
 	}
 
 	void ResetCols()
@@ -273,6 +276,6 @@ public class TowerTask : Task
 		public Vector3 posA;
 		public Vector3 posB;
 		public Vector3 posC;
-		public Vector3 posD;
+		//public Vector3 posD;
 	}
 }

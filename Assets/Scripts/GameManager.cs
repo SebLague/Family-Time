@@ -242,7 +242,7 @@ public class GameManager : MonoBehaviour
 			menuCam.transform.rotation = Quaternion.Slerp(menuCam.transform.rotation, Quaternion.LookRotation(-currentPlayer.transform.forward, Vector3.up), Time.deltaTime * camAnimSpeed);
 			menuCam.UpdateBaseRot();
 
-			if ((Input.anyKeyDown && !Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(2)) && Time.time - waitStartTime > 0.25f)
+			if ((Input.anyKeyDown) && Time.time - waitStartTime > 0.25f)
 			{
 				menuObjects.SetActive(false);
 				waitingForPlayerConfirm = false;

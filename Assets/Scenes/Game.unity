@@ -2648,7 +2648,6 @@ MonoBehaviour:
   - {fileID: 1523581401}
   - {fileID: 1523581400}
   - {fileID: 1523581402}
-  - {fileID: 1523581399}
   successText: {fileID: 1932335099}
 --- !u!135 &183735360
 SphereCollider:
@@ -7198,10 +7197,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0.0003246665
-    width: 1
-    height: 0.99935067
+    x: 0.00011000037
+    y: 0
+    width: 0.99978
+    height: 1
   near clip plane: 0.19
   far clip plane: 15
   field of view: 73.8
@@ -7322,9 +7321,9 @@ MonoBehaviour:
   startupMode: 0
   startTask: {fileID: 1442701591}
   players:
+  - {fileID: 147061111}
   - {fileID: 430008004}
   - {fileID: 613399923}
-  - {fileID: 147061111}
   - {fileID: 1931072414}
   - {fileID: 336867575}
   menuCam: {fileID: 1669547313}
@@ -7838,10 +7837,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0.0003246665
-    width: 1
-    height: 0.99935067
+    x: 0.00011000037
+    y: 0
+    width: 0.99978
+    height: 1
   near clip plane: 0.1
   far clip plane: 100
   field of view: 73.8
@@ -8936,19 +8935,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 392965301542925697, guid: b028edcfa3e138f47a1753acce9aafa8, type: 3}
       propertyPath: m_NormalizedViewPortRect.x
-      value: 0
+      value: 0.00011000037
       objectReference: {fileID: 0}
     - target: {fileID: 392965301542925697, guid: b028edcfa3e138f47a1753acce9aafa8, type: 3}
       propertyPath: m_NormalizedViewPortRect.y
-      value: 0.0003246665
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 392965301542925697, guid: b028edcfa3e138f47a1753acce9aafa8, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
-      value: 1
+      value: 0.99978
       objectReference: {fileID: 0}
     - target: {fileID: 392965301542925697, guid: b028edcfa3e138f47a1753acce9aafa8, type: 3}
       propertyPath: m_NormalizedViewPortRect.height
-      value: 0.99935067
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1689462117404829777, guid: b028edcfa3e138f47a1753acce9aafa8, type: 3}
       propertyPath: m_IsActive
@@ -21726,10 +21725,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0.0003246665
-    width: 1
-    height: 0.99935067
+    x: 0.00011000037
+    y: 0
+    width: 0.99978
+    height: 1
   near clip plane: 0.025
   far clip plane: 100
   field of view: 73.8
@@ -22130,10 +22129,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0.0003246665
-    width: 1
-    height: 0.99935067
+    x: 0.00011000037
+    y: 0
+    width: 0.99978
+    height: 1
   near clip plane: 0.19
   far clip plane: 15
   field of view: 73.8
@@ -22359,10 +22358,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0.0003246665
-    width: 1
-    height: 0.99935067
+    x: 0.00011000037
+    y: 0
+    width: 0.99978
+    height: 1
   near clip plane: 0.1
   far clip plane: 100
   field of view: 73.8
@@ -23814,10 +23813,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0.0003246665
-    width: 1
-    height: 0.99935067
+    x: 0.00011000037
+    y: 0
+    width: 0.99978
+    height: 1
   near clip plane: 0.19
   far clip plane: 15
   field of view: 63.5
@@ -25230,10 +25229,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0.0003246665
-    width: 1
-    height: 0.99935067
+    x: 0.00011000037
+    y: 0
+    width: 0.99978
+    height: 1
   near clip plane: 0.19
   far clip plane: 100
   field of view: 38.7
@@ -33088,8 +33087,16 @@ PrefabInstance:
       value: 0.07
       objectReference: {fileID: 0}
     - target: {fileID: -3274006528333456403, guid: ada4687fa080f0b42a0b652b27bb8bdc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.0287
+      objectReference: {fileID: 0}
+    - target: {fileID: -3274006528333456403, guid: ada4687fa080f0b42a0b652b27bb8bdc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.0742
+      objectReference: {fileID: 0}
+    - target: {fileID: -3274006528333456403, guid: ada4687fa080f0b42a0b652b27bb8bdc, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.09
+      value: 0.0215
       objectReference: {fileID: 0}
     - target: {fileID: -1806680513116206669, guid: ada4687fa080f0b42a0b652b27bb8bdc, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -36337,10 +36344,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0.0003246665
-    width: 1
-    height: 0.99935067
+    x: 0.00011000037
+    y: 0
+    width: 0.99978
+    height: 1
   near clip plane: 0.1
   far clip plane: 100
   field of view: 73.8
@@ -36783,10 +36790,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0.0003246665
-    width: 1
-    height: 0.99935067
+    x: 0.00011000037
+    y: 0
+    width: 0.99978
+    height: 1
   near clip plane: 0.1
   far clip plane: 100
   field of view: 82.2
@@ -37763,10 +37770,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0.0003246665
-    width: 1
-    height: 0.99935067
+    x: 0.00011000037
+    y: 0
+    width: 0.99978
+    height: 1
   near clip plane: 0.025
   far clip plane: 100
   field of view: 73.8
@@ -38091,10 +38098,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0.0003246665
-    width: 1
-    height: 0.99935067
+    x: 0.00011000037
+    y: 0
+    width: 0.99978
+    height: 1
   near clip plane: 0.025
   far clip plane: 100
   field of view: 73.8
@@ -39637,10 +39644,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0.0003246665
-    width: 1
-    height: 0.99935067
+    x: 0.00011000037
+    y: 0
+    width: 0.99978
+    height: 1
   near clip plane: 0.19
   far clip plane: 100
   field of view: 73.8

@@ -44,7 +44,6 @@ public class FirstPersonController : MonoBehaviour
 	bool lockCursor = true;
 	float timeSinceLastGrounded;
 	GameManager manager;
-	int physExLayer;
 
 	[HideInInspector] public List<PlaybackKeyframe> playbackKeyframes = new();
 
@@ -64,7 +63,6 @@ public class FirstPersonController : MonoBehaviour
 
 	void Start()
 	{
-		physExLayer = LayerMask.NameToLayer("PhysExtras");
 		gameHud = FindFirstObjectByType<GameHud>(FindObjectsInactive.Include);
 		fovCur = fov;
 		controller = GetComponent<CharacterController>();
@@ -193,7 +191,7 @@ public class FirstPersonController : MonoBehaviour
 		if (!GameManager.Instance.gameActive) return;
 
 
-		if (other.gameObject.CompareTag("PhysExtra"))
+		if (other.gameObject.CompareTag("PhysExtra") || (playerType != GameManager.Players.Cat && other.gameObject.CompareTag("PhysExtraNoCat")))
 		{
 			float velPhysMul = 1.3f;
 			float yBoost = 1.6f;

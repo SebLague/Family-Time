@@ -49,8 +49,8 @@ public class Music : MonoBehaviour
 	{
 		if (!isCrossFade)
 		{
-			sourceA.volume = Mathf.Lerp(sourceA.volume, volCurrMax, Time.deltaTime * 8);
-			sourceB.volume =  Mathf.Lerp(sourceB.volume, volCurrMax, Time.deltaTime * 8);
+			sourceA.volume = Mathf.Lerp(sourceA.volume, volCurrMax, Time.unscaledDeltaTime * 8);
+			sourceB.volume =  Mathf.Lerp(sourceB.volume, volCurrMax, Time.unscaledDeltaTime * 8);
 		}
 	}
 
@@ -67,7 +67,7 @@ public class Music : MonoBehaviour
 		isCrossFade = true;
 		while (t < crossfadeDuration)
 		{
-			t += Time.deltaTime;
+			t += Time.unscaledDeltaTime;
 			float blend = Mathf.Clamp01(t / crossfadeDuration);
 			active.volume = Maths.EaseQuadIn(1f - blend) * blendFromVal;
 			next.volume = Maths.EaseQuadIn(blend) * volCurrMax;

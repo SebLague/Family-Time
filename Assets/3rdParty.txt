@@ -3,6 +3,7 @@ https://opengameart.org/content/caketown-cuteplayful
 
 ** SFX
 https://kenney.nl/assets/impact-sounds
+https://kenney.nl/assets/ui-audio
 https://freesound.org/search/?g=0&f=username%3A%22juancamiloorjuela%22+pack_grouping%3A%2213065_Xylophone+Sampler+Pack%22&page=1#sound
 https://opengameart.org/content/fireplace-sound-loop
 https://opengameart.org/content/cat-purr-meow
@@ -82,6 +83,8 @@ Lamp by Poly by Google [CC-BY] (https://creativecommons.org/licenses/by/3.0/) vi
 Analog clock by Poly by Google [CC-BY] (https://creativecommons.org/licenses/by/3.0/) via Poly Pizza (https://poly.pizza/m/5gAoMR2YHs3)
 Standing lamp by jeremy [CC-BY] (https://creativecommons.org/licenses/by/3.0/) via Poly Pizza (https://poly.pizza/m/7AqWZQIaCQf)
 Soccer goal by Poly by Google [CC-BY] (https://creativecommons.org/licenses/by/3.0/) via Poly Pizza (https://poly.pizza/m/7t4hmicGHV4)
+Headphones by Poly by Google [CC-BY] (https://creativecommons.org/licenses/by/3.0/) via Poly Pizza (https://poly.pizza/m/ao4rDws4elf)
+
 
 ** Fonts
 https://font.subf.dev/en/

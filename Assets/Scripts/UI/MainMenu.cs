@@ -14,6 +14,7 @@ public class MainMenu : MonoBehaviour
 		playButton.onClick.AddListener(PlayClick);
 		settingsButton.onClick.AddListener(SettingsClick);
 		quitButton.onClick.AddListener(QuitClick);
+		
 	}
 
 	void PlayClick()

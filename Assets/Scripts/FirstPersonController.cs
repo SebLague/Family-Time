@@ -415,7 +415,7 @@ public class FirstPersonController : MonoBehaviour
 
 			if (nextIndex >= playbackKeyframes.Count - 1)
 			{
-				CatSnooze();
+				if (playerType == GameManager.Players.Cat) CatSnooze();
 			}
 		}
 	}

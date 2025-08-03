@@ -6,6 +6,7 @@ public class PauseMenu : MonoBehaviour
     public Button continueBut;
     public Button settingsBut;
     public Button quitBut;
+    public Button restartBut;
     public SettingsMenu settings;
 
     void Start()
@@ -13,6 +14,7 @@ public class PauseMenu : MonoBehaviour
         quitBut.onClick.AddListener(Quit);
         settingsBut.onClick.AddListener(SettingsGo);
         continueBut.onClick.AddListener(Cont);
+        restartBut.onClick.AddListener(Restart);
     }
 
     void Update()
@@ -32,6 +34,11 @@ public class PauseMenu : MonoBehaviour
     void Cont()
     {
         GameManager.Instance.SetPaused(false);
+    }
+    
+    void Restart()
+    {
+        GameManager.Instance.RestartTimeLoop();
     }
     
     void SettingsGo()

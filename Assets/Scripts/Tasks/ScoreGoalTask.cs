@@ -13,6 +13,8 @@ public class ScoreGoalTask : Task
 			if (other.gameObject == b)
 			{
 				TaskCompleted();
+				GetComponent<AudioSource>().Play();
+				break;
 			}
 		}
 	}

@@ -200,6 +200,7 @@ public class GameManager : MonoBehaviour
 
 	public void RestartTimeLoop()
 	{
+		SetPaused(false);
 		PlaybackData.skipMenu = true;
 		PlaybackData.activePlayerIndex = playerIndex;
 		numLoads++;
@@ -208,6 +209,8 @@ public class GameManager : MonoBehaviour
 
 	public void RestartGame()
 	{
+		SetPaused(false);
+		gameActive = false;
 		PlaybackData.Wipe();
 		numLoads++;
 		SceneManager.LoadScene(0);

@@ -215,6 +215,7 @@ public class GameManager : MonoBehaviour
 		SetPaused(false);
 		PlaybackData.skipMenu = true;
 		PlaybackData.activePlayerIndex = playerIndex;
+		PlaybackData.WipeCurrentOnly();
 		numLoads++;
 		SceneManager.LoadScene(0);
 	}

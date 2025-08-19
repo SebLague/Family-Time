@@ -102,7 +102,7 @@ public class ScribbleTask : Task
 				if (hasUvPrev)
 				{
 					dst = (uvPrev - uvCurr).magnitude;
-					int num = Mathf.Clamp(Mathf.CeilToInt(dst * 100), 1, 15);
+					int num = Mathf.Clamp(Mathf.CeilToInt(dst * 100), 1, 15) * 2;
 					for (int i = 0; i < num; i++)
 					{
 						float tt = num == 1 ? 1 : i / (num - 1f);

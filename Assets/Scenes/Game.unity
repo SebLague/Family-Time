@@ -7676,6 +7676,7 @@ GameObject:
   - component: {fileID: 422237898}
   - component: {fileID: 422237899}
   - component: {fileID: 422237900}
+  - component: {fileID: 422237901}
   m_Layer: 0
   m_Name: Cam - Zylo
   m_TagString: Untagged
@@ -7727,9 +7728,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.00028827786
+    y: 0.00017631054
     width: 1
-    height: 0.99942344
+    height: 0.9996474
   near clip plane: 0.19
   far clip plane: 15
   field of view: 73.8
@@ -7744,10 +7745,10 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
-  m_AllowMSAA: 1
+  m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
+  m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
 --- !u!114 &422237899
@@ -7780,6 +7781,21 @@ MonoBehaviour:
   maxAngle: 5
   smoothTime: 0.75
   active: 1
+--- !u!114 &422237901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 422237895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 058a1e0d8c98bbc4595a31d997dc1a2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PostProcessingManager
+  effects:
+  - {fileID: 11400000, guid: e5eed753fe86b904b8e130f8b903378d, type: 2}
+  - {fileID: 11400000, guid: 363f8f10c32cb3e489b5c43191522a08, type: 2}
 --- !u!1 &424160637
 GameObject:
   m_ObjectHideFlags: 0
@@ -8111,12 +8127,12 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 3
   m_Height: 0.29
-  m_Radius: 0.16
+  m_Radius: 0.18
   m_SlopeLimit: 45
   m_StepOffset: 0.05
   m_SkinWidth: 0.15
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0, z: 0.27}
 --- !u!135 &430008006
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -8136,8 +8152,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.17
-  m_Center: {x: 0, y: 0.09, z: 0.32}
+  m_Radius: 0.21
+  m_Center: {x: 0, y: 0.09, z: 0.49}
 --- !u!82 &430008007
 AudioSource:
   m_ObjectHideFlags: 0
@@ -8438,6 +8454,7 @@ GameObject:
   - component: {fileID: 464920973}
   - component: {fileID: 464920975}
   - component: {fileID: 464920976}
+  - component: {fileID: 464920977}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -8488,9 +8505,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.00028827786
+    y: 0.00017631054
     width: 1
-    height: 0.99942344
+    height: 0.9996474
   near clip plane: 0.1
   far clip plane: 100
   field of view: 73.8
@@ -8505,10 +8522,10 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
-  m_AllowMSAA: 1
+  m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
+  m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
 --- !u!114 &464920976
@@ -8526,6 +8543,21 @@ MonoBehaviour:
   targetWidth: 1920
   targetHeight: 1080
   type: 0
+--- !u!114 &464920977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 464920972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 058a1e0d8c98bbc4595a31d997dc1a2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PostProcessingManager
+  effects:
+  - {fileID: 11400000, guid: e5eed753fe86b904b8e130f8b903378d, type: 2}
+  - {fileID: 11400000, guid: 363f8f10c32cb3e489b5c43191522a08, type: 2}
 --- !u!1 &466889310
 GameObject:
   m_ObjectHideFlags: 0
@@ -9185,7 +9217,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.35
+  m_Radius: 0.47
   m_Center: {x: 0, y: 0.44, z: 0}
 --- !u!114 &538559002
 MonoBehaviour:
@@ -9904,12 +9936,24 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 392965301542925697, guid: b028edcfa3e138f47a1753acce9aafa8, type: 3}
+      propertyPath: m_AllowMSAA
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 392965301542925697, guid: b028edcfa3e138f47a1753acce9aafa8, type: 3}
+      propertyPath: field of view
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 392965301542925697, guid: b028edcfa3e138f47a1753acce9aafa8, type: 3}
+      propertyPath: m_OcclusionCulling
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 392965301542925697, guid: b028edcfa3e138f47a1753acce9aafa8, type: 3}
       propertyPath: m_NormalizedViewPortRect.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 392965301542925697, guid: b028edcfa3e138f47a1753acce9aafa8, type: 3}
       propertyPath: m_NormalizedViewPortRect.y
-      value: 0.00028827786
+      value: 0.00017631054
       objectReference: {fileID: 0}
     - target: {fileID: 392965301542925697, guid: b028edcfa3e138f47a1753acce9aafa8, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
@@ -9917,7 +9961,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 392965301542925697, guid: b028edcfa3e138f47a1753acce9aafa8, type: 3}
       propertyPath: m_NormalizedViewPortRect.height
-      value: 0.99942344
+      value: 0.9996474
       objectReference: {fileID: 0}
     - target: {fileID: 1689462117404829777, guid: b028edcfa3e138f47a1753acce9aafa8, type: 3}
       propertyPath: m_IsActive
@@ -10170,6 +10214,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4271027655857479198, guid: b028edcfa3e138f47a1753acce9aafa8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1317203164}
+    - targetCorrespondingSourceObject: {fileID: 4271027655857479198, guid: b028edcfa3e138f47a1753acce9aafa8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1317203166}
   m_SourcePrefab: {fileID: 100100000, guid: b028edcfa3e138f47a1753acce9aafa8, type: 3}
 --- !u!137 &573849492 stripped
 SkinnedMeshRenderer:
@@ -11333,7 +11380,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.35
+  m_Radius: 0.47
   m_Center: {x: 0, y: 0.44, z: 0}
 --- !u!114 &637400625
 MonoBehaviour:
@@ -19055,6 +19102,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b21c4a4a40df090449df49de3c8f1d51, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -19538,7 +19589,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.35
+  m_Radius: 0.47
   m_Center: {x: 0, y: 0.44, z: 0}
 --- !u!114 &761402727
 MonoBehaviour:
@@ -20805,7 +20856,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: b21c4a4a40df090449df49de3c8f1d51, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1278673508}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b21c4a4a40df090449df49de3c8f1d51, type: 3}
       insertIndex: -1
@@ -21679,7 +21733,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.35
+  m_Radius: 0.47
   m_Center: {x: 0, y: 0.44, z: 0}
 --- !u!114 &872650160
 MonoBehaviour:
@@ -23166,6 +23220,7 @@ GameObject:
   - component: {fileID: 940438269}
   - component: {fileID: 940438271}
   - component: {fileID: 940438272}
+  - component: {fileID: 940438273}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -23217,9 +23272,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.00028827786
+    y: 0.00017631054
     width: 1
-    height: 0.99942344
+    height: 0.9996474
   near clip plane: 0.025
   far clip plane: 100
   field of view: 73.8
@@ -23234,10 +23289,10 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
-  m_AllowMSAA: 1
+  m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
+  m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
 --- !u!114 &940438272
@@ -23255,6 +23310,21 @@ MonoBehaviour:
   targetWidth: 1920
   targetHeight: 1080
   type: 0
+--- !u!114 &940438273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 940438268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 058a1e0d8c98bbc4595a31d997dc1a2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PostProcessingManager
+  effects:
+  - {fileID: 11400000, guid: e5eed753fe86b904b8e130f8b903378d, type: 2}
+  - {fileID: 11400000, guid: 363f8f10c32cb3e489b5c43191522a08, type: 2}
 --- !u!1001 &942339650
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23571,6 +23641,7 @@ GameObject:
   - component: {fileID: 946063155}
   - component: {fileID: 946063156}
   - component: {fileID: 946063157}
+  - component: {fileID: 946063158}
   m_Layer: 0
   m_Name: Cam - Hanoi
   m_TagString: Untagged
@@ -23621,9 +23692,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.00028827786
+    y: 0.00017631054
     width: 1
-    height: 0.99942344
+    height: 0.9996474
   near clip plane: 0.19
   far clip plane: 15
   field of view: 73.8
@@ -23638,10 +23709,10 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
-  m_AllowMSAA: 1
+  m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
+  m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
 --- !u!114 &946063156
@@ -23674,6 +23745,21 @@ MonoBehaviour:
   maxAngle: 5
   smoothTime: 0.75
   active: 1
+--- !u!114 &946063158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 946063152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 058a1e0d8c98bbc4595a31d997dc1a2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PostProcessingManager
+  effects:
+  - {fileID: 11400000, guid: e5eed753fe86b904b8e130f8b903378d, type: 2}
+  - {fileID: 11400000, guid: 363f8f10c32cb3e489b5c43191522a08, type: 2}
 --- !u!1 &949224107
 GameObject:
   m_ObjectHideFlags: 0
@@ -23815,6 +23901,7 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194229}
+  - component: {fileID: 963194230}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -23850,9 +23937,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.00028827786
+    y: 0.00017631054
     width: 1
-    height: 0.99942344
+    height: 0.9996474
   near clip plane: 0.1
   far clip plane: 100
   field of view: 73.8
@@ -23867,10 +23954,10 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
-  m_AllowMSAA: 1
+  m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
+  m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
 --- !u!4 &963194228
@@ -23903,6 +23990,21 @@ MonoBehaviour:
   targetWidth: 1920
   targetHeight: 1080
   type: 0
+--- !u!114 &963194230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 058a1e0d8c98bbc4595a31d997dc1a2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PostProcessingManager
+  effects:
+  - {fileID: 11400000, guid: e5eed753fe86b904b8e130f8b903378d, type: 2}
+  - {fileID: 11400000, guid: 363f8f10c32cb3e489b5c43191522a08, type: 2}
 --- !u!1 &964081548
 GameObject:
   m_ObjectHideFlags: 0
@@ -25318,6 +25420,7 @@ GameObject:
   - component: {fileID: 1064847619}
   - component: {fileID: 1064847621}
   - component: {fileID: 1064847622}
+  - component: {fileID: 1064847623}
   m_Layer: 0
   m_Name: Cam - Scribble
   m_TagString: Untagged
@@ -25368,9 +25471,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.00028827786
+    y: 0.00017631054
     width: 1
-    height: 0.99942344
+    height: 0.9996474
   near clip plane: 0.19
   far clip plane: 15
   field of view: 63.5
@@ -25385,10 +25488,10 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
-  m_AllowMSAA: 1
+  m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
+  m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
 --- !u!114 &1064847622
@@ -25406,6 +25509,21 @@ MonoBehaviour:
   targetWidth: 1920
   targetHeight: 1080
   type: 0
+--- !u!114 &1064847623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1064847618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 058a1e0d8c98bbc4595a31d997dc1a2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PostProcessingManager
+  effects:
+  - {fileID: 11400000, guid: e5eed753fe86b904b8e130f8b903378d, type: 2}
+  - {fileID: 11400000, guid: 363f8f10c32cb3e489b5c43191522a08, type: 2}
 --- !u!1 &1067760681
 GameObject:
   m_ObjectHideFlags: 0
@@ -25679,7 +25797,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.35
+  m_Radius: 0.47
   m_Center: {x: 0, y: 0.44, z: 0}
 --- !u!114 &1085904238
 MonoBehaviour:
@@ -25718,7 +25836,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 521471410}
-  - {fileID: 1278673508}
   - {fileID: 858141271}
   - {fileID: 3706947}
   - {fileID: 1023139349}
@@ -26769,6 +26886,7 @@ GameObject:
   - component: {fileID: 1142927035}
   - component: {fileID: 1142927036}
   - component: {fileID: 1142927037}
+  - component: {fileID: 1142927038}
   m_Layer: 0
   m_Name: Cam - vidgame
   m_TagString: Untagged
@@ -26820,12 +26938,12 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.00028827786
+    y: 0.00017631054
     width: 1
-    height: 0.99942344
+    height: 0.9996474
   near clip plane: 0.19
   far clip plane: 100
-  field of view: 38.7
+  field of view: 39.8
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -26837,10 +26955,10 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
-  m_AllowMSAA: 1
+  m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
+  m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
 --- !u!114 &1142927036
@@ -26873,6 +26991,21 @@ MonoBehaviour:
   maxAngle: 5
   smoothTime: 0.75
   active: 1
+--- !u!114 &1142927038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1142927033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 058a1e0d8c98bbc4595a31d997dc1a2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PostProcessingManager
+  effects:
+  - {fileID: 11400000, guid: e5eed753fe86b904b8e130f8b903378d, type: 2}
+  - {fileID: 11400000, guid: 363f8f10c32cb3e489b5c43191522a08, type: 2}
 --- !u!1 &1144833490
 GameObject:
   m_ObjectHideFlags: 0
@@ -29860,12 +29993,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1278673507}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.26624453, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071067}
+  m_LocalPosition: {x: 0, y: 0, z: 0.011099999}
+  m_LocalScale: {x: 0.041690983, y: 0.041691005, z: 0.041691005}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1085904239}
+  m_Father: {fileID: 521471410}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &1278673509
 Light:
@@ -31314,6 +31447,21 @@ MonoBehaviour:
   targetWidth: 1920
   targetHeight: 1080
   type: 0
+--- !u!114 &1317203166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 221086081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 058a1e0d8c98bbc4595a31d997dc1a2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PostProcessingManager
+  effects:
+  - {fileID: 11400000, guid: e5eed753fe86b904b8e130f8b903378d, type: 2}
+  - {fileID: 11400000, guid: 363f8f10c32cb3e489b5c43191522a08, type: 2}
 --- !u!1 &1318228242
 GameObject:
   m_ObjectHideFlags: 0
@@ -38365,6 +38513,7 @@ GameObject:
   - component: {fileID: 1669547310}
   - component: {fileID: 1669547312}
   - component: {fileID: 1669547313}
+  - component: {fileID: 1669547314}
   m_Layer: 0
   m_Name: Menu Cam
   m_TagString: MainCamera
@@ -38400,9 +38549,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.00028827786
+    y: 0.00017631054
     width: 1
-    height: 0.99942344
+    height: 0.9996474
   near clip plane: 0.1
   far clip plane: 100
   field of view: 73.8
@@ -38417,10 +38566,10 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
-  m_AllowMSAA: 1
+  m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
+  m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
 --- !u!4 &1669547311
@@ -38468,6 +38617,21 @@ MonoBehaviour:
   maxAngle: 8
   smoothTime: 1
   active: 1
+--- !u!114 &1669547314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1669547308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 058a1e0d8c98bbc4595a31d997dc1a2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PostProcessingManager
+  effects:
+  - {fileID: 11400000, guid: e5eed753fe86b904b8e130f8b903378d, type: 2}
+  - {fileID: 11400000, guid: 363f8f10c32cb3e489b5c43191522a08, type: 2}
 --- !u!1 &1671662827 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1188256223936568184, guid: 1db1031b9eec0f44b87e44d940e0fa99, type: 3}
@@ -38804,6 +38968,7 @@ GameObject:
   - component: {fileID: 1711720677}
   - component: {fileID: 1711720678}
   - component: {fileID: 1711720679}
+  - component: {fileID: 1711720680}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -38854,12 +39019,12 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.00028827786
+    y: 0.00017631054
     width: 1
-    height: 0.99942344
+    height: 0.9996474
   near clip plane: 0.1
   far clip plane: 100
-  field of view: 82.2
+  field of view: 77
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -38871,10 +39036,10 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
-  m_AllowMSAA: 1
+  m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
+  m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
 --- !u!114 &1711720678
@@ -38905,6 +39070,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shader: {fileID: 4800000, guid: bb8a6c6baff0a49489953c79c896e57c, type: 3}
+--- !u!114 &1711720680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1711720674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 058a1e0d8c98bbc4595a31d997dc1a2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PostProcessingManager
+  effects:
+  - {fileID: 11400000, guid: e5eed753fe86b904b8e130f8b903378d, type: 2}
+  - {fileID: 11400000, guid: 363f8f10c32cb3e489b5c43191522a08, type: 2}
 --- !u!1 &1729758639
 GameObject:
   m_ObjectHideFlags: 0
@@ -39955,7 +40135,7 @@ MonoBehaviour:
   successSfx:
     clip: {fileID: 8300000, guid: 2a02990f0e95ae140ace58281098f9bb, type: 3}
     volumeT: 0.45
-  texRes: 512
+  texRes: 1024
   upDst: -0.52
   downDel: 0.02
   paper: {fileID: 1576867319}
@@ -40136,9 +40316,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.00028827786
+    y: 0.00017631054
     width: 1
-    height: 0.99942344
+    height: 0.9996474
   near clip plane: 0.025
   far clip plane: 100
   field of view: 60
@@ -40148,15 +40328,15 @@ Camera:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 981
-  m_RenderingPath: -1
+  m_RenderingPath: 1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
-  m_AllowMSAA: 1
+  m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
+  m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
 --- !u!114 &1800795493
@@ -40424,6 +40604,7 @@ GameObject:
   - component: {fileID: 1821235054}
   - component: {fileID: 1821235056}
   - component: {fileID: 1821235057}
+  - component: {fileID: 1821235058}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -40476,9 +40657,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.00028827786
+    y: 0.00017631054
     width: 1
-    height: 0.99942344
+    height: 0.9996474
   near clip plane: 0.025
   far clip plane: 100
   field of view: 73.8
@@ -40493,10 +40674,10 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
-  m_AllowMSAA: 1
+  m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
+  m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
 --- !u!114 &1821235057
@@ -40514,6 +40695,21 @@ MonoBehaviour:
   targetWidth: 1920
   targetHeight: 1080
   type: 0
+--- !u!114 &1821235058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1821235053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 058a1e0d8c98bbc4595a31d997dc1a2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PostProcessingManager
+  effects:
+  - {fileID: 11400000, guid: e5eed753fe86b904b8e130f8b903378d, type: 2}
+  - {fileID: 11400000, guid: 363f8f10c32cb3e489b5c43191522a08, type: 2}
 --- !u!1 &1824028646
 GameObject:
   m_ObjectHideFlags: 0
@@ -42016,6 +42212,7 @@ GameObject:
   - component: {fileID: 1885569967}
   - component: {fileID: 1885569969}
   - component: {fileID: 1885569970}
+  - component: {fileID: 1885569971}
   m_Layer: 0
   m_Name: Cam -  Nap
   m_TagString: Untagged
@@ -42066,9 +42263,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.00028827786
+    y: 0.00017631054
     width: 1
-    height: 0.99942344
+    height: 0.9996474
   near clip plane: 0.19
   far clip plane: 100
   field of view: 73.8
@@ -42083,10 +42280,10 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
-  m_AllowMSAA: 1
+  m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
+  m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
 --- !u!114 &1885569970
@@ -42104,6 +42301,21 @@ MonoBehaviour:
   targetWidth: 1920
   targetHeight: 1080
   type: 0
+--- !u!114 &1885569971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1885569966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 058a1e0d8c98bbc4595a31d997dc1a2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PostProcessingManager
+  effects:
+  - {fileID: 11400000, guid: e5eed753fe86b904b8e130f8b903378d, type: 2}
+  - {fileID: 11400000, guid: 363f8f10c32cb3e489b5c43191522a08, type: 2}
 --- !u!1001 &1886997950
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46809,7 +47021,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.35
+  m_Radius: 0.47
   m_Center: {x: 0, y: 0.44, z: 0}
 --- !u!114 &2125696959
 MonoBehaviour:

@@ -16,6 +16,7 @@ public class CandleTask : Task
 
 		candles = new(FindObjectsByType<Candle>(FindObjectsInactive.Exclude, FindObjectsSortMode.None));
 		candles.Sort((a, b) => String.Compare(a.name, b.name, StringComparison.Ordinal));
+		
 	}
 
 	void Update()

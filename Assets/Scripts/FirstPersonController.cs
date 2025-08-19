@@ -414,6 +414,7 @@ public class FirstPersonController : MonoBehaviour
 		transform.position = Vector3.Lerp(frameA.pos, frameB.pos, abPercent);
 		transform.rotation = Quaternion.Slerp(frameA.rot, frameB.rot, abPercent);
 		cam.transform.rotation = Quaternion.Slerp(frameA.camRot, frameB.camRot, abPercent);
+		velocity = (frameB.pos - frameA.pos) / (frameB.time - frameA.time);
 
 		if (animator)
 		{

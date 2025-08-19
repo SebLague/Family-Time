@@ -15,13 +15,42 @@ public static class PlaybackData
 		activePlayerIndex = 0;
 		skipMenu = false;
 
+		WipeCat();
+		WipeBaby();
+		WipeTeen();
+		WipeMother();
+
+	}
+
+	static void WipeCat()
+	{
+		CandleTask.toppleEvents.Clear();
+		CatCatchTask.events.Clear();
+	}
+
+	static void WipeBaby()
+	{
 		ScribbleTask.keyframes.Clear();
 		TowerTask.keyframes.Clear();
 		XyloTask.keyframes.Clear();
-		CandleTask.toppleEvents.Clear();
-		CatCatchTask.events.Clear();
-		FireExtinguisher.shootTimes.Clear();
+	}
+
+	static void WipeTeen()
+	{
 		Aircraft.frames.Clear();
+	}
+
+	static void WipeMother()
+	{
+		FireExtinguisher.shootTimes.Clear();
+	}
+
+	public static void WipeCurrentOnly()
+	{
+		if (activePlayerIndex == (int)GameManager.Players.Cat) WipeCat();
+		if (activePlayerIndex == (int)GameManager.Players.Baby) WipeBaby();
+		if (activePlayerIndex == (int)GameManager.Players.Teenager) WipeTeen();
+		if (activePlayerIndex == (int)GameManager.Players.Mother) WipeMother();
 	}
 
 	[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]

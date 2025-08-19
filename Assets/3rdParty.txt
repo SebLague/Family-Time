@@ -100,6 +100,9 @@ Standing lamp by jeremy [CC-BY] (https://creativecommons.org/licenses/by/3.0/) v
 Soccer goal by Poly by Google [CC-BY] (https://creativecommons.org/licenses/by/3.0/) via Poly Pizza (https://poly.pizza/m/7t4hmicGHV4)
 Headphones by Poly by Google [CC-BY] (https://creativecommons.org/licenses/by/3.0/) via Poly Pizza (https://poly.pizza/m/ao4rDws4elf)
 
-
 ** Fonts
 https://font.subf.dev/en/
+
+** Scripts
+FXAA - https://catlikecoding.com/unity/tutorials/advanced-rendering/fxaa/
+LetterBoxer - https://github.com/RyanNielson/Letterboxer

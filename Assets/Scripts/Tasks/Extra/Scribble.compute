@@ -23,9 +23,8 @@ void Draw(uint3 id : SV_DispatchThreadID)
     int2 drawPx = (1 - drawUV.yx) * Res;
 
     int2 offset = id.xy - drawPx;
-    if (length(offset) < 10)
+    if (length(offset) < 25)
     {
         Tex[id.xy] = float4(drawCol.rgb, 1);
     }
-    //Tex[id.xy] = float4(id.x & id.y, (id.x & 15)/15.0, (id.y & 15)/15.0, 0.0);
 }

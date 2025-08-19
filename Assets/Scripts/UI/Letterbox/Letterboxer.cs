@@ -7,7 +7,6 @@ namespace Letterboxer
 	[ExecuteInEditMode, RequireComponent(typeof(Camera))]
 	public class Letterboxer : MonoBehaviour
 	{
-		const bool isActive = true;
 		[SerializeField]
 		private int targetWidth = 1280;
 
@@ -30,7 +29,6 @@ namespace Letterboxer
 
 		private void Update()
 		{
-			if (!isActive) return;
 			if (ShouldUpdateLetterbox())
 			{
 				currentScreenWidth = Screen.width;
@@ -110,7 +108,6 @@ namespace Letterboxer
 
 		private void OnValidate()
 		{
-			if (!isActive) return;
 			targetWidth = Mathf.Max(1, targetWidth);
 			targetHeight = Mathf.Max(1, targetHeight);
 
